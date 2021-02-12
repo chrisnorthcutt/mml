@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>MyMedicalLocker</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="apple-touch-icon-precomposed" sizes="57x57" href="/resources/images/favicon/apple-touch-icon-57x57.png"/>
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/resources/images/favicon/apple-touch-icon-114x114.png"/>
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/resources/images/favicon/apple-touch-icon-72x72.png"/>
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/resources/images/favicon/apple-touch-icon-144x144.png"/>
+    <link rel="apple-touch-icon-precomposed" sizes="60x60" href="/resources/images/favicon/apple-touch-icon-60x60.png"/>
+    <link rel="apple-touch-icon-precomposed" sizes="120x120" href="/resources/images/favicon/apple-touch-icon-120x120.png"/>
+    <link rel="apple-touch-icon-precomposed" sizes="76x76" href="/resources/images/favicon/apple-touch-icon-76x76.png"/>
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="/resources/images/favicon/apple-touch-icon-152x152.png"/>
+    <link rel="icon" type="image/png" href="./resources/images/favicon/favicon-196x196.png" sizes="196x196"/>
+    <link rel="icon" type="image/png" href="./resources/images/favicon/favicon-96x96.png" sizes="96x96"/>
+    <link rel="icon" type="image/png" href="./resources/images/favicon/favicon-32x32.png" sizes="32x32"/>
+    <link rel="icon" type="image/png" href="./resources/images/favicon/favicon-16x16.png" sizes="16x16"/>
+    <link rel="icon" type="image/png" href="./resources/images/favicon/favicon-128.png" sizes="128x128"/>
+    <link rel="icon" type="image/x-icon" href="./resources/images/favicon/favicon.ico">
+    <meta name="application-name" content="&nbsp;"/>
+    <meta name="msapplication-TileColor" content="#52CACD"/>
+    <meta name="msapplication-TileImage" content="mstile-144x144.png"/>
+    <meta name="msapplication-square70x70logo" content="mstile-70x70.png"/>
+    <meta name="msapplication-square150x150logo" content="mstile-150x150.png"/>
+    <meta name="msapplication-wide310x150logo" content="mstile-310x150.png"/>
+    <meta name="msapplication-square310x310logo" content="mstile-310x310.png"/>
+    <link href="https://fonts.googleapis.com/css?family=Karla:400,700" rel="stylesheet">
+    <link rel="stylesheet" href="./resources/css/main.min.css">
+    <link rel="stylesheet" href="./vendors/css/ui.css">
+    <script src="resources/js/browser-deeplink.js"></script>
+    <script src="./resources/js/dom.js"></script>
+    <script src="./vendors/js/ui.js"></script>
+    <script src="./vendors/js/mask.js"></script>
+    <script src="resources/js/browser.js"></script>
+    <script src='https://www.google.com/recaptcha/api.js'></script>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-109149124-3"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-109149124-3');
+    </script>
+    <style>
+
+      @media only screen and (max-device-width: 768px) {
+        .container {
+          overflow: auto;
+          height: 100%;
+        }
+    }
+      .valid{
+        color: green;
+        transition: .2s all linear;
+      }
+      .valid::before{
+        content: ' 	\002714 ';
+        margin-right: 5px;
+      }
+      .invalid{
+        color: red;
+        transition: .2s all linear;
+      }
+      .invalid::before{
+        content: ' \002715 ';
+        margin-right: 5px;
+      }
+      </style>
+  </head>
+  <body class="login-bg"
+    <!---Ads for Mobile -->
+    <div class="ad">
+        <div id=divMyStore>
+          <img class="ad__image" id=imgGetiPhoneApp src="resources/images/mml-app-store.png" alt=""/>
+          <img class="ad__image" id=imgGetAndroidApp src="resources/images/mml-play-store.png" alt=""/>
+        </div>
+      </div>
+    <!--End-->
+    <div class="cover" style="position: fixed; top:0; left:0; height: 100%; width: 100%; background-color: #EBF1F8; z-index:-1;"></div>
+<!--    <div class="fullscreen-bg">
+     <video loop muted autoplay poster="resources/images/login.jpg" class="fullscreen-bg__video">
+        <source src="./resources/video/login.webm" type="video/webm">
+        <source src="./resources/video/login.mp4" type="video/mp4">
+        <source src="./resources/video/login.ogv" type="video/ogg">
+      </video> 
+    </div>-->
+    <div class="container center align-vertical--middle">
+      <div class="logo"></div>
+      <div class="login" id="loginContainer">
+        <div id="loginMain" class="page visible">
+          <form>
+            <div class="form-group">
+              <label for="user-id">User ID<span class="required">*</span>
+              </label>
+              <input class="width--100 " type="text" id="user-id" name="user-id" placeholder="Enter a Mobile Number or Email">
+            </div>
+            <div class="form-group">
+              <label for="password">Password<span class="required">*</span>
+              </label>
+              <input class="width--100" type="password" id="password" name="password" placeholder="ex: ********" onkeydown="keypress(event, 'pass')">
+              <a id="accessAccount" class=" fr" onclick="event.preventDefault();showScreen('loginPassword')" href="#">Forgot Password?</a>
+            </div>
+            <div id="badLogin" style="display:none;" class="alert col-12">
+              <p><img height="20" style="vertical-align: middle; display: inline; margin-right: 10px;" src="resources\images\icon\icon-error.svg">Your username or password was incorrect.</p>
+            </div>
+          </form>
+          <button class="width--100 btn--primary mt--20 mb--20" onclick="attemptLogin()">Sign In</button>
+          <hr class="light-grey">
+          <div class="row">
+            <p class="text-align--center mb--10">Don't have a <span id="name">MyMedicalLocker</span> account?<br>Click create account to get started.</p>
+            <a class="btn--outline width--100 mt--10" href="./setup.html?p=createAccount" id="createAccountButton">
+              Create Account
+            </a>
+          </div>
+
+        </div>
+        <div id="loginPassword" class="page">
+          <p class="text-weight--bold text-size--large">Reset Password</p>
+          <p>Enter your email address or phone number and we’ll send you instructions to reset your password.</p>
+          <div id="passwordResetError" style="float: none;" class="failure-state col-12 mb--10"></div><br/>
+          <form action="">
+            <div class="form-group">
+              <label for="user-id" class="">User ID<span class="required">*</span>
+              </label>
+              <input class="col-12" type="text" id="user-email" name="user-email" placeholder="Enter a Mobile Number or Email" onkeydown="keypress(event, 'email')" autofocus>
+            </div>
+            <div class="form-group" id="recaptchaContainer" style="display: none; width: 100%;">
+              <div style="display: inline-block" class="g-recaptcha" data-sitekey="6Ld3x1cUAAAAAP0v2ZTjupaqD1wWHEOkQjDplaTk"></div>
+            </div>
+          </form>
+          <div class="clearfix">
+            <a class="fl btn--outline width--50" id="backToLogin" onclick="event.preventDefault();showScreen('loginMain')" href="#">Back to Login</a>
+            <a class="fr btn--primary width--50" onclick="nextStep()" id="resetPasswordButton">Reset Password</a>
+          </div>
+            <hr class="light-grey">
+            <p class="text-color--medium-grey">If you don't receive an email or text from us within a few minutes, make sure you have entered the user id correctly.</p>
+        </div>
+        <div id="tokenEntry" class="page">
+          <p>A token has been sent to you via phone or email. Please enter it below.</p>
+          <label class="" id="securityQuestion" for="user-id">Token
+            <span class="required">*</span>
+          </label>
+          <input class=" width--100" type="text" id="user-answer" name="user-answer" placeholder="Token" onkeydown="keypress(event, 'question')">
+          <label class="" for="createPasswordField">Create your new password:
+            <span class="required">*</span>
+          </label>
+          <input class=" width--100" type="password" id="createPasswordField" name="createPasswordField" placeholder="New Password" onkeydown="keypress(event, 'question')">
+          <label class="" for="confirmPasswordField">Confirm your new password:
+            <span class="required">*</span>
+          </label>
+          <input class=" width--100" type="password" id="confirmPasswordField" name="confirmPasswordField" placeholder="Confirm Password" onkeydown="keypress(event, 'question')">
+          <div id="tokenEntryError" style="float: none;" class="failure-state col-12 mb--10"></div><br/>
+          <ul class="mb--20">
+            <li id="confirm-password-matches" class="password-error">Passwords match</li>
+          </ul>
+          <p class="text-weight--bold">Password Requirements</p>
+          <ul class="mb--20" id="passwordPolicies">
+            <li>8 or more characters</li>
+            <li>At least 1 capital letter</li>
+            <li>At least 1 number</li>
+          </ul>
+          <div class="clearfix">
+            <a class="fl btn--outline width--50" id="Back" onclick="event.preventDefault();showScreen('loginPassword')" href="#">Back to Login</a>
+            <a class="fr btn--primary width--50" onclick="nextStep()">Reset Password</a>
+          </div>
+            <hr class="light-grey">
+            <p class="text-color--medium-grey">If you don't receive an email or text from us within a few minutes, make sure you have entered the user id correctly.</p>
+        </div>
+        <div id="passwordOutOfPolicy" class="page">
+          <p>Your password no longer meets our policy. Please create a new password:</p>
+          <label class="" for="newPasswordField">Create your new password:
+            <span class="required">*</span>
+          </label>
+          <input class=" width--100" type="password" id="newPasswordField" name="newPasswordField" placeholder="New Password" onkeydown="keypress(event, 'question')">
+          <label class="" for="confirmNewPasswordField">Confirm your new password:
+            <span class="required">*</span>
+          </label>
+          <input class=" width--100" type="password" id="confirmNewPasswordField" name="confirmNewPasswordField" placeholder="Confirm Password" onkeydown="keypress(event, 'question')">
+          <div id="passwordPolicyError" style="float: none;" class="failure-state col-12 mb--10"></div><br/>
+          <ul class="mb--20">
+            <li id="confirm-new-password-matches" class="password-error">Passwords match</li>
+          </ul>
+          <p class="text-weight--bold">Password Requirements</p>
+          <ul class="mb--20" id="newPasswordPolicies">
+            <li>8 or more characters</li>
+            <li>At least 1 capital letter</li>
+            <li>At least 1 number</li>
+          </ul>
+          <div class="clearfix">
+            <a class="fr btn--primary width--100" onclick="updatePassword()">Change Password and Continue</a>
+          </div>
+            <hr class="light-grey">
+            <p class="text-color--medium-grey">If you don't receive an email or text from us within a few minutes, make sure you have entered the user id correctly.</p>
+        </div>
+        <div id="passwordResetSuccess" class="page">
+          <h2 class="mb--10">Password Successfully Reset!</h2>
+          <p class="mb--20">You should be able to log in with the new password.</p>
+          <button class="width--100 btn--primary btn" onclick="event.preventDefault();mml_launch_app();showScreen('loginMain')">Back to Login</button>
+        </div>
+        <div id="loginPractice" class="page">
+          <h1>Connect to a Practice</h1>
+          <form id="practiceForm" action="">
+            <div class="form-group">
+              <label class="" for="user-id">Email<span class="required">*
+                  <span style="display:inherit" id="practice-email-invalid">The email address is not valid.</span>
+                </span>
+              </label>
+              <input class=" width--100" type="text" id="practice-email" name="user-id" placeholder="Your email address">
+            </div>
+            <div class="form-group">
+              <label class="" for="user-id">Temporary Password<span class="required">*
+                  <span style="display:none" id="practice-email-invalid">The temporary password was incorrect.</span>
+                </span>
+              </label>
+              <input class=" width--100" type="password" id="temp-pass" name="user-id" placeholder="Temporary password from your email">
+            </div>
+            <div class="form-group">
+              <label class="" id="securityQuestion" for="user-id">Security Question<span class="required">*</span>
+              </label>
+              <input class=" width--100" type="text" id="practice-question" name="user-id" placeholder="Create a security question">
+            </div>
+            <div class="form-group">
+              <label class="" id="securityAnswer" for="user-id">Answer<span class="required">*</span>
+              </label>
+              <input class=" width--100" type="text" id="practice-answer" name="user-id" placeholder="The answer to your security question">
+            </div>
+            <div class="form-group">
+              <label class="" id="securityQuestion" for="user-id">New Password<span class="required">*
+                  <span style="display:none" id="practice-passwords-unmatched">The passwords do not match.</span>
+                </span>
+              </label>
+              <input class=" width--100" type="password" id="practice-password" name="user-id" placeholder="Your new password">
+            </div>
+            <div class="form-group">
+              <label class="" id="securityQuestion" for="user-id">Confirm Password<span class="required">*</span>
+              </label>
+              <input class=" width--100" type="password" id="practice-confirm" name="user-id" placeholder="Confirm your new password">
+            </div>
+          </form>
+          <button id="saveAccount" disabled onclick="saveAccount()">Save</button>
+          <a id="backToLogin" onclick="event.preventDefault();showScreen('loginMain')" href="#">Back to Login</a>
+
+        </div>
+        <div id="loginRegister" class="page">
+          <p class="mb--20 text-weight--bold text-align--center">Please fill out the following information to<br>create your account</p>
+
+
+          <form id="registerForm" action="">
+            <div class="form-group">
+              <label for="registerFirstName" class="">First Name
+                <span class="required">*
+                  <span style="display:none" id="registerFirstNameInvalid">First name is required.</span>
+                </span>
+              </label>
+              <input type="text" id="registerFirstName" class=" width--100" name="registerFirstName" placeholder="Enter your first name"/>
+            </div>
+            <div class="form-group">
+              <label for="registerLastName" class="">Last Name
+                <span class="required">*
+                  <span style="display:none" id="registerLastNameInvalid">Last name is required.</span>
+                </span>
+              </label>
+              <input type="text" id="registerLastName" class=" width--100" name="registerLastName" placeholder="Enter your last name"/>
+            </div>
+            <div class="form-group">
+              <label id="securityQuestion" class="" for="registerBirthDate">Birthdate</label>
+              <input type="text" id="registerBirthDate" class=" width--100 icon-bg--date" name="registerBirthDate" placeholder="Enter your birthdate"/>
+            </div>
+            <div class="form-group">
+              <label id="securityAnswer" class="" for="user-id">Email Address<span class="required">*
+                <span style="display:none" id="registerEmailInvalid">The email address is not valid.</span>
+              </span>
+            </label>
+            <input type="text" id="registerEmail" class=" width--100" name="user-id" placeholder="Your email address"/>
+            </div>
+            <div class="form-group">
+              <label id="securityQuestion" class="" for="user-id">Confirm Email Address<span class="required">*
+                <span style="display:none" id="registerEmailNotMatched">The email addresses do not match.</span>
+              </span>
+              </label>
+              <input type="text" id="registerConfirmEmail" class=" width--100" name="user-id" placeholder="Confirm your email address">
+            </div>
+          </form>
+
+          <div style="display: none;" class="failure-state col-12 mb--10" id="registrationError"></div>
+
+          <a id="registerButton" class="btn--primary btn--sm fr" onclick="event.preventDefault();registerAccount()">Register</a>
+          <a id="backToLogin" class="fl btn--outline btn--sm fl" onclick="event.preventDefault();showScreen('loginMain')" href="#">Back to Login</a>
+
+        </div>
+        <div id="loginRegister2" class="page">
+          <h1 class="">Sign Up Now</h1>
+          <p class="">We've sent an email to your email address containing a token. Use that token to continue the sign up process.</p>
+          <form id="registerForm2" action="">
+            <div class="form-group">
+              <label for="user-id" class="">Token<span class="required">*
+                  <span style="display:none" id="registerTokenInvalid">Token is required.</span>
+                </span>
+              </label>
+              <input type="text" id="registerToken" class=" col-12" name="user-id" placeholder="Enter the token from your email">
+            </div>
+            <div class="form-group">
+              <label id="securityAnswer" class="" for="user-id">Password<span class="required">*
+                 <span style="display:none" id="registerPasswordInvalid">A password is required.</span>
+              </span>
+              </label>
+              <input type="password" id="registerPassword" class=" col-12" name="user-id" placeholder="Create a password">
+              <div class="tooltip" style="display: none; padding: 10px; background-color: white; position: absolute; width: 80%; z-index: 2; left: 0; right: 0; margin: 0 auto;">
+                <ul>
+                  <li class="invalid" id="character">Be at least 8 characters</li>
+                  <li class="invalid" id="numbers">Contain at least 1 number</li>
+                  <li class="invalid" id="capital">Contain at least 1 capitol letter</li>
+                </ul>
+              </div>
+            </div>
+            <div class="form-group">
+              <label id="securityQuestion" class="" for="user-id">Confirm Password<span class="required">*
+                  <span style="display:none" id="registerPasswordNotMatched">The passwords do not match.</span>
+                </span>
+              </label>
+              <input type="password" id="registerConfirmPassword" class=" col-12" name="user-id" placeholder="Confirm your password">
+            </div>
+          </form>
+
+          <div class="failure-state col-12 mb--10" id="registration2Error"></div>
+
+          <a id="registerButton" class="btn--primary btn--sm fr" onclick="event.preventDefault();finishRegistration()">Register</a>
+          <a id="backToLogin" class="fl btn--outline btn--sm fl" onclick="event.preventDefault();showScreen('loginMain')" href="#">Back to Login</a>
+
+        </div>
+        <div id="connectionSuccess" class="page">
+          <h1>Successfully Connected</h1>
+          <p>You are now connected to your practice via MyMedicalLocker. You should be able to log in with your specified credentials.</p>
+          <a id="backToLogin" onclick="event.preventDefault();showScreen('loginMain')" href="#">Continue to Login</a>
+        </div>
+      </div>
+    </div>
+    <script>
+      if (!/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent)) {
+        $("#backToLogin").show();
+        $("#resetPasswordButton").addClass('width--50').removeClass('width--100');
+        
+      } else {
+        $("#backToLogin").hide();
+        $("#resetPasswordButton").removeClass('width--50').addClass('width--100');
+      }
+      if ((/neurocore/).test(window.location.href)) {
+        $("#name").text("Neurocore")
+        var redirectDestination = './#!appointments';
+        var system = '<system>neurocore</system>';
+        document.title = "Neurocore Login";
+      }
+    </script>
+    <script src="./resources/js/xmlquery.js"></script>
+    <script src="./resources/js/passwordPolicy.js"></script>
+    <script src="./resources/js/login.js"></script>
+  </body>
+</html>

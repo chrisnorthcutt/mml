@@ -1,0 +1,21 @@
+.week-selector{
+	p{
+		display: inline;
+	}
+	&__arrow{
+		display       : inline-block;
+		height        : 20px;
+		width         : 20px;
+		vertical-align: middle;
+	}
+	.previous{
+		background: url('../images/icon/icon-previous.svg') center center no-repeat;
+		height    : 20px;
+		width     : 20px;
+	}
+	.next{
+		background: url('../images/icon/icon-next.svg') center center no-repeat;
+		height    : 20px;
+		width     : 20px;
+	}
+}

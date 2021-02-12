@@ -1,0 +1,14 @@
+<svg width="17" height="20" viewBox="0 0 17 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<title>icon-conditions</title>
+<desc>Created using Figma</desc>
+<g id="Canvas" transform="translate(1501 1572)">
+<g id="icon-conditions">
+<g id="Vector">
+<use xlink:href="#path0_fill" transform="translate(-1501 -1572)" fill="#EB5757"/>
+</g>
+</g>
+</g>
+<defs>
+<path id="path0_fill" d="M 2.5 0C 1.12919 0 0 1.12919 0 2.5L 0 17.5C 0 18.8708 1.12919 20 2.5 20L 15.8333 20L 16.6667 20L 16.6667 19.1667L 16.6667 0.833333L 16.6667 0L 15.8333 0L 2.5 0ZM 2.5 1.66667L 15 1.66667L 15 15L 2.5 15C 2.20585 15 1.9298 15.061 1.66667 15.1562L 1.66667 2.5C 1.66667 2.02914 2.02914 1.66667 2.5 1.66667ZM 7.5 5L 7.5 7.5L 5 7.5L 5 9.16667L 7.5 9.16667L 7.5 11.6667L 9.16667 11.6667L 9.16667 9.16667L 11.6667 9.16667L 11.6667 7.5L 9.16667 7.5L 9.16667 5L 7.5 5ZM 2.5 16.6667L 15 16.6667L 15 18.3333L 2.5 18.3333C 2.02914 18.3333 1.66667 17.9709 1.66667 17.5C 1.66667 17.0291 2.02914 16.6667 2.5 16.6667Z"/>
+</defs>
+</svg>

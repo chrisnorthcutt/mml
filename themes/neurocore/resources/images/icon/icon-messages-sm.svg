@@ -1,0 +1,30 @@
+<svg width="45" height="45" viewBox="0 0 45 45" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<title>icon-messages-sm</title>
+<desc>Created using Figma</desc>
+<g id="Canvas" transform="translate(-218 3248)">
+<g id="icon-messages-sm">
+<g id="icon-messages-sm">
+<g id="Group">
+<g id="Group">
+<mask id="mask0_alpha" mask-type="alpha">
+<g id="icon messages sm b">
+<g id="Vector">
+<use xlink:href="#path0_fill" transform="translate(218 -3241)" fill="#E64A35"/>
+</g>
+</g>
+</mask>
+<g id="Group" mask="url(#mask0_alpha)">
+<g id="Vector">
+<use xlink:href="#path1_fill" transform="translate(218 -3248)" fill="#E64A35"/>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<defs>
+<path id="path0_fill" d="M 0 0L 0 1.71875L 0 29.2188L 0 30.9375L 1.73077 30.9375L 43.2692 30.9375L 45 30.9375L 45 29.2188L 45 1.71875L 45 0L 43.2692 0L 1.73077 0L 0 0ZM 7.46394 3.4375L 37.5361 3.4375L 22.5 13.374L 7.46394 3.4375ZM 3.46154 4.94141L 21.5264 16.9189L 22.5 17.5098L 23.4736 16.9189L 41.5385 4.94141L 41.5385 27.5L 3.46154 27.5L 3.46154 4.94141Z"/>
+<path id="path1_fill" d="M 45 0L 0 0L 0 45L 45 45L 45 0Z"/>
+</defs>
+</svg>

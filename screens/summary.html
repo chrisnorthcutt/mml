@@ -1,0 +1,192 @@
+<style>
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  .wrapper{
+    margin: 0;
+  }
+  #summaryPrintArea, #summaryPrintArea * {
+    visibility: visible;
+  }
+  #summaryPrintArea {
+    position: absolute;
+    left: 0;
+    top: 0;
+    max-width: none;
+  }
+}
+</style>
+
+<div id="cover" class="cover" onclick="summary.resetKey();common.closeModals()"></div>
+<div class="popup popup--sm" id="popupDatabase">
+  <div class="popup-fields">
+    <div class="popup__title text-align--center">
+      <h3 class="text-color--primary text-weight--bold text-size--large mb--20">Choose Your Practice</h3>
+  </div>
+    <div id="popupDatabaseList">
+    </div>
+  </div>
+  <div class="popup-cta">
+    <button class="width--100 fl btn--secondary" onclick="summary.resetKey();common.closeModals()">Close</button>
+  </div>
+</div>
+<div class="popup" id="popup">
+  <div class="popup-fields">
+
+    <p>Choose which sections you'd like to share with your practice:</p>
+    <input id="demographicsInd" type="checkbox" name="availability" value="demographicsInd">
+    <label for="demographicsInd"><span class="grey"></span>Demographics</label><br/>
+    <input id="employerInd" type="checkbox" name="availability" value="employerInd">
+    <label for="employerInd"><span class="grey"></span>Employer</label><br/>
+    <input id="insuranceInd" type="checkbox" name="availability" value="insuranceInd">
+    <label for="insuranceInd"><span class="grey"></span>Insurance</label><br/>
+    <input id="medicationInd" type="checkbox" name="availability" value="medicationInd">
+    <label for="medicationInd"><span class="grey"></span>Medications</label><br/>
+    <input id="allergiesInd" type="checkbox" name="availability" value="allergiesInd">
+    <label for="allergiesInd"><span class="grey"></span>Allergies</label><br/>
+    <input id="medicalInd" type="checkbox" name="availability" value="medicalInd">
+    <label for="medicalInd"><span class="grey"></span>Medical Conditions</label><br/>
+    <input id="lifestyleInd" type="checkbox" name="availability" value="lifestyleInd">
+    <label for="lifestyleInd"><span class="grey"></span>Lifestyle</label><br/>
+    <input id="familyInd" type="checkbox" name="availability" value="familyInd">
+    <label for="familyInd"><span class="grey"></span>Family History</label><br/>
+    <input id="hwInd" type="checkbox" name="availability" value="hwInd">
+    <label for="hwInd"><span class="grey"></span>Height &amp; Weight</label><br/>
+    <input id="bpInd" type="checkbox" name="availability" value="bpInd">
+    <label for="bpInd"><span class="grey"></span>Blood Pressure</label><br/>
+    <input id="bsInd" type="checkbox" name="availability" value="bsInd">
+    <label for="bsInd"><span class="grey"></span>Blood Sugar</label><br/>
+    <input id="goalInd" type="checkbox" name="availability" value="goalInd">
+    <label for="goalInd"><span class="grey"></span>Goals</label><br/>
+
+  </div>
+  <div class="popup-cta">
+    <button class="width--50 fl btn--secondary" onclick="common.refresh()">Cancel</button>
+    <button class="width--50 fr btn--primary" onclick="summary.shareSummary()">Send</button>
+  </div>
+  <input style="display: none" id="medicationId"/>
+</div>
+<div id="summaryPrintArea" class="container center white">
+  <h2><span class="text--primary text--bold" id="patientSummary-firstName"></span>
+    <span class="text--primary text--bold" id="patientSummary-lastName"></span>
+  </h2>
+  <div class="row">
+    <div class="col-6">
+      <!-- Contact Info -->
+      <h4 class="table-head-title text--underline"><a class="icon-bg--edit" href="#!contact"></a>Contact Info</h4>
+      <p>Address: <span id="patientSummary-address"></span></p>
+      <p>City: <span id="patientSummary-city"></span></p>
+      <p>State: <span id="patientSummary-state"></span></p>
+      <p>Zip Code: <span id="patientSummary-zip"></span></p>
+      <p>Home Number: <span id="patientSummary-myHome"></span></p>
+      <p>Cell Number: <span id="patientSummary-myCell"></span></p>
+      <p>Work Number: <span id="patientSummary-myWork"></span></p>
+    </div>
+    <div class="col-6">
+      <!-- Employer -->
+      <h4 class="table-head-title text--underline"><a class="icon-bg--edit" href="#!employer"></a>Employer</h4>
+      <p>Occupation: <span id="employerSummary-occupation"></span></p>
+      <p>Employer: <span id="employerSummary-employerName"></span></p>
+      <p>Employer Phone: <span id="employerSummary-work"></span></p>
+      <p>Employer Fax: <span id="employerSummary-fax"></span></p>
+      <p>Employer Address: <span id="employerSummary-address"></span></p>
+      <p>Employer City: <span id="employerSummary-city"></span></p>
+      <p>Employer State: <span id="employerSummary-state"></span></p>
+      <p>Employer Zip: <span id="employerSummary-zip"></span></p>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-6">
+      <!-- Demographics -->
+      <h4 class="table-head-title text--underline"><a class="icon-bg--edit" href="#!demographics"></a>Demographics</h4>
+      <p>Birth Date: <span id="patientSummary-birthDate"></span></p>
+      <p>Age: <span id="patientSummary-age"></span></p>
+      <p>Gender: <span id="patientSummary-gender"></span></p>
+      <p>Marital Status: <span id="patientSummary-maritalStatus"></span></p>
+      <p>Ethnicity: <span id="patientSummary-ethnicity"></span></p>
+      <p>Blood Type: <span id="patientSummary-bloodType"></span></p>
+      <p>Eye Color: <span id="patientSummary-eyeColor"></span></p>
+      <p>Hair Color: <span id="patientSummary-hairColor"></span></p>
+      <p>Birthmarks and Scars: <span id="patientSummary-birthmarksScars"></span></p>
+      <p>Special Conditions: <span id="patientSummary-specialConditions"></span></p>
+      <p>SSN: <span id="patientSummary-ssn"></span></p>
+    </div>
+    <div class="col-6">
+      <!-- Emergency Contact -->
+      <h4 class="table-head-title text--underline"><a class="icon-bg--edit" href="#!emergency"></a>Emergency Contact</h4>
+      <div id="emergencyContacts"></div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-6">
+      <!-- Allergies -->
+      <h4 class="table-head-title text--underline"><a class="icon-bg--edit" href="#!allergy"></a>Allergies</h4>
+      <div id="allergiesList"></div>
+    </div>
+    <div class="col-6">
+      <!-- Medications -->
+      <h4 class="table-head-title text--underline"><a class="icon-bg--edit" href="#!medications"></a>Medications</h4>
+      <div id="medicationList"></div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-6">
+
+      <!-- Medical Conditions -->
+      <h4 class="table-head-title text--underline"><a class="icon-bg--edit" href="#!conditions"></a>Medical Conditions</h4>
+      <div id="conditionsList"></div>
+    </div>
+    <div class="col-6">
+      <!-- Family History -->
+      <h4 class="table-head-title text--underline"><a class="icon-bg--edit" href="#!history"></a>Family History</h4>
+      <div id="familyHistoryList"></div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-6">
+      <!-- Lifestyle -->
+      <h4 class="table-head-title text--underline"><a class="icon-bg--edit" href="#!lifestyle"></a>Lifestyle</h4>
+      <div id="lifestyleList"></div>
+    </div>
+    <div class="col-6">
+      <!-- Height & Weight -->
+      <h4 class="table-head-title text--underline"><a class="icon-bg--edit" href="#!weight"></a>Height and Weight</h4>
+      <div id="journalHwList"></div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-6">
+      <!-- Blood Pressure -->
+      <h4 class="table-head-title text--underline"><a class="icon-bg--edit" href="#!bloodpressure"></a>Blood Pressure</h4>
+      <div id="journalBpList"></div>
+    </div>
+    <div class="col-6">
+      <!-- Blood Sugar -->
+      <h4 class="table-head-title text--underline"><a class="icon-bg--edit" href="#!bloodsugar"></a>Blood Sugar</h4>
+      <div id="journalBsList"></div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-6">
+
+    </div>
+    <div class="col-6">
+      <h4 class="table-head-title text--underline"><a class="icon-bg--edit" href="#!goals"></a>My Goals</h4>
+      <div id="journalGoalList"></div>
+    </div>
+    <div class="col-6">
+
+    </div>
+  </div>
+  <div class="save-footer clearfix pd--lr20">  
+    <button id="shareSummaryButton" class="width--50 fl btn--secondary btn--disabled mt--10 mb--10" onclick="summary.share()">Share</button>
+    <button class="width--50 fr btn--primary mt--10 mb--10" onclick="window.print()">Print</button>
+  </div>
+
+</div>
+
+<script type="text/javascript">
+  common.switchScreen(summary);
+</script>

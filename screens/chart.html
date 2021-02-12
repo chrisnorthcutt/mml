@@ -1,0 +1,157 @@
+<style media="screen">
+  .content {
+    padding: 0;
+  }
+
+  .chart-item--unread {
+    border-left: 3px solid red;
+  }
+
+  .chart-item--read {
+    border-left: 3px solid white;
+  }
+</style>
+
+<div id="cover" class="cover" onclick="common.closeModals()"></div>
+<div class="popup" id="popup">
+  <div class="popup-fields">
+    <iframe id="myChartDataContainer" width="460" height="460"></iframe>
+  </div>
+  <div class="popup-cta">
+    <button class="width--50 fl btn--secondary" onclick="common.closeModals()">Close</button>
+    <button class="width--50 fr btn--primary" onclick="messages.sendMessage()">Send</button>
+  </div>
+</div>
+<div class="popup popup--sm" id="popupDatabase">
+  <div class="popup-fields">
+    <div class="popup__title text-align--center">
+      <h3 class="text-color--primary text-weight--bold text-size--large mb--20">Choose Your Practice</h3>
+    </div>
+    <div id="popupDatabaseList">
+    </div>
+  </div>
+  <div class="popup-cta">
+    <button class="width--100 fl btn--secondary" onclick="common.closeModals()">Close</button>
+  </div>
+</div>
+<div class="popup" id="downloadLab">
+  <div class="popup-fields">
+    Your lab result is ready to download.
+  </div>
+  <div class="popup-cta">
+    <a href="#" class="width--50 fl btn--secondary" onclick="event.preventDefault();common.closeModals()">Close</a>
+    <a href="#" id="downloadLabButton" class="width--50 fr btn--primary" download="MyMedicalLocker Lab Result.pdf">Download</a>
+  </div>
+</div>
+<div class="popup" id="popupResultsHistory">
+  <div class="popup__title text-align--center">
+    <h3 class="text-color--primary text-weight--bold text-size--large mb--20">Results History</h3>
+  </div>
+  <div class="popup-fields">
+
+    <div id="resultsHistoryList"></div>
+  </div>
+  <div class="popup-cta">
+    <button class="width--100 fl btn--secondary" onclick="common.closeModals()">Close</button>
+  </div>
+</div>
+
+<div class="secondary-header" id="mainHeader">
+  <div class="clearfix">
+    <div class="text-tab fl">
+      <span class="text-tab-item text-tab-item--active" id="chart-category-S" onclick="chart.selectCategory('S');">Chart</span>
+      <span class="text-tab-item" id="chart-category-E" onclick="chart.selectCategory('E');">Education</span>
+      <span class="text-tab-item" id="chart-category-C" onclick="chart.selectCategory('C');">CCM</span>
+      <span class="text-tab-item" id="chart-category-R" onclick="chart.showLabResults();">Results</span>
+    </div>
+    <a style="position: relative; margin-top: 4.5px;" id="pullSummaryButton" href="#" onclick="event.preventDefault();chart.pullClinicalSummary();"
+      class="btn--primary fr">
+      <img class="va--middle mr--10" src="resources\images\icon\icon-download.svg" alt="">
+      <span class="va--middle">Pull Clinical Summary</span>
+    </a>
+  </div>
+</div>
+<div class="pd--lr20">
+  <div style="display:none" id="tableHeader" class="table-head row">
+
+    <div class="col-3">
+      <h4 class="table-head-title">Type</h4>
+    </div>
+    <div class="col-6">
+      <h4 class="table-head-title">From</h4>
+    </div>
+    <div class="col-2">
+      <h4 class="table-head-title">Created</h4>
+    </div>
+    <div class="col-1">
+    </div>
+
+  </div>
+
+  <!-- Template for lab titles -->
+
+  <div id="labTableHeader" class="table-head row">
+
+    <div class="col-3">
+      <h4 class="table-head-title">Visit Date</h4>
+    </div>
+    <div class="col-4">
+      <h4 class="table-head-title">Orders</h4>
+    </div>
+    <div class="col-4">
+      <h4 class="table-head-title">Comments</h4>
+    </div>
+    <div class="col-1">
+    </div>
+
+  </div>
+
+  <!-- End -->
+
+  <div class="list" id="myChartList">
+
+  </div>
+
+  <div id="noChart" class="empty text-align--center">
+    <div class="container width--100 center align-vertical--middle">
+      <img id="emptyIcon" src="resources\images\icon\icon-empty-labs.svg">
+      <h1 id="emptyStateName" class="text-weight--bold text-color--black-20">You Have No Chart Data</h1>
+      <a style="position: relative; margin-top: 4.5px;" id="pullSummaryButton2" href="#" onclick="event.preventDefault();chart.pullClinicalSummary();"
+        class="btn--primary">
+        <img class="va--middle mr--10" src="resources\images\icon\icon-download.svg" alt="">
+        <span class="va--middle">Pull Clinical Summary</span>
+      </a>
+    </div>
+  </div>
+</div>
+
+<div id="labTemplate" style="display:none">
+  <div class="table-row flex lab flex-align--center chart-item--{4}" onclick="chart.toggleRead(this);">
+    <div class="col-3">
+      <h4 class="table-data-point">{0}</h4>
+      <i>{1}</i>
+    </div>
+    <div class="col-4">
+      {2}
+    </div>
+    <div class="col-3">
+      <h4 class="table-data-point lab-comment">{3}</h4>
+    </div>
+    <div class="col-2">
+      <a href="./viewlab?a={8}&k={5}&l={6}&r={7}" target="_blank">
+        <div class="icon-text fr">
+          <div class="icon-bg--open"></div>
+          <p>View</p>
+        </div>
+      </a>
+      <div class="icon-text fr" onclick="chart.viewHistory('{6}');">
+        <div class="icon-bg--history"></div>
+        <p>History</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+  common.switchScreen(chart);
+</script>

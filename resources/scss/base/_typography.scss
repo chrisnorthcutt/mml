@@ -1,0 +1,194 @@
+body {
+  color: $grey;
+  font-size: $base__font-size;
+  font-weight: $font-weight--regular;
+  @media(max-height: 768px){
+    font-size: 14px;
+  }
+  line-height: ($base__line/$base__font-size);
+  font-family: $font-family--primary;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+
+}
+a {
+  color          : inherit;
+  cursor         : pointer;
+  text-decoration: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 500;
+}
+
+span {
+  font-size: inherit;
+}
+
+.h1,
+h1 {
+  font-size    : 2.375em;
+  line-height  : 1.26315789em;
+  margin-top   : 0.63157895em;
+  margin-bottom: 1.2631579em;
+}
+
+.h2,
+h2 {
+  font-size    : 1.75em;
+  line-height  : 1.71428571em;
+  margin-top   : 0.85714286em;
+  margin-bottom: 0.85714286em;
+}
+
+.h3,
+h3 {
+  font-size    : 1.3125em; 
+  line-height  : 1.14285714em;
+  margin-top   : 1.14285714em;
+  margin-bottom: 0;
+}
+
+.h4,
+h4 {
+  font-size    : 1em;
+  line-height  : 1.5em;
+  margin-top   : 1.5em;
+  margin-bottom: 0;
+}
+
+.h5,
+h5 {
+  font-size    : 1em;
+  line-height  : 1.5em;
+  margin-top   : 1.5em;
+  margin-bottom: 0;
+}
+
+.clearfix:after {
+  content   : ".";
+  visibility: hidden;
+  display   : block;
+  height    : 0;
+  clear     : both;
+}
+ .placeholder::after{
+  content   : url('../images/icon/icon-edit.svg');
+  float     : right;
+  margin-top  : 3.25px;
+  margin-right: 5px;
+  transition  : .2s opacity ease-in;
+  position    : relative;
+  opacity   : 0;
+}
+.placeholder:hover::after {
+opacity: 1;
+
+
+}
+
+
+.placeholder:empty::before {
+  content: "Click to Enter Data";
+  color  : lighten($grey, 25%);
+}
+
+.text {
+  &-align {
+    &--center {
+      text-align: center;
+    }
+
+    &--left {
+      text-align: left;
+    }
+
+    &--right {
+      text-align: right;
+    }
+  }
+
+  &-size {
+    &--small{
+      font-size: 12px;
+    }
+    &--medium{
+      font-size: 14px;
+    }
+    &--large{
+      font-size: 18px;
+    }
+  }
+
+  &-color {
+    &--primary {
+      color: $primary;
+    }
+
+    &--secondary {
+      color: $secondary;
+    }
+
+    &--tertiary {
+      color: $tertiary;
+    }
+
+    &--quantery {
+      color: $quaternary;
+    }
+
+    &--medium-grey {
+      color: $medium-grey;
+    }
+
+    &--primary-dark {
+      color: $primary-dark;
+    }
+
+    &--white {
+      color: $white;
+    }
+    &--black-20 {
+      color: $black20;
+    }
+  }
+  &-weight{
+    &--bold {
+      font-weight: 600;
+    }
+  }
+  &-decoration{
+    &--underline{
+      margin-bottom: 10px;
+      display      : block;
+      border-bottom: 1px solid $primary-dark;
+    }
+  }
+}
+.highcharts-title{
+  font-weight: 700;
+}
+
+.failure-state{
+  background         : $secondary;
+  padding            : 10px 15px;
+  float              : left;
+  color              : white;
+  display           : inherit;
+  background-image   : url("../images/icon/icon-error.svg");
+  background-position: center left 8px;
+  background-repeat  : no-repeat;
+  background-size    : 20px;
+  padding-left       : 32px !important;
+  border-radius: 2px;
+  display: inline-block;
+  &:empty{
+    display: none;
+  }
+}

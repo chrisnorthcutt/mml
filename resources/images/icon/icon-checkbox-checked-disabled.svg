@@ -1,0 +1,24 @@
+<svg width="21" height="21" viewBox="0 0 21 21" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<title>icon-checkbox-checked-disabled</title>
+<desc>Created using Figma</desc>
+<g id="Canvas" transform="translate(1252 1242)">
+<g id="icon-checkbox-checked-disabled">
+<g id="Group">
+<g id="Vector">
+<use xlink:href="#path0_fill" transform="translate(-1252 -1242)" fill="#CCD2D9"/>
+</g>
+<g id="Vector">
+<use xlink:href="#path1_stroke" transform="translate(-1251.5 -1241.5)" fill="#CCD2D9"/>
+</g>
+<g id="Vector">
+<use xlink:href="#path2_fill" transform="translate(-1247 -1236)" fill="#FFFFFF"/>
+</g>
+</g>
+</g>
+</g>
+<defs>
+<path id="path0_fill" d="M 21 0L 0 0L 0 21L 21 21L 21 0Z"/>
+<path id="path1_stroke" d="M 0 0L 0 -0.5L -0.5 -0.5L -0.5 0L 0 0ZM 20 0L 20.5 0L 20.5 -0.5L 20 -0.5L 20 0ZM 20 20L 20 20.5L 20.5 20.5L 20.5 20L 20 20ZM 0 20L -0.5 20L -0.5 20.5L 0 20.5L 0 20ZM 0 0.5L 20 0.5L 20 -0.5L 0 -0.5L 0 0.5ZM 19.5 0L 19.5 20L 20.5 20L 20.5 0L 19.5 0ZM 20 19.5L 0 19.5L 0 20.5L 20 20.5L 20 19.5ZM 0.5 20L 0.5 0L -0.5 0L -0.5 20L 0.5 20Z"/>
+<path id="path2_fill" d="M 10.915 0L 3.66 7.255L 0.603 4.198L 0 4.801L 3.358 8.16L 3.66 8.448L 3.962 8.16L 11.518 0.603L 10.915 0Z"/>
+</defs>
+</svg>

@@ -1,0 +1,74 @@
+<style>
+  .inputSwitch>span::after {
+    content: "  edit";
+    color: #2aa;
+  }
+
+  .inputSwitch>span:empty::before {
+    content: "empty";
+    font-style: italic;
+  }
+</style>
+<div class="container center white clearfix">
+  <div class="form-group inputSwitch row">
+    <div class="col-8">
+      <label for="address">Address</label><br />
+      <span class="placeholder"></span><input class="width--100" type="text" name="address" id="address" />
+    </div>
+    <div class="col-4">
+      <label for="zip">Zip</label><br />
+      <span class="placeholder"></span><input class="width--100" type="text" name="zip" id="zip" />
+    </div>
+  </div>
+
+
+  <div class="form-group inputSwitch row">
+    <div class="col-4">
+      <label for="home">Home <div class="field-error" id="homeError"></div></label><br />
+      <span class="placeholder"></span><input class="width--100" type="text" name="home" id="home" />
+    </div>
+  <div class="col-4">
+    <label for="cell">Cell <div class="field-error" id="cellError"></div></label><br />
+    <span class="placeholder"></span><input class="width--100" type="text" name="cell" id="cell" />
+  </div>
+  <div class="col-4">
+    <label for="work">Work <div class="field-error" id="workError"></div></label><br />
+    <span class="placeholder"></span><input class="width--100" type="text" name="work" id="work" />
+  </div>
+  </div>
+
+
+  <a id="saveContactButton" class="btn--primary width--auto fr mt--20" href="" onclick="event.preventDefault();contact.saveContact()"><img class="save va--middle mr--10" src="resources\images\icon\icon-save.svg" alt=""> <span class="va--middle">Save Changes</span></a>
+</div>
+
+
+<script type="text/javascript">
+  $('#address').mask('Q', common.specialCharacterMask);
+  $('#zip' ).mask('00000');
+  $('#home').mask('(000) 000-0000');
+  $('#cell').mask('(000) 000-0000');
+  $('#work').mask('(000) 000-0000');
+
+  var $inputSwitches = $(".inputSwitch"),
+    $inputs = $inputSwitches.find("input"),
+    $spans = $inputSwitches.find("span");
+  $spans.on("click", function() {
+    var $this = $(this);
+    $this.hide().siblings("input").show().focus().select();
+  });
+  $inputs.on('keydown', function(e) {
+
+    common.resetButton('saveContactButton');
+
+    if (e.which == 9) {
+      e.preventDefault();
+      if (e.shiftKey) {
+        $(this).blur().parent().prevAll($inputSwitches).first().find($spans).click();
+      } else {
+        $(this).blur().parent().nextAll($inputSwitches).first().find($spans).click();
+      }
+    }
+  }).hide();
+
+  common.switchScreen(contact);
+</script>

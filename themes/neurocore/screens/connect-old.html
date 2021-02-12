@@ -1,0 +1,109 @@
+<div id="cover" class="cover" onclick="common.refresh()"></div>
+<div class="popup" id="popup">
+  <div class="popup__title text-align--center">
+    <h3 class="text-color--primary text-weight--bold text-size--large mb--20">Connect to a Practice</h3>
+  </div>
+  <div class="popup-fields">
+    <input style="display:none" type="text" id="databaseKey" />
+    <div class="form-group">
+      <label for="lastName">Last Name</label><br />
+      <input class="width--100" type="text" name="lastName" id="lastName" />
+    </div>
+    <div class="form-group">
+      <label for="birthDate">Birth Date</label><br />
+      <input class="width--100" type="text" name="birthDate" id="birthDate" />
+    </div>
+    <div class="form-group">
+      <label for="registrationCode">Registration Code</label><br />
+      <input class="width--100" type="text" name="registrationCode" id="registrationCode" />
+    </div>
+    <div id="registrationFailure" class="failure-state"></div>
+  </div>
+  <div class="popup-cta">
+    <input class="width--50 fl btn--secondary" type="button" value="Close" onclick="common.refresh()" />
+    <input class="width--50 fr btn--primary" type="button" value="Save" onclick="connect.connect()" />
+    <input style="display: none" id="medicationId" />
+  </div>
+</div>
+<div class="popup" id="hashPopup">
+  <div class="popup__title text-align--center">
+    <h3 class="text-color--primary text-weight--bold text-size--large mb--20">Connect to Neurocore</h3>
+  </div>
+  <div class="popup-fields">
+    <input style="display:none" type="text" id="databaseKey" />
+    <div class="form-group">
+      <label for="hashAccount">Family Member:</label><br />
+      <select class="width--100" type="text" name="hashAccount" id="hashAccount">
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="hashLastName">Last Name:</label><br />
+      <input class="width--100" type="text" name="hashLastName" id="hashLastName" />
+    </div>
+    <div class="form-group">
+      <label for="hashBirthDate">Birth Date:</label><br />
+      <input class="width--100" type="text" name="hashBirthDate" id="hashBirthDate" />
+      <div class="input-icon--date"></div>
+    </div>
+    <div id="hashFailure" class="failure-state"></div>
+    <input id="hash" style="display: none" />
+  </div>
+  <div class="popup-cta">
+    <input class="width--50 fl btn--secondary" type="button" value="Close" onclick="common.refresh()" />
+    <input class="width--50 fr btn--primary" type="button" value="Save" onclick="connect.hashConnect()" />
+    <input style="display: none" id="medicationId" />
+  </div>
+</div>
+<div class="popup confirmation" id="popup-confirmation">
+  <span id="disconnectConfirmation"></span><br/>
+  <input class="width--50 fl btn--secondary" type="button" value="Disconnect" onclick="connect.disconnect()" />
+  <input class="width--50 fr btn--primary" type="button" value="Nevermind" onclick="common.refresh()" />
+  <input style="display: none" id="disconnectDatabaseKey" />
+</div>
+<div class="center container">
+
+  <div class="mb--20 pd--20 ">
+    <div class="clearfix">
+      <a class="btn--primary width--auto fr" id="connectButton" style="margin: 20px 0px 0px 0px;" href="" onclick="event.preventDefault();connect.connectionDialog()"><img class="va--middle mr--10" src="resources\images\icon\icon-connect-practice.svg" alt=""><span class="va--middle">Connect to Neurocore</span></a>
+    </div>
+  </div>
+
+  <div>
+    <div id="connectedPracticeList"></div>
+  </div>
+</div>
+
+
+
+<script type="text/javascript">
+  common.setTitle('Connect');
+  common.selectNavItem('navMyPractices');
+
+  var neurocoreDatabaseKey = 'D8T';
+  document.getElementById('databaseKey').value = neurocoreDatabaseKey;
+  connect.enabled = true;
+
+  if($_GET['g']){
+    common.skipModalClosing = true;
+    document.getElementById('popup').style.display = 'inherit';
+    document.getElementById('cover').style.display = 'inherit';
+    document.getElementById('lastName').value = '';
+    document.getElementById('birthDate').value = '';
+    document.getElementById('registrationCode').value = '';
+  } else if($_GET['h']){
+    common.skipModalClosing = true;
+    connect.getFamilyMembers();
+    document.getElementById('hashPopup').style.display = 'inherit';
+    document.getElementById('cover').style.display = 'inherit';
+    document.getElementById('hashLastName').value = '';
+    document.getElementById('hashBirthDate').value = '';
+    document.getElementById('hash').value = $_GET['h'];
+  }
+
+  $("#birthDate").datepicker();
+  $('#birthDate').datepicker('option', common.datepickerOptions).mask('00/00/0000');
+  $("#hashBirthDate").datepicker();
+  $('#hashBirthDate').datepicker('option', common.datepickerOptions).mask('00/00/0000');
+
+  connect.loadData();
+</script>

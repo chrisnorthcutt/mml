@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>MyMedicalLocker Report View</title>
+
+    <!-- Stylesheets-->
+    <link rel="stylesheet" href="../vendors/css/fa/css/font-awesome.css">
+    <link href="https://fonts.googleapis.com/css?family=Karla:400,700" rel="stylesheet">
+    <link rel="stylesheet" href="../vendors/css/ui.css">
+    <link rel="stylesheet" href="../resources/css/main.min.css">
+
+    <!-- Scripts -->
+    <script src="../resources/js/dom.js"></script>
+    <script src="../resources/js/FileSaver.js"></script>
+    <script src="../vendors/js/ui.js"></script>
+    <style>
+      body, html{
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        background-color: white;
+      }
+      iframe{
+        width:calc(100% - 250px);
+        height:100%;
+        margin-left: 250px;
+        background: #f7f7f7;
+      }
+      #labResultList{
+        width:250px;
+        height:100%;
+        position: fixed;
+        left: 0;
+  
+      }
+      #header{
+        height:52px;
+        background-color: #ebf1f8;
+        padding:0 20px;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+        font-size:25px;
+      }
+      .invisible{
+        visibility: hidden;
+      }
+      @media print{
+        #header{
+          display: none;
+        }
+      }
+      .template{
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="labResultList"> </div>
+    <div id="mainItemTemplate" class="template">
+      <a class="result result-read--{1}" style="max-width: 250px;" href="#" onclick="event.preventDefault(); getMainResult();">
+        {0}
+      </a>
+      <h4 class="text-color--primary text-weight--bold mb--20 pd--lr10">Additional PDFs</h4>
+    </div>
+    <div id="listItemTemplate" class="template">
+      <a class="result result-read--{1}" href="#" onclick="event.preventDefault(); getResultItem('{2}');">
+        {0}
+      </a>
+    </div>
+    <iframe id="mainHTML" name="mainHTML">
+      Loading your lab result...
+    </iframe>
+    <script src="../resources/js/xmlquery.js"></script>
+    <script>
+      var key = readCookie("isalus_key");
+      var xml = new XmlCreator(key);
+
+      function getMainResult() {
+        xmlQuery(xml.create('iSalusExternal.GetLabResult')($_GET['k'], $_GET['l'], $_GET['r'], 'N'), showResult);
+      }
+
+      function getResultItem(resultId) {
+        xmlQuery(xml.create('iSalusExternal.GetLabResultItem')($_GET['k'], $_GET['l'], resultId, 'N'), function (xmlDoc) {
+          var keyId = $(xmlDoc).find('key_id').text();
+
+          var url = '../datapages/mmldocumentget.asp?gv={0}&ii=LABRITEM.{1}.{2}.{3}.{4}';
+
+          document.getElementById('mainHTML').src = url.format(key, $_GET['a'], $_GET['l'], resultId, keyId);
+        });
+      }
+
+      function showResult(xmlDoc) {
+        var keyId = $(xmlDoc).find('key_id').text();
+
+        var url = '../datapages/mmldocumentget.asp?gv={0}&ii=LABR.{1}.{2}.{3}.{4}';
+
+        document.getElementById('mainHTML').src = url.format(key, $_GET['a'], $_GET['l'], $_GET['r'], keyId);
+      }
+
+      xmlQuery(xml.create('iSalusExternal.GetLabResults')($_GET['a']), function (xmlDoc) {
+        var mainTemplate = $('#mainItemTemplate').html();
+        var itemTemplate = $('#listItemTemplate').html();
+        var html = '';
+
+        html += mainTemplate.format("Main Lab Result", 'Y', $(this).find('lab_requisition_id').text());
+
+        $(xmlDoc).find('list_item').each(function () {
+          if ($(this).find('lab_requisition_id').text() == $_GET['l'] && $(this).find('record_id').text() == $_GET['r']) {
+            if ($(this).find('plist').length) {
+              $(this).find('pitem').each(function () {
+                html += itemTemplate.format($(this).find('result_description').text(), $(this).find('read_ind').text(), $(this).find('result_id').text());
+              });
+            }
+          } else {
+            return true;
+          }
+        });
+
+        $('#labResultList').html(html);
+      });
+
+      getMainResult();
+    </script>
+  </body>
+</html>

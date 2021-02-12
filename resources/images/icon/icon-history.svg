@@ -1,0 +1,16 @@
+<svg width="20" height="20" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<title>icons8-time-machine</title>
+<desc>Created using Figma</desc>
+<g id="Canvas" transform="translate(-596 236)">
+<g id="icons8-time-machine">
+<g id="surface1">
+<g id="Vector">
+<use xlink:href="#path0_fill" transform="translate(596 -236)" fill="#474747"/>
+</g>
+</g>
+</g>
+</g>
+<defs>
+<path id="path0_fill" d="M 10 0C 6.52669 0 3.46029 1.76107 1.66667 4.45312L 1.66667 1.66667L 0 1.66667L 0 7.5L 5.83333 7.5L 5.83333 5.83333L 2.8125 5.83333C 4.2513 3.34961 6.91406 1.66667 10 1.66667C 14.6126 1.66667 18.3333 5.38737 18.3333 10C 18.3333 14.6126 14.6126 18.3333 10 18.3333C 5.38737 18.3333 1.66667 14.6126 1.66667 10L 0 10C 0 15.5143 4.48568 20 10 20C 15.5143 20 20 15.5143 20 10C 20 4.48568 15.5143 0 10 0ZM 9.16667 3.33333L 9.16667 10.8333L 15 10.8333L 15 9.16667L 10.8333 9.16667L 10.8333 3.33333L 9.16667 3.33333Z"/>
+</defs>
+</svg>

@@ -1,0 +1,261 @@
+<div id="cover" class="cover" onclick="common.refresh()"></div>
+<div class="popup" id="popupRefillResponse">
+  <div class="popup__title text-align--center">
+      <h3 class="text-color--primary text-weight--bold text-size--large mb--20">Response</h3>
+  </div>
+  <div class="popup-fields">
+    <p id="refillRequestResponse"></p>
+  </div>
+  <div class="popup-cta">
+    <button class="width--100 fl btn--secondary" onclick="common.closeModals()">Close</button>
+  </div>
+</div>
+<div class="popup" id="medRefill">
+  <div class="popup__title text-align--center">
+      <h3 class="text-color--primary text-weight--bold text-size--large mb--20">Send Refill Request</h3>
+  </div>
+  <div class="popup-fields">
+    <div class="row">
+    <div class="form-group col-12">
+      <label for="name">To</label>
+        <input disabled class="width--100" type="text" name="name" id="refillPractice" value="Cornerstone Family Physicians"/>
+      
+    </div>
+  </div>
+    <div class="row">
+    <div class="form-group col-12">
+      <label for="name">Medication</label>
+        <input disabled class="width--100" type="text" name="name" id="refillName" value="Crestor 10mg Tab"/>
+      
+    </div>
+  </div>
+    <div class="row">
+    <div class="form-group col-9">
+      <label for="name">Pharmacy</label>
+      <input class="width--100" type="text" name="name" id="refillPharmacy"/>
+      
+    </div>
+    <div class="form-group col-3">
+      <a style="margin-top: 12px;" onclick="event.preventDefault();medications.searchModal();" class="btn--primary width--100" href="">Search</a>
+    </div>
+    </div>
+    <div class="row">
+    <div class="form-group col-12">
+      <label for="name">Notes</label>
+        <input class="width--100" type="text" name="name" id="refillNote"/>
+    </div>
+  </div>
+    <div class="row">
+      <div class="col-6">
+        <div class="form-group">
+          <label for="name">Phone</label>
+          <input class="width--100" type="text" name="name" id="refillPhone"/>
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="form-group">
+          <label for="name">Other</label>
+          <input class="width--100" type="text" name="name" id="refillOther"/>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="popup-cta">
+    <button class="width--50 fl btn--secondary" onclick="medications.medicationModal();">Back</button>
+    <button class="width--50 fr btn--primary" onclick="medications.sendRefillRequest()">Send</button>
+  </div>
+</div>
+<div class="popup" id="medRefillSearch">
+  <div class="popup__title text-align--center">
+    <h3 class="text-color--primary text-weight--bold text-size--large mb--20" onclick="medications.searchPharmacy()">Search for a Pharmacy</h3>
+  </div>
+  <div class="popup-fields">
+    <div class="row">
+        <div class="form-group col-3 mb--none">
+      <label for="name">State</label>
+      <select class="width--100" type="text" name="name" id="refillState" onchange="medications.getCities(this.value)">
+        <option>CVS</option>
+      </select>
+      
+    </div>
+        <div class="form-group col-6 mb--none">
+      <label for="name">City</label>
+      <!-- <select class="width--100" type="text" name="name" id="refillCity" onchange="//medications.getCities(this.value)">
+        <option>CVS</option>
+      </select> -->
+      <input class="width--100" type="text" id="refillCity">
+      <div class="input-icon--search"></div>
+    </div>
+        <div class="form-group col-3 mb--none">
+      <label for="name">Zip Code</label>
+      <select class="width--100" type="text" name="name" id="refillZip" onchange="medications.searchPharmacy()">
+        <option value=""></option>
+      </select>
+      
+    </div>
+    </div>
+    <div class="row">
+    <div class="form-group col-12">
+      <label for="name">Chain</label>
+      <select class="width--100" type="text" name="name" id="refillChain" onchange="medications.searchPharmacy()">
+        <option></option>
+      </select>
+      
+    </div>
+    </div>
+        <div class="form-group">
+      <label for="name">Search Criteria</label>
+      <input class="width--100" type="text" name="name" onkeyup="medications.pharmacySearch();" id="refillSearch"/>
+      <div class="input-icon--search"></div>
+    </div>
+    <style>
+      .pharm-list__item.active{
+        background-color:#EEE;
+      }
+    </style>
+    <label for="name">Pharmacy List</label>
+    <div class="pharm-list" id="pharmacyList">
+    </div>
+    <input id="refillDatabaseKey" style="display:none" />
+    <input id="refillPrescriptionId" style="display:none" />
+  </div>
+  <div class="popup-cta">
+    <button class="width--50 fl btn--secondary" onclick="medications.refillModal()">Back</button>
+    <button class="width--50 fr btn--primary" onclick="medications.choosePharmacy()">Select</button>
+  </div>
+</div>
+<div class="popup" id="popup">
+  <div class="popup__title text-align--center">
+      <h3 class="text-color--primary text-weight--bold text-size--large mb--20"><span id="modalEditType">Add a</span> Medication</h3>
+  </div>
+  <div class="popup-fields">
+    <a class="btn--primary btn--sm mb--20" onclick="medications.refillModal()" id="refillButton">Request a Refill</a>
+    <div class="form-group">
+      <label for="name">Name <div class="field-error" id="medNameError"></div></label>
+      <input class="width--100 disableable" type="text" name="name" id="medName" />
+      <div class="input-icon--search"></div>
+    </div>
+    <div class="form-group">
+      <label for="dose">Dose</label>
+      <input class="width--100 disableable" type="text" name="dose" id="medDose"/>
+    </div>
+    <div class="form-group">
+      <label for="how-often">How Often</label>
+      <select name="how-often" class="width--100 disableable" name="frequency" id="medFrequency" disabled></select>
+      
+    </div>
+
+    <label>Started</label><br>
+    <input type="radio" name="startDateType" id="age-started" class="disableable" onclick="common.showField(this.value,'started')" value="A">
+    <label for="age-started">
+      <span></span>Age&nbsp;&nbsp;&nbsp;</label>
+    <input type="radio" name="startDateType" id="year-started" class="disableable" onclick="common.showField(this.value,'started')" value="Y">
+    <label for="year-started">
+      <span></span>Year&nbsp;&nbsp;&nbsp;</label>
+    <input type="radio" name="startDateType" id="date-started" class="disableable" onclick="common.showField(this.value,'started')" value="D">
+    <label for="date-started">
+      <span></span>Date</label>
+    <select class="width--100 disableable" name="Astarted" id="Astarted"></select>
+    <select class="width--100 disableable" name="Ystarted" id="Ystarted"></select>
+    <input class="width--100 date disableable" type="text" id="Dstarted"/>
+
+    <label>Stopped</label><br/>
+    <input type="radio" name="stoppedDateType" id="age-stopped" class="disableable" onclick="common.showField(this.value,'stopped')" value="A">
+    <label for="age-stopped">
+      <span></span>Age&nbsp;&nbsp;&nbsp;</label>
+    <input type="radio" name="stoppedDateType" id="year-stopped" class="disableable" onclick="common.showField(this.value,'stopped')" value="Y">
+    <label for="year-stopped">
+      <span></span>Year&nbsp;&nbsp;&nbsp;</label>
+    <input type="radio" name="stoppedDateType" id="date-stopped" class="disableable" onclick="common.showField(this.value,'stopped')" value="D">
+    <label for="date-stopped">
+      <span></span>Date</label>
+
+    <select class="width--100 disableable" name="Astopped" id="Astopped"></select>
+    <select class="width--100 disableable" name="Ystopped" id="Ystopped"></select>
+    <input class="width--100 date disableable" type="text" id="Dstopped"/>
+  </div>
+  <div class="popup-cta">
+    <button class="width--50 fl btn--secondary" onclick="common.refresh()">Close</button>
+    <button class="width--50 fr btn--primary" onclick="medications.saveMedication()">Save</button>
+  </div>
+  <input style="display: none" id="medicationId"/>
+</div>
+<div class="popup confirmation" id="popup-confirmation">
+  <p class="text-color--primary-dark text-weight--bold text-align--center mb--10">Really delete this item?</p>
+  <button class="width--50 fl btn--secondary" onclick="medications.deleteMedication()">Delete</button>
+  <button class="width--50 fr btn--primary" onclick="common.refresh()">Nevermind</button>
+  <input style="display: none" id="deleteMedicationId"/>
+</div>
+<div id="tableHeader" style="display: none;" class="table-head row">
+  <div class="col-4">
+    <h4 class="table-head-title">Medication</h4>
+  </div>
+  <div class="col-2">
+    <h4 class="table-head-title">Frequency</h4>
+  </div>
+  <div class="col-2">
+    <h4 class="table-head-title">Started</h4>
+  </div>
+  <div class="col-2">
+    <h4 class="table-head-title">Stopped</h4>
+  </div>
+  <div class="col-2">
+    <a class="btn--primary width--auto fr" style="margin: 20px 0px 0px 0px;" href="" onclick="event.preventDefault();medications.newMedication()"><img class="va--middle mr--10" src="resources\images\icon\icon-add.svg" alt=""> Add Medication</a>
+  </div>
+</div>
+
+<div class="list" id="medications-table">
+</div>
+
+<div id="noMeds" class="empty text-align--center">
+  <div class="container width--100 center align-vertical--middle">
+    <img src="resources\images\icon\icon-empty-medication.svg">
+    <h1 class="text-weight--bold text-color--black-20">You Have No Medications Entered</h1>
+    <a class="btn--primary" href="#" onclick="event.preventDefault();medications.newMedication()"><img class="va--middle mr--10" src="resources\images\icon\icon-add.svg" alt=""> Add Medication</a>
+  </div>
+</div>
+
+<script type="text/javascript">
+  var level = '0';
+  var old = '';
+
+  function createCallback(callback) {
+    return function (xmlDoc) {
+      var arr = [];
+
+      $(xmlDoc).find('list_item').each(function () {
+        arr.push({label: $(this).find('drug_name').text(), value: $(this).find('drug_name').text()});
+      });
+
+      callback(arr);
+    };
+  }
+
+  $("#medName").autocomplete({
+    source: function (request, response) {
+      xmlQuery(xml.create("iSalusExternal.FindMedication")(request.term, level), createCallback(response));
+    },
+    minLength: 3,
+    select: function (event, ui) {
+      if(level == '0'){
+        level = '1';
+        old = $("#medName").val();
+        window.setTimeout(function(){$("#medName").autocomplete("search", old)}, 10);
+      }
+    }
+  });
+
+  $("#medName").on('keypress', function(e){
+    var value = $('#medName').val();
+    if(value.length < old.length || value == ''){
+      level = '0';
+    }
+  });
+
+  $("#Dstarted").datepicker();
+  $("#Dstarted").datepicker('option', common.datepickerOptions).mask('00/00/0000');
+  $("#Dstopped").datepicker();
+  $("#Dstopped").datepicker('option', common.datepickerOptions).mask('00/00/0000');
+
+  common.switchScreen(medications);
+</script>

@@ -1,0 +1,40 @@
+<svg width="21" height="21" viewBox="0 0 21 21" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<title>radio</title>
+<desc>Created using Figma</desc>
+<g id="Canvas" transform="translate(1213 1242)">
+<g id="radio">
+<g id="icon-radio-unchecked">
+<g id="icon-radio-unchecked">
+<mask id="mask0_outline_ins">
+<use xlink:href="#path0_fill" fill="white" transform="translate(-1213 -1242)"/>
+</mask>
+<g mask="url(#mask0_outline_ins)">
+<use xlink:href="#path1_stroke_2x" transform="translate(-1213 -1242)" fill="#FFFFFF"/>
+</g>
+</g>
+</g>
+<g id="icon-radio-checked">
+<g id="Group">
+<g id="Vector">
+<use xlink:href="#path2_fill" transform="translate(-1213 -1242)" fill="#E64A35"/>
+</g>
+<g id="Vector">
+<use xlink:href="#path3_stroke" transform="translate(-1212.5 -1241.5)" fill="#E64A35"/>
+</g>
+<g id="Group">
+<g id="Vector">
+<use xlink:href="#path4_fill" transform="translate(-1208 -1236)" fill="#FFFFFF"/>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<defs>
+<path id="path0_fill" d="M 21 10.5C 21 16.299 16.299 21 10.5 21C 4.70101 21 0 16.299 0 10.5C 0 4.70101 4.70101 0 10.5 0C 16.299 0 21 4.70101 21 10.5Z"/>
+<path id="path1_stroke_2x" d="M 20 10.5C 20 15.7467 15.7467 20 10.5 20L 10.5 22C 16.8513 22 22 16.8513 22 10.5L 20 10.5ZM 10.5 20C 5.25329 20 1 15.7467 1 10.5L -1 10.5C -1 16.8513 4.14873 22 10.5 22L 10.5 20ZM 1 10.5C 1 5.25329 5.25329 1 10.5 1L 10.5 -1C 4.14873 -1 -1 4.14873 -1 10.5L 1 10.5ZM 10.5 1C 15.7467 1 20 5.25329 20 10.5L 22 10.5C 22 4.14873 16.8513 -1 10.5 -1L 10.5 1Z"/>
+<path id="path2_fill" d="M 10.5 21C 16.299 21 21 16.299 21 10.5C 21 4.70101 16.299 0 10.5 0C 4.70101 0 0 4.70101 0 10.5C 0 16.299 4.70101 21 10.5 21Z"/>
+<path id="path3_stroke" d="M 19.5 10C 19.5 15.2467 15.2467 19.5 10 19.5L 10 20.5C 15.799 20.5 20.5 15.799 20.5 10L 19.5 10ZM 10 19.5C 4.75329 19.5 0.5 15.2467 0.5 10L -0.5 10C -0.5 15.799 4.20101 20.5 10 20.5L 10 19.5ZM 0.5 10C 0.5 4.75329 4.75329 0.5 10 0.5L 10 -0.5C 4.20101 -0.5 -0.5 4.20101 -0.5 10L 0.5 10ZM 10 0.5C 15.2467 0.5 19.5 4.75329 19.5 10L 20.5 10C 20.5 4.20101 15.799 -0.5 10 -0.5L 10 0.5Z"/>
+<path id="path4_fill" d="M 10.915 0L 3.66 7.255L 0.603 4.198L 0 4.801L 3.358 8.16L 3.66 8.448L 3.962 8.16L 11.518 0.603L 10.915 0Z"/>
+</defs>
+</svg>

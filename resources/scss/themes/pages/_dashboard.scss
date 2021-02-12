@@ -1,0 +1,18 @@
+.pdf{
+	&__image{
+		background: url('../images/pdf.png') left center no-repeat;
+		background-size: contain;
+		min-height: 300px;
+		width: 247.5px;
+		&--brain{
+			background: url('../images/covers/brain.png') left center no-repeat;
+		}
+		&--memory{
+			background: url('../images/covers/memory.png') left center no-repeat;
+		}
+	}
+	&__info{
+		width: calc(100% - 257.5px);
+		padding: 0 20px 0 0;
+	}
+}

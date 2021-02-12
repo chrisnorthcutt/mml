@@ -1,0 +1,111 @@
+// Font Stack
+$font-url--google        : 'https://fonts.googleapis.com/css?family=Karla:400,700';
+$font-family--primary    : 'Karla', sans-serif !default;
+
+// Font Weights
+
+$font-weight--thin       : 100;
+$font-weight--light      : 300;
+$font-weight--medium     : 400;
+$font-weight--regular    : 500;
+$font-weight--bold       : 700;
+$font-weight--ultra-bold : 900;
+
+// Base Colors
+
+$white    : #fff;
+$black    : #0b0b0b;
+$grey     : #474747;
+
+$primary         : #52CACD !default;
+$primary-dark    : #2D6170 !default;
+$secondary       : #F05452 !default;
+$tertiary        : #F0396F !default;
+$quaternary      : #99C13D !default;
+$light-grey      : #F6F9FC;
+$medium-grey     : #b1c0d0;
+$light-blue-grey : #EBF1F8;
+$black20         :rgba($black,.20);
+$disabled        : #648889;
+
+// Color Palette Modifiers
+
+$color-palettes: (
+  grey: (
+    xx-light : lighten($grey, 43%),
+    x-light  : lighten($grey, 35%),
+    light    : lighten($grey, 12%),
+    base     : $grey,
+    dark     : darken($grey, 8%),
+    x-dark   : darken($grey, 16%)
+  ),
+  black: (
+    light    : lighten($black, 10%),
+    base     : $black,
+    dark     : darken($black, 10%)
+  )
+);
+
+// Text
+
+$base__font-size : 16px;
+$base__line      : 24px;
+$letter-space    : 1px;
+
+// Border radius
+
+$br--default    : .4em;
+$br--round      : 50%;
+
+// Transitions
+
+$trns-duration  : .3s;
+
+// Path to Assets
+
+$path--rel      : "../images";
+
+//Site Logo
+
+$logo            : '#{$path--rel}/logo.svg' !default;
+$login-logo      : '#{$path--rel}/login-logo-wide.svg' !default;
+
+
+//Icons
+
+$icon-radio-checked: '#{$path--rel}/icon/icon-radio-checked.svg' !default;
+$icon-checkbox-checked: '#{$path--rel}/icon/icon-checkbox-checked.svg' !default;
+$icon-checkbox-checked-disabled: '#{$path--rel}/icon/icon-checkbox-checked-disabled.svg' !default;
+$icon-search-selected: '#{$path--rel}/icon/icon-search-teal.svg' !default;
+$icon-dropdown-selected: '#{$path--rel}/icon/icon-down-teal.svg' !default;
+$icon-appointment-selected: '#{$path--rel}/icon/icon-date-teal.svg'!default;
+$icon-messages: '#{$path--rel}/icon/icon-messages-sm.svg'!default;
+$icon-sync: '#{$path--rel}/icon/icon-sync.svg'!default;
+$icon-family: '#{$path--rel}/icon/icon-family.svg'!default;
+$icon-conditions: '#{$path--rel}/icon/icon-conditions.svg' !default;
+$icon-meds: '#{$path--rel}/icon/icon-meds.svg' !default;
+$icon-chart: '#{$path--rel}/icon/icon-my-chart-sm.svg' !default;
+$icon-appointment: '#{$path--rel}/icon/icon-appointments-sm.svg' !default;
+$icon-balance: '#{$path--rel}/icon/icon-balance-sm.svg' !default;
+$icon-goal: '#{$path--rel}/icon/icon-goal.svg' !default;
+$icon-radio-checked-disabled: '#{$path--rel}/icon/icon-radio-checked-disabled.svg' !default;
+.bg{
+  &--primary{
+    background: $primary
+  }
+  &--secondary{
+    background: $secondary
+  }
+  &--tertiary{
+    background: $tertiary
+  }
+  &--quaternary{
+    background: $quaternary
+  }
+  &--primary-dark{
+    background: $primary-dark
+  }
+  &--light-blue-grey{
+    background: $light-blue-grey
+  }
+}

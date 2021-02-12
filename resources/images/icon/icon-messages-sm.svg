@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="45" height="31" viewBox="0 0 45 31">
+  <defs>
+    <path id="icon-messages-sm-a" d="M0,0 L0,1.71875 L0,29.21875 L0,30.9375 L1.73076923,30.9375 L43.2692308,30.9375 L45,30.9375 L45,29.21875 L45,1.71875 L45,0 L43.2692308,0 L1.73076923,0 L0,0 Z M7.46394231,3.4375 L37.5360577,3.4375 L22.5,13.3740234 L7.46394231,3.4375 Z M3.46153846,4.94140625 L21.5264423,16.9189453 L22.5,17.5097656 L23.4735577,16.9189453 L41.5384615,4.94140625 L41.5384615,27.5 L3.46153846,27.5 L3.46153846,4.94140625 Z"/>
+  </defs>
+  <g fill="none" fill-rule="evenodd">
+    <mask id="icon-messages-sm-b" fill="#fff">
+      <use xlink:href="#icon-messages-sm-a"/>
+    </mask>
+    <g fill="#52CACD" mask="url(#icon-messages-sm-b)">
+      <rect width="71" height="71" transform="translate(-13 -20)"/>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,8 @@
+{
+	"standard": {
+		"mainCss": "./resources/css/style.css"
+	},
+	"veracode": {
+		"mainCss": "./resources/css/style.css"
+	}
+}

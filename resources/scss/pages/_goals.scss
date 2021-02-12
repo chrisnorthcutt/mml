@@ -1,0 +1,17 @@
+.p-goal{
+	height: 300px;
+	&__main{
+		padding: 20px 20px 0 20px;
+	}
+}
+
+.associated-goals{
+	&__list{
+		height: 200px;
+		overflow-y: auto;
+		padding: 0 20px;
+	}
+	&__item{
+		padding: 10px 0;
+	}
+}

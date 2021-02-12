@@ -1,0 +1,16 @@
+<svg width="20" height="20" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<title>icon-next</title>
+<desc>Created using Figma</desc>
+<g id="Canvas" transform="translate(-3351 2167)">
+<g id="icon-next">
+<g id="surface1">
+<g id="Vector">
+<use xlink:href="#path0_fill" transform="matrix(-1 1.22465e-16 -1.22465e-16 -1 3371 -2147)" fill="#E64A35"/>
+</g>
+</g>
+</g>
+</g>
+<defs>
+<path id="path0_fill" d="M 0 0L 0 20L 20 20L 20 0L 0 0ZM 2 2L 18 2L 18 18L 2 18L 2 2ZM 12.625 5L 12.4062 5.125L 5.5 9.03125L 5 9.3125L 5 10.6875L 5.5 10.9688L 12.4062 14.875L 12.625 15L 14 15L 14 5L 12.625 5ZM 12 7.65625L 12 12.3438L 7.875 10L 12 7.65625Z"/>
+</defs>
+</svg>

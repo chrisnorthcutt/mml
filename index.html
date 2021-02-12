@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>MyMedicalLocker</title>
+
+    <!-- Meta Tags -->
+    <meta name="application-name" content="&nbsp;"/>
+    <meta name="msapplication-TileColor" content="#52CACD"/>
+    <meta name="msapplication-TileImage" content="mstile-144x144.png"/>
+    <meta name="msapplication-square70x70logo" content="mstile-70x70.png"/>
+    <meta name="msapplication-square150x150logo" content="-150x150.png"/>
+    <meta name="msapplication-wide310x150logo" content="mstile-310x150.png"/>
+    <meta name="msapplication-square310x310logo" content="mstile-310x310.png"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" sizes="57x57" href="/resources/images/favicon/apple-touch-icon-57x57.png"/>
+    <link rel="apple-touch-icon" sizes="114x114" href="/resources/images/favicon/apple-touch-icon-114x114.png"/>
+    <link rel="apple-touch-icon" sizes="72x72" href="/resources/images/favicon/apple-touch-icon-72x72.png"/>
+    <link rel="apple-touch-icon" sizes="144x144" href="/resources/images/favicon/apple-touch-icon-144x144.png"/>
+    <link rel="apple-touch-icon" sizes="60x60" href="/resources/images/favicon/apple-touch-icon-60x60.png"/>
+    <link rel="apple-touch-icon" sizes="120x120" href="/resources/images/favicon/apple-touch-icon-120x120.png"/>
+    <link rel="apple-touch-icon" sizes="76x76" href="/resources/images/favicon/apple-touch-icon-76x76.png"/>
+    <link rel="apple-touch-icon" sizes="152x152" href="/resources/images/favicon/apple-touch-icon-152x152.png"/>
+    <link rel="icon" type="image/png" href="./resources/images/favicon/favicon-196x196.png" sizes="196x196"/>
+    <link rel="icon" type="image/png" href="./resources/images/favicon/favicon-96x96.png" sizes="96x96"/>
+    <link rel="icon" type="image/png" href="./resources/images/favicon/favicon-32x32.png" sizes="32x32"/>
+    <link rel="icon" type="image/png" href="./resources/images/favicon/favicon-16x16.png" sizes="16x16"/>
+    <link rel="icon" type="image/png" href="./resources/images/favicon/favicon-128.png" sizes="128x128"/>
+
+    <!-- Stylesheets-->
+    <link rel="stylesheet" href="./vendors/css/fa/css/font-awesome.css">
+    <link rel="stylesheet" href="./vendors/css/ui.css">
+    <link rel="stylesheet" href="./vendors/css/croppie.css">
+    <link rel="stylesheet" href="./resources/css/main.min.css">
+
+    <!-- Scripts -->
+    <script src="./resources/js/dom.js"></script>
+    <script src="./resources/js/display.js"></script>
+    <script src="./resources/js/routes.js"></script>
+    <script src="./vendors/js/highcharts.js"></script>
+    <script src="./vendors/js/exporting.js"></script>
+    <script src="./vendors/js/ui.js"></script>
+    <script src="./vendors/js/autoselect.js"></script>
+    <script src="./vendors/js/mask.js"></script>
+    <script src="./vendors/js/croppie.min.js"></script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-109149124-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-109149124-1');
+</script>
+  </head>
+  <body data-ng-app="myApp">
+    <header>
+      <div id="userSwitch" class="fr">
+      </div>
+      <div class="screen-title">
+        <h2 class="text-color--primary-dark text-weight--bold" id="screenTitle">Dashboard</h2>
+      </div>
+    </header>
+    <div class="wrapper">
+
+      <div class="content clearfix">
+        <div class="sidebar hidden-xs">
+          <div class="logo"></div>
+          <div class="patient-info">
+
+            <a href="#!headshot">
+              <div id="patientImg" style="position: relative;" class="circle-img">
+                <div class="patient__add-photo"><img class="patient__photo-edit" src="resources/images/icon/icon-edit-white.svg"></div>
+                <img style="flex-shrink: 0;height:120px;width:120px;object-fit: cover;" id="patientImgData" src=""/>
+                <div id="patientPlaceholder" style="position:absolute;top:0px;left:0px;width:120px;height:120px;line-height:120px;color:white;text-align:center;font-size:2em"></div>
+              </div>
+            </a>
+            <h3 class="mb--none" id="patientName"><span style="letter-spacing: -4px; text-align: center;">&#10074;&#10074;&#10074;&#10074;&#10074;&#10074;&#10074;&#10074;&#10074;&#10074;&#10074;&#10074;&#10074;&#10074;&#10074;&#10074;&#10074;&#10074;&#10074;&#10074;&#10074;&#10074;&#10074;&#10074;&#10074;&#10074;&#10074;&#10074;&#10074;&#10074;&#10074;&#10074;&#10074;&#10074;&#10074;&#10074;&#10074;&#10074;&#10074;&#10074;&#10074;&#10074;&#10074;&#10074;&#10074;&#10074;&#10074;&#10074;</span></h3>
+            <h5 class="mt--none" id="patientDetails"><span style="letter-spacing: -4px; text-align: center;">&#10074;&#10074;&#10074;&#10074;&#10074;&#10074;&#10074;&#10074;&#10074;&#10074;&#10074;&#10074;&#10074;&#10074;&#10074;&#10074;&#10074;&#10074;&#10074;&#10074;&#10074;&#10074;&#10074;&#10074;&#10074;&#10074;&#10074;&#10074;&#10074;&#10074;&#10074;&#10074;&#10074;&#10074;&#10074;&#10074;&#10074;&#10074;&#10074;&#10074;&#10074;&#10074;&#10074;&#10074;&#10074;&#10074;&#10074;&#10074;</span></h5>
+          </div>
+          <ul class="nav">
+            <li id="navDashboard" class="nav-item highlight">
+              <a href="#!"><img class="nav-item-icon" src="./resources/images/icon/icon-dashboard.svg" alt="">Dashboard</a>
+            </li>
+            <li id="navAboutMe" class="nav-item">
+
+              <a href="javascript:void()"><img class="nav-item-icon" src="./resources/images/icon/icon-user.svg" alt="">About Me<span class="align-middle fr"><img class="nav-item-arrow" src="./resources/images/icon/icon-arrow.svg" alt=""></span>
+              </a>
+
+              <ul class="subnav">
+                <li class="subnav-item">
+                  <a href="#!demographics">Demographics</a>
+                </li>
+                <li class="subnav-item">
+                  <a href="#!contact">Address and Phone</a>
+                </li>
+                <li class="subnav-item">
+                  <a href="#!emergency">Emergency Contact</a>
+                </li>
+                <li class="subnav-item">
+                  <a href="#!employer">Employer</a>
+                </li>
+                <li class="subnav-item">
+                  <a href="#!medications">Medications</a>
+                </li>
+                <li class="subnav-item">
+                  <a href="#!allergy">Allergies</a>
+                </li>
+                <li class="subnav-item">
+                  <a href="#!conditions">Medical Conditions</a>
+                </li>
+                <li class="subnav-item">
+                  <a href="#!history">Family History</a>
+                </li>
+                <li class="subnav-item">
+                  <a href="#!lifestyle">Lifestyle</a>
+                </li>
+                <li class="subnav-item">
+                  <a href="#!documents">Documents</a>
+                </li>
+                <li class="subnav-item">
+                  <a href="#!summary">Summary</a>
+                </li>
+              </ul>
+            </li>
+            <li id="navMyPractices" class="nav-item">
+              <a href="#!connect"><img class="nav-item-icon" src="./resources/images/icon/icon-connect.svg" alt="">My Practices<!-- <span class="align-middle fr"><img class="nav-item-arrow" src="./resources/images/icon/icon-arrow.svg" alt=""></span> -->
+              </a>
+<!-- 
+              <ul class="subnav">
+                <li class="subnav-item">
+                  <a href="#!connect">Connect to a Practice</a>
+                </li>
+              </ul> -->
+            </li>
+            <li id="navMyVitals" class="nav-item">
+              <a href="javascript:void()"><img class="nav-item-icon" src="./resources/images/icon/icon-vitals.svg" alt="">My Vitals<span class="align-middle fr"><img class="nav-item-arrow" src="./resources/images/icon/icon-arrow.svg" alt=""></span>
+              </a>
+
+              <ul class="subnav">
+                <li class="subnav-item">
+                  <a href="#!weight">Weight</a>
+                </li>
+                <li class="subnav-item">
+                  <a href="#!height">Height</a>
+                </li>
+                <li class="subnav-item">
+                  <a href="#!bloodpressure">Blood Pressure</a>
+                </li>
+                <li class="subnav-item">
+                  <a href="#!bloodsugar">Blood Sugar</a>
+                </li>
+                <li class="subnav-item">
+                  <a href="#!spo2">SpO<sub>2</sub>
+                  </a>
+                </li>
+                <li class="subnav-item">
+                  <a href="#!goals">Goals</a>
+                </li>
+              </ul>
+            </li>
+            <li id="navMyAccount" class="nav-item">
+              <a href="javascript:void()"><img class="nav-item-icon" src="./resources/images/icon/icon-my-account.svg" alt="">My Account<span class="align-middle fr"><img class="nav-item-arrow" src="./resources/images/icon/icon-arrow.svg" alt=""></span>
+              </a>
+
+              <ul class="subnav">
+                <li class="subnav-item">
+                  <a href="#!security">Change Security</a>
+                </li>
+                <li class="subnav-item">
+                  <a href="#!password">Change Password</a>
+                </li>
+                <li class="subnav-item">
+                  <a href="#!accountbalance">Account Balance</a>
+                </li>
+                <li class="subnav-item">
+                  <a href="#!announcements">Announcements</a>
+                </li>
+                <li class="subnav-item">
+                  <a href="#!securitylog">Security Log</a>
+                </li>
+              </ul>
+            </li>
+            <li id="navMyAccount" class="nav-item">
+              <a href="#!" onclick="main.showFamily = true"><img class="nav-item-icon" src="./resources/images/icon/icon-add-family.svg" alt="">Add Family Member<span class="align-middle fr"></span>
+              </a>
+            </li>
+          </ul>
+          <div class="sign-out">
+            <p onclick="logOut()"><img src="./resources/images/icon/icon-sign-out.svg" alt="">
+              Sign Out</p>
+          </div>
+        </div>
+        <div data-ng-view></div>
+
+      </div>
+
+    </div>
+    <footer>
+      <div class="fl">
+        <h4 class="mt--none mt--none sync" style="cursor:pointer" onclick="currentScreen.loadData()"><!-- <img class="sync-icon" src="resources\images\icon\icon-sync.svg" alt=""> --><div class="icon-bg--sync"></div><span class="sync-text">Sync Data</span></h4>
+      </div>
+      <div class="fr love">
+        <h4 class="mt--none">Made with
+          <i class="fa fa-heart text-color--secondary" aria-hidden="true"></i>
+          <style>
+          .love:hover .fa-heart{
+            animation: beating .5s infinite linear forwards;
+          }
+
+          @keyframes beating {
+            0%{
+              transform: scale(1);
+            }
+            50%{
+              transform: scale(1.25);
+            }
+            100%{
+              transform: scale(1);
+            }
+          }
+          </style>
+          by iSalus Healthcare</h4> 
+      </div>
+    </footer>
+    <script src="./resources/js/xmlquery.js"></script>
+    <script src="./resources/js/mml.js"></script>
+    <script src="./resources/js/index.js"></script>
+    <script src="https://js.stripe.com/v3/"></script>
+  </body>
+</html>

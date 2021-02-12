@@ -1,0 +1,181 @@
+<style>
+  .content {
+    padding: 0px;
+  }
+
+  .no-messages {
+    width: 100%;
+    text-align: center;
+    margin-top: 15px;
+  }
+</style>
+
+<div id="cover" class="cover" onclick="messages.resetKey();common.closeModals()"></div>
+<div class="popup popup--sm" id="popupDatabase">
+  <div class="popup-fields">
+    <div class="popup__title text-align--center">
+      <h3 class="text-color--primary text-weight--bold text-size--large mb--20">Choose Your Practice</h3>
+  </div>
+    <div id="popupDatabaseList">
+    </div>
+  </div>
+  <div class="popup-cta">
+    <button class="width--100 fl btn--secondary" onclick="messages.resetKey();common.closeModals()">Close</button>
+  </div>
+</div>
+<div class="popup" id="popup">
+    <div class="popup__title text-align--center">
+      <h3 class="text-color--primary text-weight--bold text-size--large mb--20">Compose a New Message</h3>
+  </div>
+  <div class="popup-fields">
+    <div class="form-group">
+      <label for="type">Type</label>
+      <select class="width--100" id="contentTypeId" name="type">
+      <option value="1">Appointment</option>
+      <option value="2">Billing</option>
+      <option value="3">Personal Health</option>
+    </select>
+    </div>
+
+    <div class="form-group">
+      <label for="provider">Provider</label>
+      <select class="width--100" id="providerId" name="provider">
+    </select>
+    </div>
+
+    <div class="form-group">
+      <label for="content">Content</label>
+      <textarea class="width--100" rows="10" name="content" id="content"></textarea>
+    </div>
+    <div class="form-group">
+      <label for="phone">Phone</label>
+      <input class="width--100" type="text" name="phone" id="phone" />
+    </div>
+    <div class="form-group">
+      <label for="other">Other</label>
+      <input name="other" class="width--100" type="text" id="other" />
+    </div>
+  </div>
+  <div class="popup-cta">
+    <button class="width--50 fl btn--secondary" onclick="messages.resetKey();common.closeModals()">Close</button>
+    <button class="width--50 fr btn--primary" onclick="messages.sendMessage()">Send</button>
+  </div>
+</div>
+
+<div class="popup" id="popupReply">
+    <div class="popup__title text-align--center">
+      <h3 class="text-color--primary text-weight--bold text-size--large mb--20">Reply</h3>
+  </div>
+  <div class="popup-fields">
+    <div class="form-group">
+      <label for="replyContent">Content</label>
+      <textarea class="width--100" rows="10" name="replyContent" id="replyContent"></textarea>
+    </div>
+    <div class="form-group">
+      <label for="replyQuoted">Quoted Text</label>
+      <textarea class="width--100" rows="10" id="replyQuoted" disabled></textarea>
+    </div>
+  </div>
+  <input id="replyContentType" style="display:none" />
+  <input id="replyProvider" style="display:none" />
+  <input id="replyDatabase" style="display:none" />
+  <div class="popup-cta">
+    <button class="width--50 fl btn--secondary" onclick="messages.resetKey();common.closeModals()">Close</button>
+    <button class="width--50 fr btn--primary" onclick="messages.sendReply()">Send</button>
+  </div>
+</div>
+
+<div class="popup" id="popupPracticeMessage">
+  <div class="popup-fields">
+    <h3>Message from your practice</h3><br/>
+    <p id="practiceMessageContent"></p>
+  </div>
+  <div class="popup-cta">
+    <button class="width--100 fl btn--secondary" onclick="messages.resetKey();common.closeModals()">Close</button>
+  </div>
+</div>
+
+
+<div style="display: none" id="messagesContainer">
+  <div class="pd--none" style="width: 300px; position: fixed; left: 250px; height: 100%">
+
+    <center><a href="#" class="btn--primary mt--20 mb--20" onclick="event.preventDefault();messages.newMessage();"><img class="va--middle mr--10" src="resources\images\icon\icon-message.svg" alt=""><span class="va--middle">New Message</span></a></center>
+    <div class="clearfix">
+      <a style="width: 150px;" href="#" class="btn--white btn--icon fl tab--active" id="message-category-R" onclick="event.preventDefault();messages.selectCategory('R')"><svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><title>icon-inbox</title><desc>Created using Figma</desc><g transform="translate(-1399 432)"><path d="M1399-432h20v20h-20z"/><clipPath id="a" clip-rule="evenodd"><path d="M1119-512h1440V512H1119V-512z" fill="#FFF"/></clipPath><g clip-path="url(#a)"><path d="M1119-512h1440V512H1119V-512z" fill="rgba(0,0,0,.0)"/><use xlink:href="#b" transform="translate(1389 -442)" fill="#FFF"/><use class="tab-icon" xlink:href="#c" transform="translate(1399 -432)" fill="#474747"/></g></g><defs><path id="b" d="M0 0h240v40H0V0z"/><path id="c" d="M1.96 0l-.142.767L0 12.585V20h20v-7.415L18.182.767 18.04 0H1.96zm1.563 1.818h12.954l1.534 10H11.82v.91c0 1.015-.802 1.818-1.818 1.818s-1.818-.803-1.818-1.82v-.908H1.99l1.533-10zM1.818 13.636h4.716c.412 1.556 1.786 2.728 3.466 2.728 1.68 0 3.054-1.172 3.466-2.728h4.716v4.546H1.818v-4.546z"/></defs></svg>  Inbox<span id="inboxCount" class="text--secondary fr">2</span></a>
+      <a style="width: 150px;" href="#" class="btn--white btn--icon fl tab--inactive" id="message-category-S" onclick="event.preventDefault();messages.selectCategory('S')"><svg width="20" height="20" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+      <g id="Canvas" transform="translate(-1659 433)">
+      <rect x="1659" y="-433" width="20" height="20"/>
+      <clipPath id="clip-0" clip-rule="evenodd">
+      <path d="M 1119 -512L 2559 -512L 2559 512L 1119 512L 1119 -512Z" fill="#FFFFFF"/>
+      </clipPath>
+      <g id="Desktop HD" clip-path="url(#clip-0)">
+      <path d="M 1119 -512L 2559 -512L 2559 512L 1119 512L 1119 -512Z" fill="rgba(0,0,0,.0)"/>
+      <g id="button w/icon">
+      <g id="state-normal">
+      <g id="normal">
+      <use xlink:href="#path0_fill" transform="translate(1649 -443)" fill="#FFFFFF"/>
+      </g>
+      </g>
+      <g id="icons">
+      <g id="icon-outbox">
+      <g id="icons8-Outbox">
+      <g id="surface1">
+      <g id="Vector">
+      <use class="tab-icon" xlink:href="#path1_fill" transform="translate(1659 -433)" fill="#474747"/>
+      </g>
+      </g>
+      </g>
+      </g>
+      </g>
+      </g>
+      </g>
+      </g>
+      <defs>
+      <path id="path0_fill" d="M 0 0L 240 0L 240 40L 0 40L 0 0Z"/>
+      <path id="path1_fill" d="M 9.5 -1.97854e-08L 5.43484 4.02069L 6.65607 5.22856L 8.63636 3.26994L 8.63636 8.04137L 10.3636 8.04137L 10.3636 3.26994L 12.3439 5.22856L 13.5652 4.02069L 9.5 -1.97854e-08ZM 1.84872 1.20787L 0 13.0998L 0 20L 19 20L 19 13.0998L 17.1513 1.20787L 14.0341 1.20787L 14.0341 2.91625L 15.6669 2.91625L 17.1277 12.3123L 11.2273 12.3123L 11.2273 13.1665C 11.2273 14.1208 10.4648 14.8749 9.5 14.8749C 8.53516 14.8749 7.77273 14.1208 7.77273 13.1665L 7.77273 12.3123L 1.86896 12.3123L 3.3331 2.91625L 5.03675 2.91625L 5.03675 1.20787L 1.84872 1.20787ZM 1.72727 14.0207L 6.22088 14.0207C 6.61559 15.4788 7.90767 16.5833 9.5 16.5833C 11.0923 16.5833 12.3844 15.4788 12.7791 14.0207L 17.2727 14.0207L 17.2727 18.2916L 1.72727 18.2916L 1.72727 14.0207Z"/>
+      </defs>
+      </svg>
+  Sent</a>
+    </div>
+
+    <div style="height: calc(100% - 230px); overflow-y: auto;" id="messageList" class="message-list"></div>
+
+  </div>
+
+  <div class="message-window fl white pd--none">
+    <div id="messageData" class="col-12 pd--20">
+      <h2 class="mt--none mb--none text--bold text--primary">No Message Selected</h2>
+      <hr class="light-grey">
+      <p>Select a message from the list to view it.</p>
+    </div>
+  </div>
+</div>
+
+<div id="noPractices" class="empty text-align--center">
+  <div class="container width--100 center align-vertical--middle">
+    <img src="resources\images\icon\icon-not-connected.svg">
+    <h1 class="text-weight--bold text-color--black-20">You Are Not Connected to a Practice</h1>
+    <a class="btn--primary" href="#!connect">Connect to a Practice</a>
+  </div>
+</div>
+
+<script>
+  $('#phone').mask('(000) 000-0000');
+  $('#other').mask('(000) 000-0000');
+
+  $("#content").keypress(common.filterChar);
+  $("#replyContent").keypress(common.filterChar);
+
+  common.switchScreen(messages);
+</script>
+<style>
+  .message-section-selected {
+    font-weight: bold;
+  }
+
+  .message-date-requested::after {
+    content: ">";
+    display: inline;
+    margin-left: 10px;
+  }
+</style>

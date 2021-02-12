@@ -1,0 +1,97 @@
+.message {
+  height: 120px;
+  display: block;
+  border-bottom: 1px solid #E5E5E5;
+  // min-width: 300px;
+  width: 100%;
+  background: $white;
+  padding: 10px;
+  position: relative;
+
+  &-read--N::before {
+    content: "";
+    height: 100%;
+    width: 4px;
+    background: #F05452;
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+
+  &-window {
+    width: calc(100% - 300px);
+    padding: 20px;
+    margin-left: 300px;
+    border-left: 1px solid #E5E5E5;
+    min-height: calc(100vh - 100px);
+  }
+
+  &-topic {
+    color: $primary;
+
+    .message-selected > & {
+      color: $white;
+    }
+  }
+
+  &-location {
+    color: $medium-grey;
+    width: 140px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+
+    .message-selected & {
+      color: $white;
+    }
+  }
+
+  &-date {
+    color: $medium-grey;
+    font-size: 12px;
+
+    .message-selected & {
+      color: $white;
+    }
+  }
+
+  &-preview {
+    height: 55px;
+    display: block;
+    -webkit-line-clamp: 3;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: $primary-dark;
+
+    .message-selected > & {
+      color: $white;
+      text-overflow: inherit;
+    }
+  }
+
+  &-quote {
+    padding: 0 0 0 20px;
+    color: #777;
+    border-left: 1px solid rgba(71, 71, 71, 0.24);
+    font-style: italic;
+  }
+}
+
+.message-selected {
+  background: $primary;
+}
+
+.tab {
+  &--active {
+    color: $primary !important;
+    .tab-icon{
+      fill: $primary;
+    }
+  }
+
+  &--inactive {
+    opacity: 0.5;
+  }
+}

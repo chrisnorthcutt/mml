@@ -1,0 +1,339 @@
+<div id="cover" class="cover" onclick="common.refresh()"></div>
+<div class="popup" id="popup">
+  <div class="popup__title text-align--center">
+    <h3 class="text-color--primary text-weight--bold text-size--large mb--20">Add a Family Member</h3>
+  </div>
+  <div class="popup-fields">
+    <div class="form-group">
+      <label for="relationshipCode">Type:</label>
+      <select class="width--100" name="relationshipCode" id="relationshipCode">
+        <option value="1">Spouse</option>
+        <option value="2">Child</option>
+        <option value="3">Step Child</option>
+        <option value="4">Foster Child</option>
+        <option value="5">Ward</option>
+        <option value="6">Nephew or Niece</option>
+        <option value="7">Parent</option>
+        <option value="8">Grandparent</option>
+        <option value="9">Other</option>
+      </select>
+      
+    </div>
+
+    <div class="form-group">
+      <label for="firstName">First Name <div class="field-error" id="firstNameError"></div></label>
+      <input class="width--100" type="text" name="firstName" id="firstName"></select>
+    </div>
+
+    <div class="form-group">
+      <label for="lastName">Last Name <div class="field-error" id="lastNameError"></div></label>
+      <input class="width--100" type="text" name="lastName" id="lastName"></select>
+    </div>
+
+    <div class="form-group">
+      <label for="birthDate">Birth Date <div class="field-error" id="birthDateError"></div></label>
+      <input class="width--100 date" type="text" name="birthDate" id="birthDate"/>
+      <div class="input-icon--date"></div>
+    </div>
+
+    <div class="popup-cta">
+      <input class="width--50 fr btn--primary" type="button" value="Create" onclick="main.addFamilyMember()"/>
+      <input class="width--50 fl btn--secondary" type="button" value="Close" onclick="common.closeModals()"/>
+    </div>
+  </div>
+</div>
+<div class="popup" id="accountCreationFinish">
+  <div class="popup__title text-align--center">
+    <h3 class="text-color--primary text-weight--bold text-size--large mb--20">Email Sent Succesfully</h3>
+  </div>
+  <div class="popup-fields">
+    <p class="mb--10 mt--20">You should receive an email at the specified address with a token. Use that token to finish creating the account.</p>
+
+    <div class="form-group">
+      <label for="registrationToken">Token: <div class="field-error" id="registrationTokenError"></div></label>
+      <input class="width--100" type="text" name="registrationToken" id="registrationToken"></select>
+    </div>
+
+    <div class="form-group">
+      <label for="securityPassword">Password: <div class="field-error" id="securityPasswordError"></div></label>
+      <input class="width--100" type="password" name="securityPassword" id="securityPassword"></select>
+    </div>
+
+    <div class="form-group">
+      <label for="retypePassword">Confirm Password: <div class="field-error" id="retypePasswordError"></div></label>
+      <input class="width--100" type="password" name="retypePassword" id="retypePassword" maxlength="36"></select>
+    </div>
+  </div>
+
+  <div class="popup-cta">
+    <input class="width--100 fr btn--primary" type="button" value="Create" onclick="securityscreen.finishCreateLogin()"/>
+  </div>
+</div>
+
+<div class="popup" id="accountCreationFinish2">
+  <div class="popup__title text-align--center">
+    <h3 class="text-color--primary text-weight--bold text-size--large mb--20">Account Successfully Created</h3>
+  </div>
+  <div class="popup-fields">
+    <p class="mb--10 mt--20">The account has been created successfully. The user should be able to log in with the specified credentials.</p>
+  </div>
+
+  <div class="popup-cta">
+    <input class="width--100 fl btn--secondary" type="button" value="Close" onclick="common.refresh()"/>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-6" id="pdfBrainBook">
+    <div class="white tile clearfix pd--none">
+      <div class="pdf__image pdf__image--brain fl"></div>
+      <div class="pdf__info fr">
+      <h4 class="text-weight--bold text-color--primary">Brain Optimization Book</h4>
+      <p>The Brain Optimization Book is designed to provide educational resources at strategic points in our training program. The guide is designed to help establish goals for the program and then to provide education centered around nutrition, exercise, and sleep to augment the in-center training program.  Education is tailored to the individual based upon their goals for the program.</p>
+      <a class="btn--primary" href="https://www.neurocorecenters.com/wp-content/uploads/2017/09/BOB-Web-Download-R.pdf" download="Brain Optimization Book - Neurocore.pdf">Download PDF</a>
+    </div>
+  </div>
+</div>
+  <div class="col-6" id="pdfMemoryBootcamp">
+    <div class="white tile clearfix pd--none">
+      <div class="pdf__image pdf__image--memory fl"></div>
+      <div class="pdf__info fr">
+      <h4 class="text-weight--bold text-color--primary">Memory Bootcamp Playbook</h4>
+      <p>The Memory Bootcamp Playbook is a comprehensive guide filled with education about your brain and resources designed to improve optimal brain function as you age. Education and coaching about nutrition, exercise, and sleep, among other things is provided at each session and is tracked in your playbook. As you progress through the program the playbook provides additional information about activities you can engage with that will continue to enhance your brain health and maximize your experience in the Memory Bootcamp Program.</p>
+      <a class="btn--primary" href="https://www.neurocorecenters.com/wp-content/uploads/2017/09/Memory-Playbook-Web-Download-R.pdf" download="Memory Bootcamp Playbook - Neurocore.pdf">Download PDF</a>
+    </div>
+  </div>
+</div>
+</div>
+<div class="row">
+  <div class="col-3 col-3-md col-3-sm text-align--center">
+    <div class="white tile">
+      <div class="tile-content">
+        <div class="tile-icon tile-icon--messages"></div>
+        <h3 class="text-color--primary text-weight--bold">
+          <span id="messageCount">0
+          </span>
+          <span id="newMessages">New Messages</span>
+        </h3>
+
+        <h5 class="text-color--medium-grey mt--none">
+          <span>as of</span>
+          <span id="messageDate">July 13<sup>th</sup>, 2017</span>
+        </h5>
+
+      </div>
+    </div>
+    <div class="tile-btn">
+
+      <a href="#!messages" class="btn--primary width--100">Messages</a>
+    </div>
+  </div>
+  <div class="col-3 col-3-md col-3-sm text-align--center">
+    <div class="white tile">
+      <div class="tile-content">
+        <div class="tile-icon tile-icon--chart"></div>
+        <h3 class="text-color--secondary text-weight--bold">
+          <span id="myChartUnread">0</span>
+          <span id="newItems">New Items</span>
+        </h3>
+
+        <h5 class="text-color--medium-grey mt--none">
+          <span id="chartText">newest item</span> <span id="chartDate" class="text-color--medium-grey">July 13<sup>th</sup>, 2017</span>
+        </h5>
+      </div>
+    </div>
+    <div class="tile-btn">
+
+      <a href="#!chart" class="btn--secondary width--100">My Chart</a>
+    </div>
+  </div>
+  <div class="col-3 col-3-md col-3-sm text-align--center">
+    <div class="white tile">
+      <div class="tile-content">
+        <div class="tile-icon tile-icon--appointment"></div>
+
+        <h3 class="text-color--tertiary text-weight--bold" id="appointmentPractice">
+          Cornerstone Family Physicians
+        </h3>
+        <h5 id="appointmentDateTime" class="text-color--medium-grey mt--none">
+          <span>at</span>
+          <span id="appointmentTime">9:00am</span>
+          <span>on</span>
+          <span id="appointmentDate">July 13<sup>th</sup>, 2017</span>
+        </h5>
+      </div>
+    </div>
+    <div class="tile-btn">
+      <a href="#!appointments" class="btn--tertiary width--100">Appointments</a>
+    </div>
+  </div>
+  <div class="col-3 col-3-md col-3-sm text-align--center">
+    <div class="white tile">
+      <div class="tile-content">
+        <div class="tile-icon tile-icon--balance"></div>
+        <h3 class="text-color--quantery text-weight--bold">
+          <span id="accountBalance">0</span>
+        </h3>
+
+        <h5 class="text-color--medium-grey mt--none" id="balanceDate">
+          as of
+          <span id="balanceDate" class="text-color--medium-grey">July 13<sup>th</sup>, 2017</span>
+        </h5>
+      </div>
+    </div>
+    <div class="tile-btn">
+      <a href="#!accountbalance" class="btn--quantery width--100">Balance</a>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-3 col-3-md col-3-sm">
+    <div class="tile-list tile-list--primary white p-none ">
+      <div class="tile-list-title">
+        <h3 class="icon-bg--family mt--none text-weight--bold">
+          <a href="#!history">My Family</a>
+        </h3>
+      </div>
+      <div class="tile-list-data">
+        <ul id="familyList">
+          <li class="tile-list-data-point">
+            <font style="letter-spacing:-3px;">&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;</font>
+          </li>
+          <li class="tile-list-data-point">
+            <font style="letter-spacing:-3px;">&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;</font>
+          </li>
+          <li class="tile-list-data-point">
+            <font style="letter-spacing:-3px;">&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;</font>
+          </li>
+          <li class="tile-list-data-point">
+            <font style="letter-spacing:-3px;">&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;</font>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="col-3 col-3-md col-3-sm">
+    <div class="tile-list tile-list--secondary white p-none">
+      <div class="tile-list-title">
+        <h3 class="icon-bg--goal mt--none text-weight--bold">
+          <a href="#!goals">Goals</a>
+        </h3>
+      </div>
+      <div class="tile-list-data">
+        <ul id="goalList">
+          <li class="tile-list-data-point">
+            <font style="letter-spacing:-3px;">&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;</font>
+          </li>
+          <li class="tile-list-data-point">
+            <font style="letter-spacing:-3px;">&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;</font>
+          </li>
+          <li class="tile-list-data-point">
+            <font style="letter-spacing:-3px;">&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;</font>
+          </li>
+          <li class="tile-list-data-point">
+            <font style="letter-spacing:-3px;">&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;</font>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="col-3 col-3-md col-3-sm">
+    <div class="tile-list tile-list--tertiary white p-none">
+      <div class="tile-list-title">
+        <h3 class="icon-bg--conditions mt--none text-weight--bold">
+          <a href="#!conditions">Conditions</a>
+        </h3>
+      </div>
+      <div class="tile-list-data">
+        <ul id="conditionList">
+          <li class="tile-list-data-point">
+            <font style="letter-spacing:-3px;">&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;</font>
+          </li>
+          <li class="tile-list-data-point">
+            <font style="letter-spacing:-3px;">&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;</font>
+          </li>
+          <li class="tile-list-data-point">
+            <font style="letter-spacing:-3px;">&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;</font>
+          </li>
+          <li class="tile-list-data-point">
+            <font style="letter-spacing:-3px;">&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;</font>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="col-3 col-3-md col-3-sm">
+    <div class="tile-list tile-list--quantery white p-none">
+      <div class="tile-list-title">
+        <h3 class="icon-bg--medication mt--none text-weight--bold">
+          <a href="#!medications">Medications</a>
+        </h3>
+      </div>
+      <div class="tile-list-data">
+        <ul id="medicationList">
+          <li class="tile-list-data-point">
+            <font style="letter-spacing:-3px;">&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;</font>
+          </li>
+          <li class="tile-list-data-point">
+            <font style="letter-spacing:-3px;">&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;</font>
+          </li>
+          <li class="tile-list-data-point">
+            <font style="letter-spacing:-3px;">&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;</font>
+          </li>
+          <li class="tile-list-data-point">
+            <font style="letter-spacing:-3px;">&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;</font>
+          </li>
+          <li class="tile-list-data-point">
+            <font style="letter-spacing:-3px;">&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;</font>
+          </li>
+          <li class="tile-list-data-point">
+            <font style="letter-spacing:-3px;">&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;&#x2580;</font>
+          </li>
+
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+  common.setTitle('Dashboard');
+  common.selectNavItem('navDashboard');
+
+  $('#birthDate').datepicker();
+  $('#birthDate').datepicker('option', common.datepickerOptions).mask('00/00/0000');
+
+  if(typeof loadDataRedefined === 'undefined'){
+    var loadDataRedefined = true;
+    var loadDataFunction = main.loadData;
+
+    main.loadData = function(){
+      xmlQuery(xml.create('iSalusExternal.GetPracticeGoals'), updateGoalList);
+      xmlQuery(xml.create('iSalusExternal.GetSelfSchedule'), togglePDF);
+      loadDataFunction();
+    }
+  }
+
+  function togglePDF(xmlDoc){
+    var group = $(xmlDoc).find('self_schedule_name').first().text();
+
+    if(group == "Neurofeedback Program"){
+      document.getElementById('pdfMemoryBootcamp').style.display = 'none';
+      document.getElementById('pdfBrainBook').style.display = 'inherit';
+    } else {
+      document.getElementById('pdfMemoryBootcamp').style.display = 'inherit';
+      document.getElementById('pdfBrainBook').style.display = 'none';
+    }
+  }
+
+  function updateGoalList(xmlDoc){
+    var listString = "";
+
+    $(xmlDoc).find('goal_name').each(function () {
+      listString += '<li class="tile-list-data-point">' + $(this).text() + '</li>';
+    });
+
+    document.getElementById('goalList').innerHTML = listString;
+  }
+
+  main.loadData();
+</script>

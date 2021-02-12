@@ -1,0 +1,235 @@
+//Sidebar
+
+.sidebar {
+  position  : fixed;
+  left      : 0;
+  top       : 0;
+  height    : 100vh;
+  z-index   : 3;
+  background: $primary;
+  color     : $white;
+  width     : 250px;
+}
+//Sidebar Nav
+
+.nav {
+  &-item {
+    position: relative;
+    &:not(:last-child) {
+      margin-bottom: 10px;
+    }
+
+    a {
+      padding    : 15px 10px;
+      color      : $white;
+      font-weight: 600;
+      display    : inline-block;
+      width      : 100%;
+
+      &:hover {
+        background-color: rgba($white, 0.2);
+        cursor          : pointer;
+      }
+    }
+
+    &.highlight {
+      background-color: rgba($white, 0.2);
+    }
+
+    &-arrow {
+      vertical-align: middle;
+      height        : 16px;
+      width         : 16px;
+    }
+
+    &-icon {
+      height        : 20px;
+      width         : 20px;
+      vertical-align: middle;
+    }
+
+    img {
+      margin-right  : 10px;
+      vertical-align: middle;
+    }
+  }
+}
+//Sidebar Nav-Sub-Nav
+
+.subnav {
+  visibility      : hidden;
+  position        : absolute;
+  background-color: $white;
+  color           : $primary-dark;
+  font-weight     : 500;
+  font-size       : em(14px);
+  top             : 0;
+  left            : 250px;
+  width           : 253px;
+  opacity         : 1;
+  box-shadow      : 0 2px 10px 0 rgba($black, .25);
+
+  .nav-item:hover & { 
+    visibility      : visible; 
+    transform-origin: top left; 
+    animation       : popout 0.5s 1 forwards; 
+  }
+
+  &-item a {
+    padding: 10px;
+    width  : 100%;
+    display: block;
+    color  : $primary-dark;
+
+    &:hover {
+      background-color: $light-grey;
+    }
+  }
+}
+@keyframes popout {
+  0% {
+    opacity: 0;
+    transform: scale(0);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+#patientImgData, #patientPlaceholder{
+  transition-delay: .3s;
+}
+#patientImg {
+  overflow           : hidden;
+  height             : 120px;
+  width              : 120px;
+  @media(max-height: 768px){
+    height: 100px;
+    width: 100px;
+    margin: 0 auto 5px;
+  }
+  background-color   : $secondary;
+  display            : block;
+  margin             : 0 auto 10px;
+  background-size    : contain;
+  text-align: center;
+  &:hover{
+    #patientImgData, #patientPlaceholder{
+      filter: blur(2px);
+    }
+
+    .patient{
+
+    &__add-photo{
+      opacity: 1;
+      height: 120px;
+      width: 120px;
+      @media(max-height: 768px){
+        height: 100px;
+        width: 100px;
+      }
+    }
+    &__photo-edit{
+      height:30px;
+      width: 30px;
+    }
+  }
+  }
+  &:active{
+    .patient{
+      &__add-photo{
+        background: rgba($primary, .5);
+      }
+    }
+  }
+}
+
+
+.circle-img {
+  border-radius: 100%;
+}
+
+.patient-info {
+  text-align   : center;
+  margin-bottom: 30px;
+  margin-top   : 20px;
+}
+
+.patient-info {
+  > #patientName {
+    font-size  : em(18px);
+    margin     : 0;
+    font-weight: 500;
+  }
+
+  > #patientDetails {
+    font-size: em(13px);
+    opacity  : 0.75;
+  }
+}
+
+.patient{
+  &__add-photo{
+    position       : absolute;
+    background     : rgba($grey, .5);
+    height         : 0px;
+    width          : 0px;
+    border-radius  : 100%;
+    left           : 0;
+    right          : 0;
+    margin         : auto;
+    top            : 50%;
+    transform      : translateY(-50%);
+    padding        : 10px;
+    opacity        : 0;
+    transition     : .3s all linear;
+    z-index        : 2;
+    display        : flex;
+    align-items    : center;
+    justify-content: center;
+  }
+  &__photo-edit{
+    height: 0px;
+    width: 0px;
+    transition     : .3s all linear;
+  }
+}
+
+.sidebar > .logo {
+  background: url($logo) no-repeat center;
+  height    : 62px;
+  width     : 100%;
+  text-align: center;
+  margin    : 0;
+}
+
+.nav-item .sign-out img {
+  margin-right: 10px;
+}
+
+.sign-out {
+  padding    : 15px 10px;
+  position   : absolute;
+  width: 100%;
+  background: $primary;
+  bottom     : 0;
+  font-weight: 700;
+  display    : table;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  img {
+    vertical-align: middle;
+  }
+
+  p {
+    display       : table-cell;
+    vertical-align: middle;
+  }
+}
+.user-image{
+  cursor: pointer;
+}

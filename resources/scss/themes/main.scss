@@ -1,0 +1,26 @@
+
+
+$primary     : #E64A35;
+$primary-dark: #081C2B;
+$secondary   : #E64A35;
+$tertiary    : #E64A35;
+$quaternary  : #E64A35;
+
+// Path to Assets
+
+$path--rel      : "../images";
+
+//Font Overrides
+
+$login-logo   : '#{$path--rel}/logo.svg';
+
+$font-family--primary    : 'Helvetica Neue',sans-serif,Arial,sans-serif;
+
+//Image Overrides
+// $logo         : '#{$path--rel}/neurocore-logo.svg';
+// $login-logo   : '#{$path--rel}/neurocore-logo-red.png';
+
+@import "../main";
+@import "pages/login";
+@import "pages/dashboard";
+@import "layout/forms";

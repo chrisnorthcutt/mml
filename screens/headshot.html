@@ -1,0 +1,105 @@
+<div class="container center white clearfix">
+  <div class="row">
+    <div class="col-12 text-align--center mb--20">
+      <div id="croppieContainer"></div>
+      <p class="text-size--small"><i>Please upload a JPG, GIF or PNG. Max size of 1mb</i></p>
+    </div>
+  </div>
+    <div class="row center">
+    <div class="col-6 col-centered">
+      <input class="inputfile" type="file" name="file" id="fileUpload" accept="image/*"/>
+      <label for="fileUpload" class="width--50"><img class="va--middle mr--10" src="resources\images\icon\icon-upload.svg" alt="">
+        <span class="va--middle file-name">Upload Image</span>
+      </label>
+      <a id="saveHeadshotButton" style="line-height: 40px;" class="btn--primary width--50 fr pd--none" href="" onclick="event.preventDefault();headshot.uploadHeadshot()"><img class="save va--middle mr--10" src="resources\images\icon\icon-save.svg" alt=""><span class="va--middle">Save Headshot</span></a>
+    </div>
+    </div>
+  </div>
+<script type="text/javascript">
+  var inputs = document.querySelectorAll( '.inputfile' );
+
+  Array.prototype.forEach.call( inputs, function( input ){
+    var label  = input.nextElementSibling;
+    var labelVal = label.innerHTML;
+
+    input.addEventListener( 'change', function( e ){
+      var fileName = '';
+      if( this.files && this.files.length > 1 )
+        fileName = ( this.getAttribute( 'data-multiple-caption' ) || '' ).replace( '{count}', this.files.length );
+      else
+        fileName = e.target.value.split( '\\' ).pop();
+
+      if( fileName )
+        label.querySelector( '.file-name' ).innerHTML = fileName;
+      else
+        label.innerHTML = labelVal;
+    });
+  });
+
+  var $inputSwitches = $(".inputSwitch");
+  var $inputs = $inputSwitches.find(".toggleable");
+  var $spans = $inputSwitches.find("span");
+
+  $spans.on("click", function() {
+    var $this = $(this);
+    $this.hide().siblings(".toggleable").show().focus().select();
+  });
+
+  $inputs.on('keydown', function(e) {
+
+    common.resetButton('saveHeadshotButton');
+
+    if (e.which == 9) {
+      e.preventDefault();
+      if (e.shiftKey) {
+        $(this).blur().parent().prevAll($inputSwitches).first().find($spans).click();
+      } else {
+        $(this).blur().parent().nextAll($inputSwitches).first().find($spans).click();
+      }
+    }
+  }).hide();
+
+  function readFile(input) {
+    if (input.files && input.files[0]) {
+      var reader = new FileReader();
+
+      reader.onload = function (e) {
+        $('#croppieContainer').croppie('destroy');
+        $uploadCrop = $('#croppieContainer').croppie(croppieOptions);
+        $.when($('#croppieContainer').croppie('bind', {
+          url: e.target.result
+        })).done(function(){
+          $('#croppieContainer').croppie('setZoom', 0);
+        });
+        // $('.actionDone').toggle();
+        // $('.actionUpload').toggle();
+      }
+
+      reader.readAsDataURL(input.files[0]);
+    }
+  }
+
+  $('#fileUpload').on('change', function () { readFile(this); });
+  // $('.actionDone').on('click', function(){
+  //   $('.actionDone').toggle();
+  //   $('.actionUpload').toggle();
+  // })
+
+  var croppieOptions = {
+    enableExif: true,
+    viewport: {
+        width: 200,
+        height: 200,
+        type: 'circle'
+    },
+    boundary: {
+        width: 300,
+        height: 300
+    },
+    url: './resources/images/200.png'
+  };
+
+  $uploadCrop = $('#croppieContainer').croppie(croppieOptions);
+
+  common.switchScreen(headshot);
+</script>

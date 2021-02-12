@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="21" height="21" viewBox="0 0 21 21">
+  <defs>
+    <circle id="icon-radio-checked-a" cx="10.5" cy="10.5" r="10.5"/>
+  </defs>
+  <g fill="none" fill-rule="evenodd">
+    <use fill="#52CACD" xlink:href="#icon-radio-checked-a"/>
+    <circle cx="10.5" cy="10.5" r="10" stroke="#52CACD"/>
+    <g fill="#FFF" fill-rule="nonzero" transform="translate(5 6)">
+      <polygon points="10.915 0 3.66 7.255 .603 4.198 0 4.801 3.358 8.16 3.66 8.448 3.962 8.16 11.518 .603"/>
+    </g>
+  </g>
+</svg>

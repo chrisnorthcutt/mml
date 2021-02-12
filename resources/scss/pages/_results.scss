@@ -1,0 +1,17 @@
+.result {
+    line-height: 64px;
+    padding: 0 10px;
+    padding: 0 10px;
+    display: inline-block;
+    width: 250px;
+    border-bottom: 1px solid $light-blue-grey;
+    &:nth-child(2) {
+        border-top: 1px solid $light-blue-grey;
+    }
+    cursor: pointer;
+    &-read {
+        &--N {
+            border-left: 2px solid $secondary;
+        }
+    }
+}

@@ -1,0 +1,97 @@
+// CLEARFIX
+
+@mixin clearfix {
+    &:after{
+        content: '';
+        display: table;
+        clear:both;
+    }
+}
+
+@mixin button($color) {
+    padding: 10px 15px;
+    color: $white;
+    border-radius: 2px;
+    font-size: 16px;
+    background-color: $color;
+    transition: 0.2s all ease-in;
+    display: inline-block;
+    text-align: center;
+    font-weight: 600;
+    box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.2);
+    transform: translateY(0);
+    cursor: pointer;
+  
+    &:hover {
+      background-color: lighten($color, 10%);
+      text-decoration: none;
+      box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.5);
+      transform: translateY(-2px);
+    }
+  }
+  @mixin tile-list($color) {
+    .tile-list {
+      &-title {
+        color: $color;
+      }
+  
+      &-data-point {
+        color: $color;
+        &:nth-child(even) {
+          background: rgba($color, 0.05);
+        }
+      }
+    }
+  }
+  @mixin icon-bg($url) {
+    background-image: url($url) !important;
+    background-repeat: no-repeat !important;
+    padding-left: 30px;
+    display: inline-block;
+    background-position: left center !important;
+    height: 21px;
+    transition: .2s all linear;
+    @content;
+  }
+  @mixin input-text($color, $border-color, $background: white) {
+    height: 40px;
+    font-size: em(16px);
+    color: $color;
+    border: none;
+    border-radius: 4px;
+    border: 2px solid $border-color;
+    display: block;
+    padding: 0 8px;
+    margin-bottom: 20px;
+    outline: none;
+    background-color: $background;
+    transition: 0.3s all linear;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    position: relative;
+    z-index: 1;
+
+    &::placeholder {
+      color: $medium-grey;
+    }
+  }
+  
+  @mixin input-icon{
+    position: absolute;
+    top: 47px;
+    right: 20px;
+    height: 21px;
+    width: 21px;
+    z-index: 0;
+    transition: 0.2s all linear;
+  }
+  
+  @mixin center{
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: auto;
+    top: 50%;
+    transform: translateY(-50%);
+  }

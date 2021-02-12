@@ -1,0 +1,175 @@
+.bxshdw{
+    box-shadow: 0 5px 10px 0 rgba($black, .03);
+    transition: 0.3s all linear;
+    &:hover{
+      box-shadow: 0 8px 15px 0 rgba($black, .06);
+    }
+  }
+  //Margins & Padding
+  
+  .mb {
+    &--none {
+      margin-bottom: 0;
+    }
+    &--10 {
+      margin-bottom: 10px;
+    }
+  
+    &--20 {
+      margin-bottom: 20px;
+    }
+    &--50{
+      margin-bottom: 50px;
+    }
+  }
+  
+  .mr{
+    &--10{
+      margin-right: 10px;
+    }
+      &--20{
+      margin-right: 20px;
+    }
+  }
+  
+  .ml{
+    &--10{
+      margin-left: 10px;
+    }
+      &--20{
+      margin-left: 20px;
+    }
+  }
+  .mt {
+    &--none {
+      margin-top: 0 !important;
+    }
+  
+    &--20 {
+      margin-top: 20px;
+    }
+  
+    &--10 {
+      margin-top: 10px;
+    }
+  
+  }
+  
+  .width {
+    &--100 {
+      width: 100%;
+    }
+  
+    &--auto {
+      width: auto;
+    }
+  
+    &--50 {
+      width: 48%;
+    }
+  
+  }
+  //Colors
+  
+  .white {
+    background: $white;
+    border: 1px solid $light-grey;
+    box-shadow: 0 5px 10px 0 rgba($black, .03);
+    transition: 0.3s box-shadow linear;
+    &:hover{
+      box-shadow: 0 8px 15px 0 rgba($black, .06);
+  }
+  }
+  
+  .fr {
+    float: right !important;
+  }
+  
+  .fl {
+    float: left;
+  }
+  
+  
+  
+  .align{
+  &-vertical{
+    &--middle{
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+  }
+  }
+  
+  .va--middle{
+    vertical-align: middle;
+  }
+  
+  .center {
+    margin: auto;
+  }
+  
+  .pd{
+    &--none{
+      padding:0;
+    }
+    &--lr20{
+      padding: 0 20px;
+    }
+    &--lr10{
+      padding: 0 10px;
+    }
+    &--20{
+      padding: 20px;
+    }
+    &--10{
+      padding: 10px;
+    }
+  }
+  
+  .bg{
+    &--primary{
+      background: $primary
+    }
+    &--secondary{
+      background: $secondary
+    }
+    &--tertiary{
+      background: $tertiary
+    }
+    &--quaternary{
+      background: $quaternary
+    }
+    &--primary-dark{
+      background: $primary-dark
+    }
+    &--light-blue-grey{
+      background: $light-blue-grey
+    }
+  }
+
+  @keyframes rotate {
+      0% {
+          transform: rotateY(0deg);
+      }
+
+      100% {
+        transform: rotateZ(360deg);
+      }
+  }
+
+  -moz-keyframes rotate {
+      0% {
+          transform: rotateY(0deg);
+      }
+
+      100% {
+        transform: rotateZ(359deg);
+      }
+  }
+
+  .clearfix {
+    @include clearfix;
+  }

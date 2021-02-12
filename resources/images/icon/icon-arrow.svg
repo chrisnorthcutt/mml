@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="21" height="21" viewBox="0 0 21 21">
+  <defs>
+    <polygon id="icon-arrow-a" points="1.723 .246 .465 1.504 9.461 10.5 .465 19.496 1.723 20.754 11.348 11.129 11.949 10.5 11.348 9.871"/>
+  </defs>
+  <g fill="none" fill-rule="evenodd" transform="translate(9)">
+    <use fill="#FFF" fill-rule="nonzero" xlink:href="#icon-arrow-a"/>
+  </g>
+</svg>

@@ -1,0 +1,33 @@
+<svg width="20" height="20" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<title>icon-inbox</title>
+<desc>Created using Figma</desc>
+<g id="Canvas" transform="translate(-1399 432)">
+<rect x="1399" y="-432" width="20" height="20" fill="#E5E5E5"/>
+<clipPath id="clip-0" clip-rule="evenodd">
+<path d="M 1119 -512L 2559 -512L 2559 512L 1119 512L 1119 -512Z" fill="#FFFFFF"/>
+</clipPath>
+<g id="Desktop HD" clip-path="url(#clip-0)">
+<path d="M 1119 -512L 2559 -512L 2559 512L 1119 512L 1119 -512Z" fill="#F6F9FC"/>
+<g id="button w/icon">
+<g id="state-normal">
+<g id="normal">
+<use xlink:href="#path0_fill" transform="translate(1389 -442)" fill="#FFFFFF"/>
+</g>
+</g>
+<g id="icons">
+<g id="icon-inbox">
+<g id="surface1">
+<g id="Vector">
+<use xlink:href="#path1_fill" transform="translate(1399 -432)" fill="#474747"/>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<defs>
+<path id="path0_fill" d="M 0 0L 240 0L 240 40L 0 40L 0 0Z"/>
+<path id="path1_fill" d="M 1.96023 0L 1.81818 0.767045L 0 12.5852L 0 20L 20 20L 20 12.5852L 18.1818 0.767045L 18.0398 0L 1.96023 0ZM 3.52273 1.81818L 16.4773 1.81818L 18.0114 11.8182L 11.8182 11.8182L 11.8182 12.7273C 11.8182 13.7429 11.0156 14.5455 10 14.5455C 8.98438 14.5455 8.18182 13.7429 8.18182 12.7273L 8.18182 11.8182L 1.98864 11.8182L 3.52273 1.81818ZM 1.81818 13.6364L 6.53409 13.6364C 6.94602 15.1918 8.32031 16.3636 10 16.3636C 11.6797 16.3636 13.054 15.1918 13.4659 13.6364L 18.1818 13.6364L 18.1818 18.1818L 1.81818 18.1818L 1.81818 13.6364Z"/>
+</defs>
+</svg>

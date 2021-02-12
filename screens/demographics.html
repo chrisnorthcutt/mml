@@ -1,0 +1,145 @@
+<div class="container center white clearfix">
+  <div class="row">
+
+    <div class="col-6 form-group inputSwitch ">
+      <label for="firstName">First Name <div class="field-error" id="firstNameError"></div></label><br/>
+      <span class="placeholder"></span><input class="width--100 toggleable" type="text" name="firstName" id="firstName"/>
+    </div>
+    <div class="col-6 form-group inputSwitch">
+      <label for="lastName">Last Name <div class="field-error" id="lastNameError"></div></label><br/>
+      <span class="placeholder"></span><input class="width--100 toggleable" type="text" name="lastName" id="lastName"/>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-6 form-group inputSwitch">
+      <label for="birthDate">Birth Date <div class="field-error" id="birthDateError"></div></label><br/>
+      <span class="placeholder"></span><input class="width--100 toggleable date" type="text" name="birthDate" id="birthDate"/>
+    </div>
+    <div class="col-6 form-group inputSwitch">
+      <label for="genderCode">Gender</label><br/>
+      <span class="placeholder"></span>
+      <select class="width--100 toggleable" name="genderCode" id="genderCode">
+        <option value="M">Male</option>
+        <option value="F">Female</option>
+        <option value="U">Not Specified</option>
+      </select>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-6 form-group inputSwitch">
+      <label for="maritalCode">Marital Status</label><br/>
+      <span class="placeholder"></span>
+      <select class="width--100 toggleable" name="maritalCode" id="maritalCode">
+        <option value="M">Married</option>
+        <option value="S">Single</option>
+        <option value="D">Divorced</option>
+        <option value="L">Legally Separated</option>
+        <option value="W">Widowed</option>
+        <option value="U">Not Specified</option>
+      </select>
+    </div>
+    <div class="col-6 form-group inputSwitch">
+      <label for="bloodTypeCode">Blood Type</label><br/>
+      <span class="placeholder"></span>
+      <select class="width--100 toggleable" name="bloodTypeCode" id="bloodTypeCode">
+        <option value="O+">O+</option>
+        <option value="A+">A+</option>
+        <option value="B+">B+</option>
+        <option value="O-">O-</option>
+        <option value="A-">A-</option>
+        <option value="AB+">AB+</option>
+        <option value="B-">B-</option>
+        <option value="AB-">AB-</option>
+        <option value="U">Not Specified</option>
+      </select>
+    </div>
+  </div>
+<div class="row">
+  <div class="col-4 form-group inputSwitch">
+    <label for="ethnicityCode">Ethnicity</label><br/>
+    <span class="placeholder"></span>
+    <select class="width--100 toggleable" name="ethnicityCode" id="ethnicityCode">
+      <option value="1">Native American or Alaskan</option>
+      <option value="2">Asian</option>
+      <option value="3">Black or African American</option>
+      <option value="4">Hispanic or Latino</option>
+      <option value="5">Pacific Islander or Native Hawaiian</option>
+      <option value="6">White or Caucasian</option>
+      <option value="7">Other</option>
+    </select>
+  </div>
+  <div class="col-4 form-group inputSwitch">
+    <label for="eyeColorCode">Eye Color</label><br/>
+    <span class="placeholder"></span>
+    <select class="width--100 toggleable" name="eyeColorCode" id="eyeColorCode">
+      <option value="1">Amber</option>
+      <option value="2">Blue</option>
+      <option value="3">Brown</option>
+      <option value="4">Gray</option>
+      <option value="5">Hazel</option>
+      <option value="6">Red</option>
+      <option value="7">Violet</option>
+      <option value="9">Green</option>
+      <option value="8">Other</option>
+    </select>
+  </div>
+  <div class="col-4 form-group inputSwitch">
+  <label for="hairColorCode">Hair Color</label><br/>
+    <span class="placeholder"></span>
+    <select class="width--100 toggleable" name="hairColorCode" id="hairColorCode">
+      <option value="1">Black</option>
+      <option value="2">Brown</option>
+      <option value="3">Blonde</option>
+      <option value="4">Red</option>
+      <option value="5">Gray</option>
+      <option value="6">White</option>
+      <option value="7">Bald</option>
+      <option value="8">Other</option>
+    </select>
+  </div>
+</div>
+
+
+  <div class="form-group inputSwitch">
+    <label for="birthmarksScars">Birthmarks or Scars</label><br/>
+    <span class="placeholder"></span><input class="width--100 toggleable" type="text" name="birthmarksScars" id="birthmarksScars"/>
+  </div>
+  <div class="form-group inputSwitch">
+    <label for="specialConditions">Special Conditions</label><br/>
+  <span class="placeholder"></span><input class="width--100 toggleable" type="text" name="specialConditions" id="specialConditions"/>
+  </div>
+
+  <a id="saveDemographicsButton" class="btn--primary width--auto fr mt--20" href="" onclick="event.preventDefault();demographics.saveDemographics()"><img class="save va--middle mr--10" src="resources\images\icon\icon-save.svg" alt=""> <span class="va--middle">Save Changes</span></a>
+</div>
+<script type="text/javascript">
+  var $inputSwitches = $(".inputSwitch"),
+    $inputs = $inputSwitches.find(".toggleable"),
+    $spans = $inputSwitches.find("span");
+  $spans.on("click", function () {
+    var $this = $(this);
+    $this.hide().siblings(".toggleable").show().focus().select();
+  });
+  $inputs.on('keydown', function (e) {
+
+    if($('#saveDemographicsButton').hasClass('dataDone') && $('#saveDemographicsButton').hasClass('timedOut')){
+      common.resetButton('saveDemographicsButton');
+    }
+
+    if (e.which == 9) {
+      e.preventDefault();
+      if (e.shiftKey) {
+        $(this).blur().parent().prevAll($inputSwitches).first().find($spans).click();
+      } else {
+        $(this).blur().parent().nextAll($inputSwitches).first().find($spans).click();
+      }
+    }
+  }).hide();
+
+  $("#birthDate").datepicker();
+  $("#birthDate").datepicker('option', common.datepickerOptions).mask('00/00/0000');
+
+  $('#specialConditions').mask('Q', common.specialCharacterMask);
+  $('#birthmarksScars').mask('Q', common.specialCharacterMask);
+
+  common.switchScreen(demographics);
+</script>

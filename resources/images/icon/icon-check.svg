@@ -1,0 +1,18 @@
+<svg width="20" height="20" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<title>icon-check</title>
+<desc>Created using Figma</desc>
+<g id="Canvas" transform="translate(1182 1354)">
+<g id="icon-check">
+<g id="icons8-Checkmark (2)">
+<g id="surface1">
+<g id="Vector">
+<use xlink:href="#path0_fill" transform="translate(-1182 -1352)" fill="#FFFFFF"/>
+</g>
+</g>
+</g>
+</g>
+</g>
+<defs>
+<path id="path0_fill" d="M 18.9522 0L 6.35535 12.8804L 1.04784 7.45342L 0 8.52484L 5.83144 14.4876L 6.35535 15L 6.87927 14.4876L 20 1.07143L 18.9522 0Z"/>
+</defs>
+</svg>

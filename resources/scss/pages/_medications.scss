@@ -1,0 +1,18 @@
+.pharm-list {
+	height: 250px;
+	overflow: auto;
+	border: 1px solid $grey;
+	padding: 10px;
+
+	&__item {
+		border-bottom: 1px solid $light-grey;
+		padding-bottom: 5px;
+		cursor: pointer;
+	}
+
+	&__map {
+		height: 25px;
+		width: 25px;
+	}
+	
+}

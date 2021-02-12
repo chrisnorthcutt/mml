@@ -1,0 +1,80 @@
+<div id="cover" class="cover" onclick="common.closeModals()"></div>
+<div class="popup" id="popup">
+  <div class="popup__title text-align--center">
+      <h3 class="text-color--primary text-weight--bold text-size--large mb--20">Add a New Entry</h3>
+  </div>
+  <div class="popup-fields">
+    <div class="form-group">
+        <div class="col-6">
+          <label for="heightFt">Feet <div class="field-error" id="heightFtError"></div></label>
+          <input class="width--100" type="text" name="heightFt" id="heightFt" />
+        </div>
+        <div class="col-6">
+          <label for="heightIn">Inches <div class="field-error" id="heightInError"></div></label>
+          <input class="width--100" type="text" name="heightIn" id="heightIn" />
+        </div>
+    </div>
+    <div class="form-group">
+      <label for="note">Note</label><br />
+      <input class="width--100" type="text" name="note" id="note" />
+    </div>
+    <div class="form-group">
+      <label for="encounterDateTime">Date &amp; Time <div class="field-error" id="encounterDateTimeError"></div></label><br />
+      <input class="width--100 date" type="text" name="encounterDateTime" id="encounterDateTime" />
+    </div>
+    <input style="display: none" id="journalId" />
+    <div class="popup-cta">
+      <button class="width--50 fr btn--primary" onclick="journalHeight.saveHeight()">Save</button>
+      <button class="width--50 fl btn--secondary" onclick="common.closeModals()">Close</button>
+    </div>
+  </div>
+</div>
+<div class="popup confirmation" id="popup-confirmation">
+  <p class="text-color--primary-dark text-weight--bold text-align--center mb--10">Really delete this item?</p>
+  <button class="width--50 fl btn--secondary" onclick="journalHeight.deleteHeight()">Delete</button>
+  <button class="width--50 fr btn--primary" onclick="common.closeModals()">Nevermind</button>
+  <input style="display: none" id="deleteJournalId" />
+</div>
+<div id="heightChartContainer" class="row">
+  <div class="col-12">
+    <div class="tile white">
+      <div id="height"></div>
+    </div>
+  </div>
+</div>
+<div style="display:hidden" id="tableHeader" class="table-head row">
+  <div class="col-2">
+    <h4 class="table-head-title">Date</h4>
+  </div>
+  <div class="col-2">
+    <h4 class="table-head-title">Height</h4>
+  </div>
+  <div class="col-3">
+    <h4 class="table-head-title">Note</h4>
+  </div>
+  <div class="col-3">
+    <h4 class="table-head-title">Reported By</h4>
+  </div>
+
+  <div class="col-2">
+    <a class="btn--primary width--auto fr" style="margin: 20px 0px 0px 0px;" href="" onclick="event.preventDefault();journalHeight.newHeight()"><img class="va--middle mr--10" src="resources\images\icon\icon-add.svg" alt=""> <span class="va--middle">Add Item</span></a>
+  </div>
+</div>
+<div id="height-table">
+</div>
+
+<div style="display:hidden" id="noHeight" class="empty text-align--center">
+  <div class="container width--100 center align-vertical--middle">
+    <img src="resources\images\icon\icon-empty-height.svg">
+    <h1 class="text-weight--bold text-color--black-20">You Have No Height Measurements</h1>
+    <a class="btn--primary" href="#" onclick="event.preventDefault();journalHeight.newHeight()"><img class="va--middle mr--10" src="resources\images\icon\icon-add.svg" alt=""> Add Item</a>
+  </div>
+</div>
+
+<script src="./resources/js/height-chart.js"></script>
+<script type="text/javascript">
+  $('#encounterDateTime').datepicker();
+  $('#encounterDateTime').datepicker('option', common.datepickerOptions).mask('00/00/0000');
+  
+  common.switchScreen(journalHeight);
+</script>

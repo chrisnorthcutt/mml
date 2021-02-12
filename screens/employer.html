@@ -1,0 +1,69 @@
+<div class="container center white clearfix">
+<div class="row">
+  <div class="col-12 form-group inputSwitch">
+    <label for="occupation">Occupation</label><br/>
+    <span class="placeholder"></span><input class="width--100" type="text" name="occupation" id="occupation"/>
+  </div>
+</div>
+<div class="row">
+  <div class="col-12 form-group inputSwitch">
+    <label for="employer-name">Employer Name</label><br/>
+    <span class="placeholder"></span><input class="width--100" type="text" name="employer-name" id="employer-name"/>
+  </div>
+</div>
+<div class="row">
+  <div class="col-8 form-group inputSwitch">
+    <label for="address">Address</label><br/>
+    <span class="placeholder"></span><input class="width--100" type="text" name="address" id="address"/>
+  </div>
+  <div class="col-4 form-group inputSwitch">
+    <label for="zip">Zip</label><br/>
+    <span class="placeholder"></span><input class="width--100" type="text" name="zip" id="zip"/>
+  </div>
+</div>
+<div class="row">
+  <div class="col-6 form-group inputSwitch">
+    <label for="work">Work <div class="field-error" id="workError"></div></label><br/>
+    <span class="placeholder"></span><input class="width--100" type="text" name="work" id="work"/>
+  </div>
+  <div class="col-6 form-group inputSwitch">
+    <label for="fax">Fax <div class="field-error" id="faxError"></div></label><br/>
+    <span class="placeholder"></span><input class="width--100" type="text" name="fax" id="fax"/>
+  </div>
+</div>
+
+<a id="saveEmployerButton" class="btn--primary width--auto fr mt--20" href="" onclick="event.preventDefault();employer.saveEmployer()"><img class="save va--middle mr--10" src="resources\images\icon\icon-save.svg" alt=""> <span class="va--middle">Save Changes</span></a>
+
+</div>
+<script type="text/javascript">
+  $('#employer-name').mask('Q', common.specialCharacterMask);
+  $('#occupation').mask('Q', common.specialCharacterMask);
+  $('#address').mask('Q', common.specialCharacterMask);
+  $('#zip').mask('00000');
+  $('#work').mask('(000) 000-0000');
+  $('#fax').mask('(000) 000-0000');
+
+  var $inputSwitches = $(".inputSwitch"),
+    $inputs = $inputSwitches.find("input"),
+    $spans = $inputSwitches.find("span");
+
+  $spans.on("click", function () {
+    var $this = $(this);
+    $this.hide().siblings("input").show().focus().select();
+  });
+
+  $inputs.on('keydown', function (e) {
+    common.resetButton('saveEmployerButton');
+
+    if (e.which == 9) {
+      e.preventDefault();
+      if (e.shiftKey) {
+        $(this).blur().parent().prevAll($inputSwitches).first().find($spans).click();
+      } else {
+        $(this).blur().parent().nextAll($inputSwitches).first().find($spans).click();
+      }
+    }
+  }).hide();
+
+  common.switchScreen(employer);
+</script>

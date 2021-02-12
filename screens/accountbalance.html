@@ -1,0 +1,242 @@
+<style type="text/css">
+  
+  /**
+ * The CSS shown here will not be introduced in the Quickstart guide, but shows
+ * how you can use CSS to style your Element's container.
+ */
+.StripeElement {
+  background-color: transparent;
+
+  border-bottom: 1px solid #474747;
+  color: #474747;
+  font-size: 16px;
+  transition: .2s border-bottom linear;
+}
+
+.StripeElement--focus {
+  border-bottom: 1px solid #52cacd;
+}
+
+.StripeElement--invalid {
+  border-color: #F05452;
+}
+
+.StripeElement--webkit-autofill {
+  background-color: #fefde5 !important;
+}
+
+#card-errors{
+  color: #F05452;
+  font-weight: 500;
+  font-family: sans-serif;
+  font-size: 1em;
+  padding: 8px;
+}
+
+</style>
+
+<div id="cover" class="cover" onclick="common.closeModals()"></div>
+
+<!--Payment History Modal -->
+<div class="popup" id="paymentHistory">
+  <div class="popup__title text-align--center">
+      <h3 class="text-color--primary text-weight--bold text-size--large mb--20">Online Payment History</h3>
+  </div>
+  <div class="popup-fields" id="paymentHistoryList"> </div>
+<div class="popup-cta">
+  <button class="width--100 fl btn--secondary" onclick="common.closeModals()">Close</button>
+  </div>
+</div>
+
+<!--Statement History Modal -->
+<div class="popup" id="statementHistory">
+  <div class="popup__title text-align--center">
+      <h3 class="text-color--primary text-weight--bold text-size--large mb--20">Statement History</h3>
+  </div>
+  <div class="popup-fields">
+    <div id="statementList">
+      
+    </div>
+  </div>
+  <div class="popup-cta">
+    <button class="width--100 fl btn--secondary" onclick="common.closeModals()">Close</button>
+  </div>
+</div>
+
+<div class="popup" id="statementDetailView">
+  <div class="popup__title text-align--center">
+      <h3 class="text-color--primary text-weight--bold text-size--large mb--20">Statement Details</h3>
+  </div>
+  <div class="popup-fields">
+    <div id="statementDetails">
+      
+    </div>
+  </div>
+  <div class="popup-cta">
+    <button class="width--100 fl btn--primary" onclick="common.closeModals();accountbalance.statementHistoryModal()">Back</button>
+  </div>
+</div>
+
+<!--Make Payment Modal -->
+<div class="popup" id="makePayment">
+  <div class="popup__title text-align--center">
+    <h3 class="text-color--primary text-weight--bold text-size--large mb--20">Make Payment</h3>
+  </div>
+  <div class="popup-fields">
+    <p class="mb--20">Please select the amount you would like to pay <b>($5.00 Minimum)</b></p>
+    <div class="form-group">
+      <input onclick="accountbalance.chooseAmount(true)" type="radio" name="startDateType" id="accountBalance" class="disableable" value="balance">
+      <label for="accountBalance">
+        <span></span>
+        Account Balance of $<div style="display:inline-block" id="balanceAmount">5,000</div>
+      </label>
+    </div>
+    <div class="form-group">
+      <input onclick="accountbalance.chooseAmount(false)" type="radio" name="startDateType" id="otherAmount" class="disableable" value="other">
+      <label for="otherAmount">
+        <span></span>
+        Other Amount
+      </label>
+      <input id="otherAmountInput" onkeyup="accountbalance.updateAmount(event)" style="display: inline-block;" type="text" name="" disabled>
+    </div>
+    <p class="mb--20">Select a payment method below, or <a href="#" onclick="event.preventDefault();accountbalance.addPaymentMethod()">add a new payment method.</a></p>
+
+    <div class="form-group">
+      <label>Payment Method</label>
+      <select id="paymentMethods" onclick="accountbalance.paymentMethodSelect()" onchange="accountbalance.changePayment()" class="width--100">
+        <option>Visa...4242</option>
+        <option>Discover...4242</option>
+      </select>
+      
+    </div>
+    <input id="databaseToPay" style="display:none">
+  </div>
+  <div class="popup-cta">
+    <input class="width--50 fl btn--secondary" style="padding: 10px; line-height: 0; margin-bottom: 0px;" type="button" value="Cancel" onclick="common.refresh()"/>
+    <input id="paymentButton" class="width--50 fr btn--primary" style="padding: 10px; line-height: 0; margin-bottom: 0px;" type="button" value="Pay $5000" onclick="accountbalance.confirmPayment()"/>
+  </div>
+</div>
+
+<!--Add Payment Modal -->
+<div class="popup" id="addPayment">
+  <div class="popup__title text-align--center">
+    <h3 class="text-color--primary text-weight--bold text-size--large mb--20">Add a New Payment Method</h3>
+  </div>
+  <div class="popup-fields">
+    <div class="form-group">
+      <label for="card-element">
+        Credit Details
+      </label>
+      <div id="card-element">
+        <!-- a Stripe Element will be inserted here. -->
+      </div>
+
+      <!-- Used to display form errors -->
+      <div id="card-errors" role="alert"></div>
+    </div>
+  </div>
+  <div class="popup-cta">
+    <button class="width--50 fl btn--secondary" onclick="common.closeModals();$('#cover').css('display', 'inherit');$('#makePayment').css('display', 'inherit');">Back</button>
+    <button class="width--50 fr btn--primary" onclick="getSource();">Add</button>
+  </div>
+</div>
+
+<!--Payment Confirmation Modal -->
+<div class="popup" id="paymentConfirmation">
+  <div class="popup__title text-align--center">
+      <h3 class="text-color--primary text-weight--bold text-size--large mb--20">Payment Confirmation</h3>
+  </div>
+  <div class="popup-fields">
+    <p class="text-align--center">Please confirm that you are wanting to pay the following amount:</p>
+    <p class="text-align--center text-color--secondary" style="font-size: 72px" id="paymentAmount"></p>
+    <p class="text-align--center">to <span id="databaseName"></span></p>
+    <p id="stripePaymentErrorMessage" style="color:red" class="text-align--center"></p>
+  </div>
+  <div class="popup-cta">
+    <button class="width--50 fl btn--secondary" id="confirmBack" type="button" onclick="common.closeModals();$('#cover').css('display', 'inherit');$('#makePayment').css('display', 'inherit');">Back</button>
+    <button id="confirmPayment" class="width--50 fr btn--primary" onclick="accountbalance.finishPayment()">Confirm Payment</button>
+  </div>
+</div>
+
+<!--Thank You Modal -->
+<div class="popup" id="thankYou">
+  <div class="popup__title text-align--center">
+      <h3 class="text-color--primary text-weight--bold text-size--large mb--20">Payment Successful</h3>
+  </div>
+  <div class="popup-fields">
+    <p>Thank you for your payment of $<span id="paymentAmountThanks"></span> to <span id="databaseNameThanks"></span>.</p>
+  </div>
+  <div class="popup-cta">
+    <input class="width-100 fl btn--secondary" type="button" value="Close" onclick="common.refresh()"/>
+  </div>
+</div>
+
+
+<div class="list" id="practiceList"> </div>
+
+<div id="noPractices" class="empty text-align--center">
+  <div class="container width--100 center align-vertical--middle">
+    <img src="resources\images\icon\icon-not-connected.svg">
+    <h1 class="text-weight--bold text-color--black-20">You Are Not Connected to a Practice</h1>
+    <a class="btn--primary" href="#!connect"><img class="va--middle mr--10" src="resources\images\icon\icon-connect-practice.svg" alt=""> Connect to a Practice</a>
+  </div>
+</div>
+
+<script type="text/javascript">
+  common.switchScreen(accountbalance);
+  $('#otherAmountInput').mask("#,##0.00", {reverse: true});
+  // Create a Stripe client
+  var stripe = Stripe('pk_live_sB3kEJKFJh5ST2MuIohxKcMM');
+
+  // Create an instance of Elements
+  var elements = stripe.elements();
+
+  // Custom styling can be passed to options when creating an Element.
+  // (Note that this demo uses a wider set of styles than the guide below.)
+  var style = {
+    base: {
+      color: '#32325d',
+      lineHeight: '24px',
+      fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
+      fontSmoothing: 'antialiased',
+      fontSize: '16px',
+      '::placeholder': {
+        color: '#aab7c4'
+      }
+    },
+    invalid: {
+      color: '#fa755a',
+      iconColor: '#fa755a'
+    }
+  };
+
+  // Create an instance of the card Element
+  var card = elements.create('card', {style: style});
+
+  // Add an instance of the card Element into the `card-element` <div>
+  card.mount('#card-element');
+
+  // Handle real-time validation errors from the card Element.
+  card.addEventListener('change', function(event) {
+    var displayError = document.getElementById('card-errors');
+    if (event.error) {
+      displayError.textContent = event.error.message;
+    } else {
+      displayError.textContent = '';
+    }
+  });
+
+  function getSource(){
+    stripe.createToken(card).then(function(result) {
+      if (result.error) {
+        // Inform the user if there was an error
+        var errorElement = document.getElementById('card-errors');
+        errorElement.textContent = result.error.message;
+      } else {
+        // Send the token to your server
+        accountbalance.stripeTokenHandler(result.token);
+      }
+    });
+  }
+
+</script>

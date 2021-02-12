@@ -1,0 +1,245 @@
+<div id="cover" class="cover" onclick="common.refresh()"></div>
+
+
+<!-- Prompt user to enter their access code -->
+<div role="popup" class="popup" id="accessCode">
+  <div class="popup__title text-align--center">
+    <h3 id="connectTitlePopup" class="text-color--primary text-weight--bold text-size--large mb--20">Connect to a Practice</h3>
+  </div>
+  <div class="popup-fields">
+    <p class="text-align--center mb--20" id="labelledby">Please enter your access code. If you do not have an access code please contact your medical provider.</p>
+    <div class="clearfix form-group" style="margin: 0 auto; width: 230px;">
+      
+      <input class="fl code-entry-box" maxlength="3" style="width: 70px" type="text" id="code0" aria-labelledby="labelledby" name="Access Code Part 1">
+      <input class="fl code-entry-box" maxlength="3" style="width: 70px; margin-left: 10px;" type="text" id="code1" aria-labelledby="labelledby" name="Access Code Part 2">
+      <input class="fl code-entry-box" maxlength="3" style="width: 70px; margin-left: 10px;" type="text" id="code2" aria-labelledby="labelledby" name="Access Code Part 3">
+    </div>
+    <div id="codeEntryFailure" class="failure-state"></div>
+  </div>
+  <div class="popup-cta">
+    <button aria-label="Close the Modal" class="width--50 fl btn--secondary" onclick="common.refresh()">Close</button>
+    <button aria-label="Go to Connection Modal" class="width--50 fr btn--primary" onclick="connect.fetchConnectionFields()">Next</button>
+  </div>
+</div>
+
+<!-- Prompt user to verify data to connect -->
+<div role="popup" class="popup" id="verifyConnectionInfo">
+  <div class="popup__title text-align--center">
+    <h3 id="connectTitle" class="text-color--primary text-weight--bold text-size--large mb--20">Connect to a Practice</h3>
+  </div>
+  <div class="popup-fields">
+    <p class="text-align--center">Connect to:</p>
+    <center>
+      <img style="max-width: 100%" src="http://via.placeholder.com/250x80" class="mt--20 mb--20" id="practiceLogo">
+    </center>
+    <p class="text-align--center mb--20">In order to connect to
+      <b id="practiceTitle"></b>
+      <br>Please verify the following information</p>
+      <div id="practiceFields">
+        <div class="form-group" id="registrationLastNameGroup">
+          <label for="registrationLastName" id="LastName">Last Name
+            <span class="required">*</span>
+          </label>
+          <input aria-labelledby="LastName" class="width--100" type="text" id="registrationLastName" name="" placeholder="">
+        </div>
+        <div class="form-group" id="registrationDobGroup">
+          <label for="registrationDob" id="Dob">Date of Birth
+            <span class="required">*</span>
+          </label>
+          <input aria-labelledby="Dob" class="width--100 " type="text" id="registrationDob" name="" placeholder="">
+        </div>
+        <div class="form-group" id="registrationSsnGroup">
+          <label for="registrationSsn" id="Ssn">Last 4 of SSN
+            <span class="required">*</span>
+          </label>
+          <input aria-labelledby="Ssn" class="width--100" type="text" id="registrationSsn" name="" placeholder="">
+        </div>
+        <div class="form-group" id="registrationZipGroup">
+          <label for="registrationZip" id="zipCode">Zip Code
+            <span class="required">*</span>
+          </label>
+          <input aria-labelledby="zipCode" class="width--100 " type="text" id="registrationZip" name="" placeholder="">
+        </div>
+        <div class="form-group" id="registrationPhoneGroup">
+          <label for="registrationPhone" id="phoneNumber">Phone Number
+            <span class="required">*</span>
+          </label>
+          <input aria-labelledby="phoneNumber" class="width--100 " type="text" id="registrationPhone" name="" placeholder="">
+        </div>
+      </div>
+    <div id="registrationFailure" class="failure-state"></div>
+  </div>
+  <div class="popup-cta">
+    <button aria-label="Back to Enter Access Code" class="width--50 fl btn--outline" onclick="common.refresh()">Back</button>
+    <button aria-label="Complete Connection" class="width--50 fr btn--primary" onclick="connect.connect()">Connect</button>
+  </div>
+</div>
+
+<!-- <div class="popup" id="popup">
+  <div class="popup__title text-align--center">
+    <h3 class="text-color--primary text-weight--bold text-size--large mb--20">Connect to a Practice</h3>
+  </div>
+  <div class="popup-fields">
+    <input style="display:none" type="text" id="databaseKey" />
+    <div class="form-group">
+      <label for="lastName">Last Name</label>
+      <br />
+      <input class="width--100" type="text" name="lastName" id="lastName" />
+    </div>
+    <div class="form-group">
+      <label for="birthDate">Birth Date</label>
+      <br />
+      <input class="width--100" type="text" name="birthDate" id="birthDate" />
+    </div>
+    <div class="form-group">
+      <label for="registrationCode">Registration Code</label>
+      <br />
+      <input class="width--100" type="text" name="registrationCode" id="registrationCode" />
+    </div>
+    <div id="registrationFailure" class="failure-state"></div>
+  </div>
+  <div class="popup-cta">
+    <input class="width--50 fl btn--secondary" type="button" value="Close" onclick="common.refresh()" />
+    <input class="width--50 fr btn--primary" type="button" value="Save" onclick="connect.connect()" />
+    <input style="display: none" id="medicationId" />
+  </div>
+</div> -->
+<div class="popup" id="hashPopup">
+  <div class="popup__title text-align--center">
+    <h3 class="text-color--primary text-weight--bold text-size--large mb--20">Connect to a Practice</h3>
+  </div>
+  <div class="popup-fields">
+    <input style="display:none" type="text" id="databaseKey" />
+    <div class="form-group">
+      <label for="hashAccount">Family Member</label>
+      <br />
+      <select class="width--100" type="text" name="hashAccount" id="hashAccount">
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="hashLastName">Last Name</label>
+      <br />
+      <input class="width--100" type="text" name="hashLastName" id="hashLastName" />
+    </div>
+    <div class="form-group">
+      <label for="hashBirthDate">Birth Date</label>
+      <br />
+      <input class="width--100" type="text" name="hashBirthDate" id="hashBirthDate" />
+      <div class="input-icon--date"></div>
+    </div>
+    <div id="hashFailure" class="failure-state"></div>
+    <input id="hash" style="display: none" />
+  </div>
+  <div class="popup-cta">
+    <button class="width--50 fl btn--secondary" onclick="common.refresh()">Close</button>
+    <button class="width--50 fr btn--primary" onclick="connect.hashConnect()">Save</button>
+    <input style="display: none" id="medicationId" />
+  </div>
+</div>
+<div class="popup confirmation" id="popup-confirmation">
+  <p class="mb--20 text-align--center" id="disconnectConfirmation"></p>
+  <button class="width--50 fl btn--secondary" onclick="connect.disconnect()">Disconnect</button>
+  <button class="width--50 fr btn--primary" onclick="common.refresh()">Nevermind</button>
+  <input style="display: none" id="disconnectDatabaseKey" />
+</div>
+<div class="center container" id="practiceContainer" style="display: none">
+  <div class="clearfix">
+    <button id="connectButton" aria-label="Connect to a Practice" class="fr btn--primary mb--10" onclick="connect.openAccessCodeModal()">Connect to a Practice</button>
+  </div>
+  <!--   <div class="mb--20 white pd--20 ">
+    <div class="form-group">
+      <label for="name">Practice Search</label>
+      <input class="width--100" type="text" name="name" id="clientName" />
+      <div class="input-icon--search"></div>
+    </div>
+    <div class="clearfix">
+      <a class="btn--primary btn--disabled width--auto fr" id="connectButton" style="margin: 20px 0px 0px 0px;" href="" onclick="event.preventDefault();connect.connectionDialog()"><img class="va--middle mr--10" src="resources\images\icon\icon-connect-practice.svg" alt=""><span class="va--middle">Connect to Practice</span></a>
+    </div>
+  </div> -->
+
+  <div>
+    <h4 class="table-head-title">Connected practices</h4>
+    <div class="mt--20" id="connectedPracticeList"></div>
+  </div>
+</div>
+
+<div id="noPractices" class="empty text-align--center">
+  <div class="container width--100 center align-vertical--middle">
+    <img src="resources\images\icon\icon-empty-practice.svg">
+    <h1 class="text-weight--bold text-color--black-20">You Have No Connected Practices</h1>
+    <a class="btn--primary" href="#" onclick="event.preventDefault();connect.openAccessCodeModal()">Connect to a Practice</a>
+  </div>
+</div>
+
+<script type="text/javascript">
+
+  if ((/neurocore/).test(window.location.href)) {
+    $("#connectButton").text("Connect to Neurocore");
+    $("#connectTitle").text("Connect to Neurocore");
+    $("#connectTitlePopup").text("Connect to Neurocore")
+  }
+
+  if ($_GET['g']) {
+    common.skipModalClosing = true;
+    document.getElementById('popup').style.display = 'inherit';
+    document.getElementById('cover').style.display = 'inherit';
+    document.getElementById('lastName').value = '';
+    document.getElementById('birthDate').value = '';
+    document.getElementById('registrationCode').value = '';
+  }
+
+  if ($_GET['h']) {
+    common.skipModalClosing = true;
+    document.getElementById('hashPopup').style.display = 'inherit';
+    document.getElementById('cover').style.display = 'inherit';
+    document.getElementById('hashLastName').value = '';
+    document.getElementById('hashBirthDate').value = '';
+    document.getElementById('hash').value = $_GET['h'];
+  }
+
+  function createCallback(callback) {
+    return function (xmlDoc) {
+      var arr = [];
+
+      $(xmlDoc).find('list_item').each(function () {
+        arr.push({
+          label: $(this).find('client_name').text(),
+          value: $(this).find('client_name').text(),
+          key: $(this).find('database_key').text()
+        });
+      });
+
+      callback(arr);
+    };
+  }
+
+  $("#clientName").autocomplete({
+    source: function (request, response) {
+      xmlQuery(xml.create("iSalusExternal.GetConnectionSearch")(request.term), createCallback(response));
+    },
+    minLength: 3,
+    select: function (event, ui) {
+      $('#connectButton').removeClass('btn--disabled');
+      document.getElementById('databaseKey').value = ui.item.key;
+      connect.enabled = true;
+    }
+  });
+
+  $("#clientName").keyup(function () {
+    $('#connectButton').addClass('btn--disabled');
+    document.getElementById('databaseKey').value = '';
+    connect.enabled = false;
+  });
+
+  $("#birthDate").datepicker();
+  $('#birthDate').datepicker('option', common.datepickerOptions).mask('00/00/0000');
+  $("#hashBirthDate").datepicker();
+  $('#hashBirthDate').datepicker('option', common.datepickerOptions).mask('00/00/0000');
+  $('#registrationDob').datepicker();
+  $('#registrationDob').datepicker('option', common.datepickerOptions).mask('00/00/0000');
+  $('#registrationPhone').mask('(000) 000-0000');
+  $('#registrationSsn').mask('0000');
+  $('#registrationZip').mask('00000');
+
+  common.switchScreen(connect);
+</script>

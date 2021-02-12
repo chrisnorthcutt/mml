@@ -1,0 +1,45 @@
+.ui-datepicker-title > select {
+  padding: 0;
+}
+.ui-widget-header{
+  background: white !important;
+  color: $primary !important;
+  border: none !important
+}
+
+.ui-widget-content{
+  color: $primary-dark !important;
+}
+
+.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default, .ui-button, html .ui-button.ui-state-disabled:hover, html .ui-button.ui-state-disabled:active{
+  color: $primary-dark !important;
+  background: darken($light-grey, 3%);
+  border: none !important;
+}
+
+.ui-state-highlight, .ui-widget-content .ui-state-highlight, .ui-widget-header .ui-state-highlight{
+  background: $primary !important;
+  color: white !important;
+  border: none !important;
+}
+
+.ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active, a.ui-button:active, .ui-button:active, .ui-button.ui-state-active:hover{
+  background: $primary-dark !important;
+  color: white !important;
+  border: none !important;
+}
+
+.ui-state-hover{
+  background: darken($light-grey, 5%) !important;
+}
+
+.ui-datepicker select.ui-datepicker-month, .ui-datepicker select.ui-datepicker-year{
+  float: left;
+  margin-left: 5px !important;
+
+
+}
+
+// .ui-datepicker select.ui-datepicker-month, .ui-datepicker select.ui-datepicker-year:active{
+//     background-image: url($icon-dropdown-selected);
+// }

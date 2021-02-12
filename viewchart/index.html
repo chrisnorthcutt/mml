@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>MyMedicalLocker Chart View</title>
+
+    <!-- Stylesheets-->
+    <link rel="stylesheet" href="../vendors/css/fa/css/font-awesome.css">
+    <link href="https://fonts.googleapis.com/css?family=Karla:400,700" rel="stylesheet">
+    <link rel="stylesheet" href="../vendors/css/ui.css">
+    <link rel="stylesheet" href="../resources/css/main.min.css">
+
+    <!-- Scripts -->
+    <script src="../resources/js/dom.js"></script>
+    <script src="../resources/js/FileSaver.js"></script>
+    <script src="../vendors/js/ui.js"></script>
+    <style>
+    .header_table{}
+      body, html{
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        background-color: white;
+      }
+      iframe{
+        width:1160px;
+        margin: 0 auto;
+        display: block;
+        height: calc(100% - 60px);
+      }
+      #header{
+        height:52px;
+        padding:0 20px;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+        font-size:25px;
+      }
+      .invisible{
+        visibility: hidden;
+      }
+      @media print{
+        #header{
+          display: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="header" class="invisible">
+      <div class="clearfix">
+        <span style="margin-top: 2.5px;" class="btn--primary fr" onclick="downloadChart()">Download</span>
+        <span style="margin-top: 2.5px;" class="btn--primary mr--10 fr" onclick="printChart()">Print</span>
+      </div>
+
+    </div>
+    <iframe id="mainHTML" name="mainHTML">
+      Loading your chart data...
+    </iframe>
+    <script src="../resources/js/xmlquery.js"></script>
+    <script>
+      var key = readCookie("isalus_key");
+      var xml = new XmlCreator(key);
+
+      var chartData = '';
+
+      function downloadChart(){
+        var blob = new Blob([chartData], {type: "text/html;charset=utf-8"});
+        var date = $_GET['d'];
+        var formatted = date.replace(' ', '-').replace('/', '-');
+        saveAs(blob, "MML-chart-export-"+formatted+".html");
+      }
+
+      function printChart(){
+        window.frames['mainHTML'].focus();
+        window.frames['mainHTML'].print();
+      }
+
+      function showChart(xmlDoc){
+        var educationType = $(xmlDoc).find('education_type').text();
+
+        if(educationType != ''){
+          if(educationType == 'U'){
+            window.location.replace($(xmlDoc).find('data').text());
+          } else if(educationType == 'D') {
+            var url = "../datapages/MMLDocumentGet.asp?gv=" + key + "&ii=PATED." + $_GET['a'] + "." + $(xmlDoc).find('record_id').text() + ".0&ts=" + (new Date()).getTime();
+            window.location.replace(url);
+          } else {
+            chartData = $(xmlDoc).find('data').text();
+            document.getElementById('header').className = '';
+          }
+        }else{
+          chartData = $(xmlDoc).find('html_data').text();
+          if(chartData == ''){
+            chartData = $(xmlDoc).find('data').text();
+          }
+          document.getElementById('header').className = '';
+        }
+
+        document.getElementById('mainHTML').contentDocument.documentElement.innerHTML = chartData;
+      }
+
+      xmlQuery(xml.create('iSalusExternal.MyChartData')($_GET['t'], $_GET['i']), showChart);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,22 @@
+<svg width="29" height="29" viewBox="0 0 29 29" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<title>icon-patient</title>
+<desc>Created using Figma</desc>
+<g id="Canvas" transform="translate(-891 2382)">
+<g id="icon-patient">
+<g id="Ellipse">
+<use xlink:href="#path0_fill" transform="translate(891 -2382)" fill="#F05452"/>
+</g>
+<g id="icons8-customer">
+<g id="surface1">
+<g id="Vector">
+<use xlink:href="#path1_fill" transform="translate(898 -2376)" fill="#FFFFFF"/>
+</g>
+</g>
+</g>
+</g>
+</g>
+<defs>
+<path id="path0_fill" d="M 29 14.5C 29 22.5081 22.5081 29 14.5 29C 6.49187 29 0 22.5081 0 14.5C 0 6.49187 6.49187 0 14.5 0C 22.5081 0 29 6.49187 29 14.5Z"/>
+<path id="path1_fill" d="M 7.5 0C 4.6084 0 2.25 2.28693 2.25 5.09091C 2.25 6.84375 3.17285 8.40057 4.57031 9.31818C 1.89551 10.4318 0 13.0057 0 16L 1.5 16C 1.5 12.7784 4.17773 10.1818 7.5 10.1818C 10.8223 10.1818 13.5 12.7784 13.5 16L 15 16C 15 13.0057 13.1045 10.4318 10.4297 9.31818C 11.8271 8.40057 12.75 6.84375 12.75 5.09091C 12.75 2.28693 10.3916 0 7.5 0ZM 7.5 1.45455C 9.58008 1.45455 11.25 3.07386 11.25 5.09091C 11.25 7.10795 9.58008 8.72727 7.5 8.72727C 5.41992 8.72727 3.75 7.10795 3.75 5.09091C 3.75 3.07386 5.41992 1.45455 7.5 1.45455Z"/>
+</defs>
+</svg>

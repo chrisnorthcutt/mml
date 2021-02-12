@@ -1,0 +1,79 @@
+@mixin button($color) {
+  padding: 10px 15px;
+  color: $white;
+  border-radius: 2px;
+  font-size: 18px;
+  background-color: $color;
+  transition: 0.2s all ease-in;
+  display: inline-block;
+  text-align: center;
+  font-weight: 700;
+
+  &:hover {
+    color: $white;
+    background-color: lighten($color, 10%);
+    text-decoration: none;
+    cursor: pointer;
+  }
+}
+@mixin tile-list($color) {
+  .tile-list {
+    &-title {
+      color: $color;
+    }
+
+    &-data-point {
+      color: $color;
+      &:nth-child(even) {
+        background: rgba($color, 0.05);
+      }
+    }
+  }
+}
+@mixin icon-bg($url) {
+  background-image: url($url);
+  background-repeat: no-repeat;
+  padding-left: 30px;
+  display: inline-block;
+  background-position: left center;
+  height: 21px;
+  transition: .2s all linear;
+  @content;
+}
+@mixin input-text($color, $border-color, $background: transparent) {
+  height: 35px;
+  font-size: 16px;
+  padding: 10px;
+  color: $color;
+  border: 1px solid $border-color;
+  display: block;
+  border-radius: 0px;
+  margin-bottom: 20px;
+  outline: none;
+  background: $background;
+  transition: 0.3s all linear;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  position: relative;
+  z-index: 1;
+}
+
+@mixin input-icon{
+  position: absolute;
+  top: 40px;
+  right: 5px;
+  height: 21px;
+  width: 21px;
+  z-index: 0;
+  transition: 0.2s all linear;
+}
+
+@mixin center{
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: auto;
+  top: 50%;
+  transform: translateY(-50%);
+}

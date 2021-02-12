@@ -1,0 +1,18 @@
+<svg width="20" height="20" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<title>icon-dashboard</title>
+<desc>Created using Figma</desc>
+<g id="Canvas" transform="translate(-1334 2192)">
+<g id="icon-dashboard">
+<g id="icons8-Home">
+<g id="surface1">
+<g id="Vector">
+<use xlink:href="#path0_fill" transform="translate(1334 -2191)" fill="#FFFFFF"/>
+</g>
+</g>
+</g>
+</g>
+</g>
+<defs>
+<path id="path0_fill" d="M 10 0L 9.47608 0.487085L 0 9.69742L 1.04784 10.7159L 1.98178 9.80812L 1.98178 18L 8.54214 18L 8.54214 10.9151L 11.4579 10.9151L 11.4579 18L 18.0182 18L 18.0182 9.80812L 18.9522 10.7159L 20 9.69742L 10.5239 0.487085L 10 0ZM 10 2.01476L 16.5604 8.39114L 16.5604 16.583L 12.9157 16.583L 12.9157 9.49815L 7.08428 9.49815L 7.08428 16.583L 3.43964 16.583L 3.43964 8.39114L 10 2.01476Z"/>
+</defs>
+</svg>

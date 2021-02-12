@@ -1,0 +1,19 @@
+.lab{
+    max-height: 300px;
+    overflow: hidden;
+    &-name{
+        max-width: 300px;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+    &-comment{
+        overflow: hidden;
+        text-overflow:ellipsis;
+        line-clamp: 3;
+        box-orient: vertical;
+        display: -webkit-box !important;
+        max-height: 75px;
+        
+    }
+}

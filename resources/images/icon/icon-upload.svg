@@ -1,0 +1,18 @@
+<svg width="20" height="20" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<title>icon-upload</title>
+<desc>Created using Figma</desc>
+<g id="Canvas" transform="translate(344 2078)">
+<g id="icon-upload">
+<g id="icons8-Upload">
+<g id="surface1">
+<g id="Vector">
+<use xlink:href="#path0_fill" transform="translate(-342 -2078)" fill="#FFFFFF"/>
+</g>
+</g>
+</g>
+</g>
+</g>
+<defs>
+<path id="path0_fill" d="M 7.5 0L 6.90104 0.56338L 1.06771 6.29962L 2.26562 7.47759L 6.66667 3.14981L 6.66667 16.7222L 8.33333 16.7222L 8.33333 3.14981L 12.7344 7.47759L 13.9323 6.29962L 8.09896 0.56338L 7.5 0ZM 0 18.3611L 0 20L 15 20L 15 18.3611L 0 18.3611Z"/>
+</defs>
+</svg>

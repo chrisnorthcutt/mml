@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title>MyMedicalLocker | Account Setup</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="apple-touch-icon-precomposed" sizes="57x57" href="/resources/images/favicon/apple-touch-icon-57x57.png" />
+	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="/resources/images/favicon/apple-touch-icon-114x114.png" />
+	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="/resources/images/favicon/apple-touch-icon-72x72.png" />
+	<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/resources/images/favicon/apple-touch-icon-144x144.png" />
+	<link rel="apple-touch-icon-precomposed" sizes="60x60" href="/resources/images/favicon/apple-touch-icon-60x60.png" />
+	<link rel="apple-touch-icon-precomposed" sizes="120x120" href="/resources/images/favicon/apple-touch-icon-120x120.png" />
+	<link rel="apple-touch-icon-precomposed" sizes="76x76" href="/resources/images/favicon/apple-touch-icon-76x76.png" />
+	<link rel="apple-touch-icon-precomposed" sizes="152x152" href="/resources/images/favicon/apple-touch-icon-152x152.png" />
+	<link rel="icon" type="image/png" href="./resources/images/favicon/favicon-196x196.png" sizes="196x196" />
+	<link rel="icon" type="image/png" href="./resources/images/favicon/favicon-96x96.png" sizes="96x96" />
+	<link rel="icon" type="image/png" href="./resources/images/favicon/favicon-32x32.png" sizes="32x32" />
+	<link rel="icon" type="image/png" href="./resources/images/favicon/favicon-16x16.png" sizes="16x16" />
+	<link rel="icon" type="image/png" href="./resources/images/favicon/favicon-128.png" sizes="128x128" />
+	<meta name="application-name" content="&nbsp;" />
+	<meta name="msapplication-TileColor" content="#52CACD" />
+	<meta name="msapplication-TileImage" content="mstile-144x144.png" />
+	<meta name="msapplication-square70x70logo" content="mstile-70x70.png" />
+	<meta name="msapplication-square150x150logo" content="mstile-150x150.png" />
+	<meta name="msapplication-wide310x150logo" content="mstile-310x150.png" />
+	<meta name="msapplication-square310x310logo" content="mstile-310x310.png" />
+	<link href="https://fonts.googleapis.com/css?family=Karla:400,700" rel="stylesheet">
+	<link rel="stylesheet" href="./resources/css/main.min.css">
+	<link rel="stylesheet" href="./vendors/css/ui.css">
+	<script src="resources/js/browser-deeplink.js"></script>
+	<script src="./resources/js/dom.js"></script>
+	<script src="./vendors/js/ui.js"></script>
+	<script src="./vendors/js/mask.js"></script>
+	<script src="./vendors/js/moment.min.js"></script>
+	<script src="resources/js/browser.js"></script>
+	<script src='https://www.google.com/recaptcha/api.js'></script>
+
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-109149124-3"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag() { dataLayer.push(arguments); }
+		gtag('js', new Date());
+		gtag('config', 'UA-109149124-3');
+	</script>
+	<style>
+  .wrapper {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   margin: 0;
+   height: 100vh;
+   overflow: auto;
+  }
+
+  @media only screen and (max-device-width: 768px) {
+        .container {
+          overflow: auto;
+          height: 100%;
+        }
+    }
+</style>
+</head>
+
+<body class="login-bg">
+	<div class="wrapper">
+		<div class="container center align-vertical--middle">
+			<div class="logo"></div>
+			<div class="login" id="loginContainer">
+
+				<!-- Setup Account ID -->
+				<form class="app-screen" style="display: none" id="setupAccount">
+					<p class="text-align--center mb--20">Don't have a <span id="name">MyMedicalLocker</span> account?
+						<br>Enter your email or phone number below to get started.</p>
+					<div class="form-group">
+						<label for="loginMethodField">User ID
+							<span class="required">*</span>
+						</label>
+						<input class="width--100 " type="text" id="loginMethodField" name="" aria-flowto="Create Account" aria-label="Please enter an email address or phone number"
+						 placeholder="Enter an Email or Mobile Phone">
+
+						<div class="form-group" id="recaptchaContainer" style="display: none">
+		            		<div style="display: inline-block" class="g-recaptcha" data-sitekey="6Ld3x1cUAAAAAP0v2ZTjupaqD1wWHEOkQjDplaTk"></div>
+		            	</div>
+		            	
+						<div id="createAccountError" style="float: none;" class="failure-state col-12 mb--10"></div>
+					</div>
+					<center>
+						<!--div class="g-recaptcha mb--20" data-sitekey="6Ld3x1cUAAAAAP0v2ZTjupaqD1wWHEOkQjDplaTk" data-callback="console.log"></div-->
+					</center>
+					<button aria-label="Return to Login" class="btn btn--secondary fl width--50" id="returnToLoginButton">Return to Login</button>
+					<button aria-label="Create Account" class="btn btn--primary fr width--50" id="createAccountButton">Create Account</button>
+				</form>
+
+				<!-- User Prompt that Info has been sent -->
+				<div class="app-screen" style="display: none" id="confirmationSent">
+					<p class="text-align--center">Invitation sent to:
+					<b id="connectionMethod">chris.r.northcutt@gmail.com</b>.
+					<br>Please click the link inside the invitation to finish the account creation process.</p>
+					<hr class="light-grey">
+					<p class="text-color--medium-grey"><b>Note:</b> If you don't receive an email or text from us within a few minutes, make sure you have entered the user id correctly.</p>
+
+				</div>
+
+				<!-- Ask user if they have an access code -->
+				<div class="app-screen" style="display: none" id="hasKey">
+					<p class="text-align--center mb--20">Do you have an access key from your practice?</p>
+					<button id="hasKeyNo" class="btn btn--outline width--50">No</button>
+					<button id="hasKeyYes" class="btn btn--primary width--50">Yes</button>
+				</div>
+
+				<!-- Prompt user to provide their access code -->
+				<form class="app-screen" style="display: none" id="accessCode">
+					<p class="text-align--center mb--20">Please enter your access code.</p>
+					<div class="clearfix form-group" style="margin: 0 auto; width: 230px;">
+						<input class="fl code-entry-box" maxlength="3" style="width: 70px" type="text" id="code0" name="" placeholder="123">
+						<input class="fl code-entry-box" maxlength="3" style="width: 70px; margin-left: 10px;" id="code1" type="text" name="" placeholder="456">
+						<input class="fl code-entry-box" maxlength="3" style="width: 70px; margin-left: 10px;" id="code2" type="text" name="" placeholder="789">
+					</div>
+					<div id="accessCodeEntryError" style="float: none;" class="failure-state col-12 mb--10"></div>
+					<button class="btn btn--outline width--50" id="accessCodeBack">Back</button>
+					<button class="btn btn--primary width--50" id="accessCodeNext">Next</button>
+				</form>
+
+				<!-- Demographic Information -->
+				<form class="app-screen" style="display: none" id="demographicInfo">
+					<p class="text-align--center mb--20">Please fill out the following information to
+						<br>create your account</p>
+					<div class="form-group">
+						<label for="registerUserId">User ID
+							<span class="required">*</span>
+						</label>
+						<input class="width--100 " type="text" id="registerUserId" name="" placeholder="example@example.com" disabled>
+					</div>
+					<div class="form-group">
+						<label for="registerFirstName">First Name
+							<span class="required">* <span id="registerFirstNameError"></span></span>
+						</label>
+						<input class="width--100 " type="text" id="registerFirstName" name="" placeholder="">
+					</div>
+					<div class="form-group">
+						<label for="registerLastName">Last Name
+							<span class="required">* <span id="registerLastNameError"></span></span>
+						</label>
+						<input class="width--100 " type="text" id="registerLastName" name="" placeholder="">
+					</div>
+					<div class="form-group">
+						<label for="registerDob">Date of Birth
+							<span class="required">* <span id="registerDobError"></span></span>
+						</label>
+						<input class="width--100 " type="text" id="registerDob" name="" placeholder="">
+					</div>
+					<button class="btn btn--outline width--50" id="demographicInfoBack">Back</button>
+					<button class="btn btn--primary width--50" id="demographicInfoNext">Next</button>
+				</form>
+
+				<!-- Inform User that their link has expired -->
+				<div class="app-screen" style="display: none" id="expiredLink">
+					<h2 class="mb--10">We're Sorry...</h2>
+					<p class="mb--10">For security reasons, your activation link has expired. Enter your email or mobile number and we'll email or text you a new link.</p>
+					<div class="form-group">
+						<label for="loginMethodField">User ID
+							<span class="required">*</span>
+						</label>
+						<input class="width--100 " type="text" id="resendActivationId" name="" aria-flowto="Create Account" aria-label="Please enter an email address or phone number"
+						 placeholder="Enter an Email or Mobile Phone">
+						<div id="resendActivationLinkError" style="float: none;" class="failure-state col-12 mb--10"></div>
+						<button class="btn btn--primary width--100" id="resendActivationLink">Resend Activation Link</button>
+					</div>
+				</div>
+
+				<!-- Connect to Practice -->
+				<form class="app-screen" style="display: none" id="practiceConnect">
+					<p class="text-align--center">Connect
+						<b id="connectionMethodAfter"></b> to:</p>
+					<center>
+						<img src="http://via.placeholder.com/250x80" style="max-width: 100%; width: 250px;" class="mt--20 mb--20" id="practiceLogo">
+					</center>
+					<p class="text-align--center mb--20">In order to connect to
+						<b id="practiceTitle">Urology of Indiana</b>
+						<br>Please verify the following information</p>
+
+					<!-- Only turn on if user already has account -->
+					<div class="form-group" style="display:none">
+						<label for="">Family Member
+							<span class="required">*</span>
+						</label>
+						<select class="width--100">
+							<option selected>Chris Northcutt</option>
+							<optgroup label="Family Members">
+								<option>Kayla Northcutt</option>
+								<option>Randy Northcutt</option>
+								<option>Gayla Northcutt</option>
+							</optgroup>
+							<option>+ Create New Family Member</option>
+						</select>
+					</div>
+					<!---->
+
+					<!-- Practice required fields -->
+					<div id="practiceFields">
+						<div class="form-group" id="registrationFirstNameGroup">
+							<label for="registrationFirstName">First Name
+								<span class="required">*</span>
+							</label>
+							<input class="width--100 " type="text" id="registrationFirstName" name="" placeholder="First Name">
+						</div>
+						<div class="form-group" id="registrationLastNameGroup">
+							<label for="registrationLastName" id="LastName">Last Name
+								<span class="required">*</span>
+							</label>
+							<input aria-labelledby="LastName" class="width--100" type="text" id="registrationLastName" name="" placeholder="Last Name">
+						</div>
+						<div class="form-group" id="registrationDobGroup">
+							<label for="registrationDob" id="Dob">Date of Birth
+								<span class="required">*</span>
+							</label>
+							<input aria-labelledby="Dob" class="width--100 " type="text" id="registrationDob" name="" placeholder="Date of Birth">
+						</div>
+						<div class="form-group" id="registrationSsnGroup">
+							<label for="registrationSsn" id="Ssn">Last 4 of SSN
+								<span class="required">*</span>
+							</label>
+							<input aria-labelledby="Ssn" class="width--100" type="text" id="registrationSsn" name="" placeholder="Last 4 of SSN">
+						</div>
+						<div class="form-group" id="registrationZipGroup">
+							<label for="registrationZip" id="zipCode">Zip Code
+								<span class="required">*</span>
+							</label>
+							<input aria-labelledby="zipCode" class="width--100 " type="text" id="registrationZip" name="" placeholder="Zip Code">
+						</div>
+						<div class="form-group" id="registrationPhoneGroup">
+							<label for="registrationPhone" id="phoneNumber">Phone Number
+								<span class="required">*</span>
+							</label>
+							<input aria-labelledby="phoneNumber" class="width--100 " type="text" id="registrationPhone" name="" placeholder="Phone Number">
+						</div>
+					</div>
+					<div id="connectAccountError" style="float: none;" class="failure-state col-12 mb--10"></div>
+					<button class="btn btn--primary width--100" id="connectButton">Connect</button>
+				</form>
+
+				<!-- Create Password -->
+				<form class="app-screen" style="display: none" id="createPassword">
+					<p class="text-align--center mb--20">To finish to the registration process.
+						<br>Please provide a password for your account.</p>
+					<div class="form-group">
+						<label for="createPasswordField">Password
+							<span class="required">*</span>
+						</label>
+						<input class="width--100 " type="password" id="createPasswordField" placeholder="*********">
+					</div>
+					<div class="form-group">
+						<label for="confirmPasswordField">Confirm Password
+							<span class="required">*</span>
+						</label>
+						<input class="width--100" type="password" id="confirmPasswordField" placeholder="*********">
+					</div>
+					<ul class="mb--20">
+						<li id="confirm-password-matches" class="password-error">Passwords match</li>
+					</ul>
+					<p class="text-weight--bold">Password Requirements</p>
+					<ul class="mb--20" id="passwordPolicies">
+						<li>8 or more characters</li>
+						<li>At least 1 capital letter</li>
+						<li>At least 1 number</li>
+					</ul>
+					<button class="btn btn--primary width--100" id="finishCreatePassword">Finish</button>
+				</form>
+				<!-- <form class="app-screen" style="display: none" id="verifyPassword">
+					<p class="text-align--center mb--20">Please verify your password to
+						<br>continue the connection process.</p>
+					<div class="form-group">
+						<label for="">Password
+							<span class="required">*</span>
+						</label>
+						<input class="width--100 " type="text" id="" name="" placeholder="*********">
+					</div>
+					<button class="btn btn--primary width--100">Verify</button>
+				</form> -->
+			</div>
+		</div>
+	</div>
+
+	<script src="./resources/js/xmlquery.js"></script>
+	<script src="./resources/js/passwordPolicy.js"></script>
+	<script src="./resources/js/setup.js"></script>
+
+	<script>
+		var system = '';
+
+		if ((/neurocore/).test(window.location.href)) {
+			$("#name").text("Neurocore")
+			var redirectDestination = './#!appointments';
+			system = '<system>neurocore</system>';
+			document.title = "Neurocore Setup";
+		}
+
+		var datepickerOptions = {
+			showButtonPanel: true,
+			changeMonth: true,
+			changeYear: true,
+			showOtherMonths: true,
+			selectOtherMonths: true,
+			yearRange: "-100:+0",
+			changeMonth: true,
+		};
+
+		var specialCharacterMask = {
+			translation: {
+				'Q': {pattern: /[a-zA-Z ,.-]/, recursive: true}
+			}
+		};
+		
+		$('#registrationPhone').mask('(000) 000-0000');
+		$('#registrationSsn').mask('0000');
+		$('#registrationZip').mask('00000');
+		
+		// Turns off date picker if the user is on a mobile device
+		if (!/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent)) {
+	        $('#registrationDob').datepicker();
+		    $('#registrationDob').datepicker('option', datepickerOptions).mask('00/00/0000');
+		    $('#registerDob').datepicker();
+			$('#registerDob').datepicker('option', datepickerOptions).mask('00/00/0000');
+			$('#returnToLoginButton').show();
+			$("#createAccountButton").addClass('width--50').removeClass('width--100');
+			    
+	    } else {
+	        $('#registrationDob').prop("type","date").prop("required pattern", "[0-9]{4}-[0-9]{2}-[0-9]{2}");
+			$('#registerDob').prop("type","date").prop("required pattern", "[0-9]{4}-[0-9]{2}-[0-9]{2}");
+			$('#returnToLoginButton').hide();
+			$("#createAccountButton").addClass('width--100').removeClass('width--50');
+	    }
+		
+		$('#registrationFirstName').mask('Q', specialCharacterMask);
+		$('#registrationLastName').mask('Q', specialCharacterMask);
+		$('#registerFirstName').mask('Q', specialCharacterMask);
+		$('#registerLastName').mask('Q', specialCharacterMask);
+	</script>
+</body>
+
+</html>

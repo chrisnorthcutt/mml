@@ -1,0 +1,445 @@
+
+<style>
+.appointment-selected{
+  color:#ebf1f8;
+  background-color:#2d6170;
+}
+</style>
+
+<div id="cover" class="cover" onclick="appointments.resetKey();common.closeModals()">
+</div>
+<div class="popup popup--sm" id="popupDatabase">
+  <div class="popup-fields">
+    <div class="popup__title text-align--center">
+      <h3 class="text-color--primary text-weight--bold text-size--large mb--20">Choose Your Practice</h3>
+  </div>
+    <div id="popupDatabaseList">
+    </div>
+  </div>
+  <div class="popup-cta">
+    <button class="width--100 fl btn--secondary" onclick="appointments.resetKey();common.closeModals()">Close</button>
+  </div>
+</div>
+<div style="display: none;" class="popup" id="popup">
+  <div class="popup__title text-align--center">
+      <h3 class="text-color--primary text-weight--bold text-size--large mb--20">Request an Appointment</h3>
+  </div>
+  <div class="popup-fields">
+    <div class="form-group">
+      <label for="reason">Reason for Visit</label>
+      <input class="width--100" type="text" name="reason" id="reason" />
+    </div>
+    <div class="form-group row">
+      <div class="col-6">
+          <label for="phone">Phone</label>
+          <input class="width--100" type="text" name="phone" id="phone" />
+      </div>
+      <div class="col-6"><label for="other">Alternate Phone</label>
+        <input type="text" name="other" class="width--100" id="other" /></div>
+    </div>
+    <div class="form-group">
+      <label for="provider">Provider</label>
+      <select class="width--100" id="provider" name="provider">
+      </select>
+      
+    </div>
+    <div class="form-group">
+      <label for="timeframe">Timeframe</label>
+      <select name="timeframe" class="width--100" id="timeframe">
+        <option value=""></option>
+        <option value="Today">Today</option>
+        <option value="Tomorrow">Tomorrow</option>
+        <option value="This Week">This Week</option>
+        <option value="Next Week">Next Week</option>
+        <option value="2 Weeks">2 Weeks</option>
+        <option value="3 Weeks">3 Weeks</option>
+        <option value="1 Month">1 Month</option>
+        <option value="2 Months">2 Months</option>
+        <option value="3 Months">3 Months</option>
+        <option value="4 Months">4 Months</option>
+        <option value="5 Months">5 Months</option>
+        <option value="6 Months">6 Months</option>
+        <option value="9 Months">9 Months</option>
+        <option value="Year">Year</option>
+      </select>
+      
+    </div>
+    <div class="row">
+      <div class="col-3">
+        <input id="checkbox-Mon" type="checkbox" name="availability" value="Mon">
+        <label for="checkbox-Mon"><span class="grey"></span>Mon</label>
+      </div>
+      <div class="col-3">
+        <input id="checkbox-Tue" type="checkbox" name="availability" value="Tue">
+        <label for="checkbox-Tue"><span class="grey"></span>Tue</label>
+      </div>
+      <div class="col-3">
+        <input id="checkbox-Wed" type="checkbox" name="availability" value="Wed">
+        <label for="checkbox-Wed"><span class="grey"></span>Wed</label>
+      </div>
+      <div class="col-3">
+        <input id="checkbox-Thu" type="checkbox" name="availability" value="Thu">
+        <label for="checkbox-Thu"><span class="grey"></span>Thur</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-3">
+        <input id="checkbox-Fri" type="checkbox" name="availability" value="Fri">
+        <label for="checkbox-Fri"><span class="grey"></span>Fri</label>
+      </div>
+      <div class="col-3">
+        <input id="checkbox-Sat" type="checkbox" name="availability" value="Sast">
+        <label for="checkbox-Sat"><span class="grey"></span>Sat</label>
+      </div>
+      <div class="col-3">
+        <input id="checkbox-Sun" type="checkbox" name="availability" value="Sun">
+        <label for="checkbox-Sun"><span class="grey"></span>Sun</label>
+      </div>
+    </div>
+      
+
+    <div class="form-group row">
+      <div class="col-6">
+      <label for="preferredTime">Preferred Time</label>
+      <select class="width--100" name="" id="preferredTime">
+        <option value="">Test</option>
+      </select>
+      
+    </div>
+    <div class="col-6">
+        <label for="mostImportant">Most Important</label>
+        <select class="width--100" name="" id="mostImportant">
+          <option value="">Test</option>
+        </select>
+        
+      </div>
+  </div>
+  </div>
+  <div class="popup-cta">
+    <button class="width--50 fl btn--secondary" onclick="appointments.resetKey();common.closeModals()" >Close</button>
+    <button class="width--50 fr btn--primary" onclick="appointments.sendAppointmentRequest()" >Request</button>
+  </div>
+  <input style="display: none" id="medicationId" />
+</div>
+<div class="popup" id="popupRequest">
+    <div class="popup__title text-align--center">
+      <h3 class="text-color--primary text-weight--bold text-size--large mb--20">Appointment Request</h3>
+  </div>
+  <div class="popup-fields">
+    <label>Request</label>
+    <div class="box mb--20" id="patientRequest"></div>
+    <label>Response</label>
+    <div class="box" id="physicianResponse"></div>
+   </div>
+    <div class="popup-cta">
+      <button class="width--100 btn--secondary" onclick="appointments.resetKey();common.closeModals()"></button>
+    </div>
+  </div>
+<div class="popup" id="popup-appointment-info">
+  <div class="popup__title text-align--center">
+      <h3 class="text-color--primary text-weight--bold text-size--large mb--20">Appointment Details</h3>
+  </div>
+  <div class="popup-fields">
+    <center><div class="pp"><img id="providerImage" class="ppi" src="./resources/images/icon/icon-provider.svg"/></div></center>
+    <h3 class="text-weight--bold text-color--primary text-align--center mt--10" id="infoProvider"></h3>
+    <p class="text-color--primary-dark text-align--center" id="infoLocation"></p>
+    <hr class="light-grey mt--10">
+    
+<!--     <div style="width: 100%; height:150px;" class="mt-20" id="appointmentMap">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3066.824042682822!2d-86.1581676842102!3d39.76605887944605!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x886b50c4ed581337%3A0xcc23935267a6d6d3!2siSalus+Healthcare!5e0!3m2!1sen!2sus!4v1502913804962"
+        width="460" height="150" frameborder="0" style="border:0" allowfullscreen></iframe>
+    </div> -->
+    <div class="text-align--left">
+      <p><span class="text-weight--bold text-color--primary-dark">Reason for Visit: </span><span id="infoReason">First Session</span></p>
+      <p><span class="text-weight--bold text-color--primary-dark">Date and Time: </span><span class="" id="infoDate">Thursday, 08/08/2017</span></p>
+      <p><span class="text-weight--bold text-color--primary-dark">Address: </span><span id="infoAddress">1 Virginia Ave Suite 500 Indianapolis, IN 46204</span></p>
+      <button class="width--100 mt--20 fl btn--primary" id="appointmentCancelButton" onclick="common.closeModals();appointments.confirmAppointmentCancel()">Cancel Appointment</button>
+    </div>
+    <div class="popup-cta">
+     
+      <button class="width--100 fr btn--secondary" id="appointmentCloseButton" onclick="appointments.resetKey();common.closeModals()">Close</button>
+    </div>
+  </div>
+</div>
+<div class="popup confirmation" id="popup-confirmation">
+  <div class="popup-fields">
+    Do you really want to cancel this appointment?
+    <input style="display: none" id="cancelAppointmentId" />
+    <input style="display: none" id="cancelAppointmentKey" />
+  </div>
+  <div class="popup-cta">
+    <button class="width--50 fr btn--secondary" onclick="appointments.resetKey();common.closeModals()">Nevermind</button>
+    <button class="width--50 fl btn--primary" onclick="appointments.cancelAppointment()">Yes</button>
+  </div>
+</div>
+<div class="popup confirmation" id="popup-after-cancel">
+  <div class="popup-fields">
+    <span id="cancelAppointmentStatus"></span><br/>
+  </div>
+  <div class="popup-cta">
+    <button class="width--100 btn--primary" onclick="appointments.resetKey();common.closeModals()">Okay</button>
+  </div>
+</div>
+
+
+<div class="popup" id="popupPracticeMessage">
+  <div class="popup__title text-align--center">
+      <h3 class="text-color--primary text-weight--bold text-size--large mb--20">Message from Practice</h3>
+  </div>
+  <div class="popup-fields">
+    <p id="practiceMessageContent"></p>
+  </div>
+  <div class="popup-cta">
+    <button class="width--100 fl btn--secondary" onclick="appointments.resetKey();common.closeModals()">Close</button>
+  </div>
+</div>
+<div class="popup" id="popupBookAgain">
+  <div class="popup__title text-align--center">
+      <h3 class="text-color--primary text-weight--bold text-size--large mb--20">Appointment Booked Successfully!</h3>
+  </div>
+  <div class="popup-fields">
+    <p>Would you like to book again?</p>
+  </div>
+  <div class="popup-cta">
+    <button class="width--50 fl btn--secondary" onclick="common.closeModals()">No</button>
+    <button class="width--50 fr btn--primary" onclick="common.refreshState=false;common.closeModals();appointments.getAppointmentSearch();document.getElementById('popup-employer').style.display = 'inherit';document.getElementById('cover').style.display = 'inherit';">Yes</button>
+  </div>
+</div>
+<div class="popup" id="popupBookingFailed">
+  <div class="popup__title text-align--center">
+      <h3 class="text-color--primary text-weight--bold text-size--large mb--20">Appointment Could Not Be Booked</h3>
+  </div>
+  <div class="popup-fields">
+    <p id="bookingFailedMessage"></p>
+    <p>Would you like to try again?</p>
+  </div>
+  <div class="popup-cta">
+    <button class="width--50 fl btn--secondary" onclick="common.closeModals()">No</button>
+    <button class="width--50 fr btn--primary" onclick="common.refreshState=false;common.closeModals();appointments.getAppointmentSearch();document.getElementById('popup-employer').style.display = 'inherit';document.getElementById('cover').style.display = 'inherit';">Yes</button>
+  </div>
+</div>
+<div class="popup" id="popup-employer">
+  <div class="popup__title text-align--center">
+      <h3 class="text-color--primary text-weight--bold text-size--large mb--20">Book an Appointment</h3>
+  </div>
+  <div class="popup-fields">
+
+    <div class="form-group">
+      <label for="employerLocation">Location: <div class="field-error" id="employerLocationError"></div></label>
+      <select class="width--100" id="employerLocation" name="employerLocation">
+      </select>
+      
+    </div>
+    <div class="form-group">
+      <label for="employerReason">Reason for Visit: <div class="field-error" id="employerReasonError"></div></label>
+      <select class="width--100" id="employerReason" name="reasonforvisit">
+        <option value="Brainroom">Brainroom</option>
+      </select>
+      
+    </div>
+    <div class="row">
+      <div class="col-8" id="employerProviderSection">
+        <label for="employerProvider">Provider: <div class="field-error" id="employerProviderError"></div></label>
+        <select class="width--100" id="employerProvider" name="employerProvider">
+        </select>
+        
+      </div>
+      <div class="col-8" style="display:none" id="employerClientSection">
+        <label for="employerClient">Client</label>
+        <select class="width--100" id="employerClient" name="employerClient">
+        </select>
+        
+      </div>
+      <div class="col-4">
+        <label for="employerTimeframe">Timeframe: <div class="field-error" id="employerTimeframeError"></div></label>
+        <select class="width--100" id="employerTimeframe" name="employerTimeframe">
+            <option value=""></option>
+            <option value="Today">Today</option>
+            <option value="Tomorrow">Tomorrow</option>
+            <option value="This Week">This Week</option>
+            <option value="Next Week">Next Week</option>
+            <option value="2 Weeks">2 Weeks</option>
+            <option value="3 Weeks">3 Weeks</option>
+            <option value="1 Month">4 Weeks</option>
+<!--             <option value="2 Months">2 Months</option>
+            <option value="3 Months">3 Months</option>
+            <option value="4 Months">4 Months</option>
+            <option value="5 Months">5 Months</option>
+            <option value="6 Months">6 Months</option>
+            <option value="9 Months">9 Months</option>
+            <option value="Year">Year</option> -->
+          </select>
+        
+      </div>
+    </div>
+    <div class="row mt--none mb--10">
+      <div class="col-12">
+        <p class="text-weight--bold text-size--medium mb--10">Days to Search</p>
+      </div>
+
+      <div class="checkboxContainer">
+        <input id="employer-checkbox-mon" onchange="appointments.changeFilter();" type="checkbox" name="availability" value="Monday">
+        <label style="display:block;" for="employer-checkbox-mon"><span class="grey"></span>mon</label>
+      </div>
+      <div class="checkboxContainer">
+        <input id="employer-checkbox-tue" onchange="appointments.changeFilter();" type="checkbox" name="availability" value="Tuesday">
+        <label for="employer-checkbox-tue"><span class="grey"></span>tue</label>
+      </div>
+      <div class="checkboxContainer">
+        <input id="employer-checkbox-wed" onchange="appointments.changeFilter();" type="checkbox" name="availability" value="Wednesday">
+        <label for="employer-checkbox-wed"><span class="grey"></span>wed</label>
+      </div>
+      <div class="checkboxContainer">
+        <input id="employer-checkbox-thu" onchange="appointments.changeFilter();" type="checkbox" name="availability" value="Thursday">
+        <label for="employer-checkbox-thu"><span class="grey"></span>thu</label>
+      </div>
+      <div class="checkboxContainer">
+        <input id="employer-checkbox-fri" onchange="appointments.changeFilter();" type="checkbox" name="availability" value="Friday">
+        <label for="employer-checkbox-fri"><span class="grey"></span>fri</label>
+      </div>
+      <div class="checkboxContainer">
+        <input id="employer-checkbox-sat" onchange="appointments.changeFilter();" type="checkbox" name="availability" value="Saturday">
+        <label for="employer-checkbox-sat"><span class="grey"></span>sat</label>
+      </div>
+      <div class="checkboxContainer" id="employerSundayBox">
+        <input id="employer-checkbox-sun" onchange="appointments.changeFilter();" type="checkbox" name="availability" value="Sunday">
+        <label for="employer-checkbox-sun"><span class="grey"></span>sun</label>
+      </div>
+
+    </div>
+    <div class="row mt--20">
+
+      <div class="col-12">
+
+        <button class="btn--primary fr col-4 width--100" onclick="appointments.getAppointmentSearch()">Search</button>
+      </div>
+    </div>
+
+    <div id="employerClinicTimes">
+      <div class="week-selector text-align--center"><a class="week-selector__arrow previous" href="#" onclick="event.preventDefault();appointments.changeWeek(-1);"></a> <p class="text-color--grey text-weight--bold">Week of {0}</p> <a class="week-selector__arrow next" href="#" onclick="event.preventDefault();appointments.changeWeek(1);"></a></div>
+      <hr class="light-grey" />
+      <h4 class="text-weight--bold">Wednesday, 8/9/2017</h4>
+
+      <div class="row">
+        <div class="col-3">
+          <p class="text-color--primary">9:00am</p>
+        </div>
+        <div class="col-8">
+          <p class="text-color--medium-gray">3 Time Slots Available</p>
+        </div>
+        <div class="col-1">
+          <input type="radio" name="startDateType" id="date-started" value="D">
+          <label for="date-started">
+            <span></span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-3">
+          <p class="text-color--primary">9:00am</p>
+        </div>
+        <div class="col-8">
+          <p class="text-color--medium-gray">3 Time Slots Available</p>
+        </div>
+        <div class="col-1">
+          <input type="radio" name="startDateType" id="date-started" value="D">
+          <label for="date-started">
+            <span></span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-3">
+          <p class="text-color--primary">9:00am</p>
+        </div>
+        <div class="col-8">
+          <p class="text-color--medium-gray">3 Time Slots Available</p>
+        </div>
+        <div class="col-1">
+          <input type="radio" name="startDateType" id="date-started" value="D">
+          <label for="date-started">
+            <span></span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="popup-cta">
+    <button class="width--50 fl btn--secondary" onclick="appointments.resetKey();common.closeModals()">Close</button>
+    <button id="bookButton" class="width--50 fr btn--primary btn--disabled" onclick="appointments.bookAppointment()">Book</button>
+  </div>
+</div>
+
+<style>
+.content{
+  padding: 0;
+}
+.pp{
+  height: 70px;
+  width: 70px;
+  background-color: red;
+  border-radius: 50%;
+  overflow: hidden;
+}
+.ppi{
+  width:100%;
+}
+div.table-row.flex.flex-align--center{
+  padding:10px 10px;
+}
+</style>
+<div class="secondary-header" style="display: none" id="mainHeader">
+  <div class="clearfix">
+    <div class="text-tab fl">
+      <span class="text-tab-item text-tab-item--active" id="appointment-category-0" onclick="appointments.selectAppointments('0')">Upcoming</span>
+      <span class="text-tab-item" id="appointment-category-1" onclick="appointments.selectAppointments('1')">Previous</span>
+      <span class="text-tab-item" id="appointment-category-2" onclick="appointments.selectAppointments('2')">Cancelled</span>
+      <span class="text-tab-item" id="appointment-category-3" onclick="appointments.selectAppointments('3')">Requests</span>
+    </div>
+    <a style="position: relative; margin-top: 2.5px;" class="btn--primary fr" href="" onclick="event.preventDefault();appointments.newAppointment()"><img class="va--middle mr--10" src="resources\images\icon\icon-schedule.svg" alt=""> <span class="va--middle">Schedule an Appointment</span></a>
+  </div>
+</div>
+<div class="pd--lr20">
+
+<div class="table-head row" style="display: none" id="tableHeader" style="display: none;">
+
+  <div class="col-4">
+    <h4 class="table-head-title">Provider</h4>
+  </div>
+  <div class="col-3">
+    <h4 class="table-head-title">Reason</h4>
+  </div>
+  <div class="col-2">
+    <h4 class="table-head-title">Duration</h4>
+  </div>
+  <div class="col-2">
+    <h4 class="table-head-title">Date</h4>
+  </div>
+  <div class="col-1">
+    <h4 class="table-head-title"></h4>
+  </div>
+
+</div>
+
+<div class="list" style="display: none" id="appointmentList"></div>
+
+<div id="noAppointments" style="display: none" class="empty text-align--center">
+  <div class="container width--100 center align-vertical--middle">
+    <img src="resources\images\icon\icon-empty-appointment.svg">
+    <h1 class="text-weight--bold text-color--black-20">You Have No <span id="placeholderText">Upcoming Appointments</span></h1>
+    <a class="btn--primary" href="#" onclick="event.preventDefault();appointments.newAppointment()">Schedule an Appointment</a>
+  </div>
+</div>
+<div id="noPractices" class="empty text-align--center">
+  <div class="container width--100 center align-vertical--middle">
+    <img src="resources\images\icon\icon-not-connected.svg">
+    <h1 class="text-weight--bold text-color--black-20">You Are Not Connected to a Practice</h1>
+    <a class="btn--primary" href="#!connect">Connect to a Practice</a>
+  </div>
+</div>
+
+</div>
+
+<script type="text/javascript">
+  $('#phone').mask('(000) 000-0000');
+  $('#other').mask('(000) 000-0000');
+
+  common.switchScreen(appointments);
+</script>

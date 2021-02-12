@@ -1,0 +1,79 @@
+<!-- <div class="page-loader">
+<div class="loader loader--primary"></div>
+</div> -->
+<div id="cover" class="cover" onclick="common.refresh()"></div>
+<div class="popup" id="popup">
+  <div class="popup__title text-align--center">
+      <h3 class="text-color--primary text-weight--bold text-size--large mb--20">Add a New Allergy</h3>
+  </div>
+    <div class="popup-fields">
+  <div class="form-group">
+    <label for="type">Type</label>
+    <select class="width--100" id="allergenType" name="type">
+      <option value="1">Food</option>
+      <option value="2">Medicine</option>
+      <option value="3">Environmental</option>
+    </select>
+    
+  </div>
+  <div class="form-group">
+    <label for="allergen">Allergen</label>
+    <select class="width--100" name="allergen" id="allergenDropdown"></select>
+    
+  </div>
+  <div class="form-group">
+    <label for="reaction">Reaction</label>
+    <input class="width--100" type="text" name="reaction" id="reaction"/>
+  </div>
+  <div class="form-group">
+    <label for="treatment">Treatment</label>
+    <input class="width--100" type="text" name="treatment" id="treatment"/>
+  </div>
+  <input style="display: none" id="allergyId"/>
+    <div class="popup-cta">
+  <button class="width--50 fr btn--primary" onclick="allergy.saveAllergy()">Save</button>
+  <button class="width--50 fl btn--secondary" onclick="common.refresh()">Close</button>
+</div>
+</div>
+</div>
+<div  class="popup confirmation" id="popup-confirmation">
+  <p class="text-color--primary-dark text-weight--bold text-align--center mb--10">Really delete this item?</p>
+  <button class="width--50 fl btn--secondary" onclick="allergy.deleteAllergy()">Delete</button>
+  <button class="width--50 fr btn--primary" onclick="common.refresh()">Nevermind</button>
+  <input style="display: none" id="deleteAllergyId"/>
+</div>
+<div id="tableHeader" style="display: none;" class="table-head row">
+  <div class="col-2">
+    <h4 class="table-head-title">Allergen</h4>
+  </div>
+  <div class="col-2">
+    <h4 class="table-head-title">Type</h4>
+  </div>
+  <div class="col-3">
+    <h4 class="table-head-title">Reaction</h4>
+  </div>
+  <div class="col-3">
+    <h4 class="table-head-title">Treatment</h4>
+  </div>
+
+  <div class="col-2">
+    <a class="btn--primary width--auto fr" style="margin: 20px 0px 0px 0px;" href="" onclick="event.preventDefault();allergy.newAllergy()"><img class="va--middle mr--10" src="resources\images\icon\icon-add.svg" alt=""> Add Allergy</a>
+  </div>
+</div>
+<div class="list" id="allergy-table">
+</div>
+<div id="noAllergies" class="empty text-align--center">
+  <div class="container width--100 center align-vertical--middle">
+    <img src="resources\images\icon\icon-empty-allergies.svg">
+    <h1 class="text-weight--bold text-color--black-20">You Have No Allergies Entered</h1>
+    <a class="btn--primary" href="#" onclick="event.preventDefault();allergy.newAllergy()"><img class="va--middle mr--10" src="resources\images\icon\icon-add.svg" alt=""> Add Allergy</a>
+  </div>
+</div>
+
+<script type="text/javascript">
+  common.switchScreen(allergy);
+
+  document.getElementById('allergenType').onchange = function () {
+    xmlQuery(xml.create('iSalusExternal.GetAllergenList')(this.value), common.renderDropdown('allergenDropdown'));
+  }
+</script>

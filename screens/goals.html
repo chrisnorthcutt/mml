@@ -1,0 +1,149 @@
+<div id="cover" class="cover" onclick="common.refresh()"></div>
+<div class="popup" id="popup">
+  <div class="popup__title text-align--center">
+      <h3 class="text-color--primary text-weight--bold text-size--large mb--20">Add a New Goal</h3>
+  </div>
+    <div class="popup-fields">
+      <div class="form-group">
+        <label for="goalDate">Date</label>
+        <input class="width--100 date" type="text" name="goalDate" id="goalDate"/>
+      <div class="form-group">
+        <label for="goal">Goal</label>
+        <input class="width--100" type="text" name="goal" id="goal"/>
+      </div>
+
+      <div class="form-group">
+        <label for="goalNotes">Notes</label>
+        <input class="width--100" type="text" name="goalNotes" id="goalNotes"/>
+      </div>
+      <div class="form-group">
+        <label for="goalMet">Goal met?</label><br/>
+        <select class="width--100" name="goalMet" id="goalMet">
+          <option value="Y">Yes</option>
+          <option value="N">No</option>
+        </select>
+        
+      </div>
+      <input style="display: none" id="goalId"/>
+        <div class="popup-cta">
+      <button class="width--50 fr btn--primary" onclick="goals.saveGoal()">Save</button>
+      <button class="width--50 fl btn--secondary" onclick="common.refresh()">Close</button>
+    </div>
+  </div>
+</div>
+<div class="popup confirmation" id="popup-confirmation">
+  <p class="text-color--primary-dark text-weight--bold text-align--center mb--10">Really delete this item?</p>
+  <button class="width--50 fl" onclick="goals.deleteGoal()">Delete</button>
+  <button class="width--50 fr" onclick="common.refresh()">Nevermind</button>
+  <input style="display: none" id="deleteGoalId"/>
+</div>
+<style>
+.content{
+  padding: 0;
+}
+.table-head{
+  padding: 0 30px;
+}
+.list{
+  padding: 20px;
+}
+</style>
+<div class="secondary-header">
+  <div class="clearfix">
+    <div class="text-tab fl">
+      <span class="text-tab-item text-tab-item--active" id="tab-my-goals" onclick="goals.getMyGoals()">My Goals</span>
+      <span class="text-tab-item" id="tab-practice-goals" onclick="goals.getPracticeGoals()">Practice Goals</span>
+    </div>
+    <a style="position: relative; margin-top: 2.5px;" class="btn--primary fr" href="" onclick="event.preventDefault();goals.newGoal()"><img class="va--middle mr--10" src="resources\images\icon\icon-add.svg" alt=""> <span class="va--middle">Add Goal</span></a>
+  </div>
+</div>
+<div class="" id="myGoals">
+  <div id="tableHeader" style="display:none" class="table-head row">
+    <div class="col-2">
+      <h4 class="table-head-title">Goal</h4>
+    </div>
+    <div class="col-2">
+      <h4 class="table-head-title">Met</h4>
+    </div>
+    <div class="col-3">
+      <h4 class="table-head-title">Self Reported</h4>
+    </div>
+    <div class="col-3">
+      <h4 class="table-head-title">Date</h4>
+    </div>
+  </div>
+  <div style="height: auto" class="list" id="goal-table">
+    <div class="table-row flex flex-align--center">
+      <div class="col-2">
+        <h4 class="table-data-point">Run 5 Miles</h4>
+      </div>
+      <div class="col-2">
+        <h4 class="table-data-point">Y</h4>
+      </div>
+      <div class="col-3">
+        <h4 class="table-data-point">N</h4>
+      </div>
+      <div class="col-3">
+        <h4 class="table-data-point">08/12/2017</h4>
+      </div>
+      <div class="col-2">
+        <div class="icon-bg--edit fr" onclick="allergy.editAllergy('71')"></div>
+        <div class="icon-bg--delete fr" onclick="allergy.deleteAllergy('95')"></div>
+      </div>
+    </div>
+  </div>
+</div>
+<div style="margin-top: 20px;">
+  <div class="row pd--lr20" id="practiceGoals">
+    <h4 class="table-head-title ml--20">Long Term Goals</h4>
+    <div class="col-6">
+      <div class="white p-goal">
+        <div class="clearfix p-goal__main">
+          <h3 class="text-color--primary text-weight--bold mt--none fl">Run 5 Miles</h3>
+          <div class="clearfix fr">
+            <p class="fl mr--20 text-color--primary-dark">Active</p>
+            <p class="fl text-color--primary-dark">Created: 09/20/2017</p>
+          </div>
+        </div>
+        <hr class="light-grey mt--10 mb--10">
+        <div class="p-goal__associated">
+          <p class="mb--10 pd--lr20 text-color--primary-dark">Associated Short Term Goals</p>
+          <div id="associatedGoals" class="associated-goals__list">
+            <div class="associated-goals__item clearfix">
+              <p class="text-color--primary fl">Walk a Marathon</p>
+              <p class="fr text-color--primary-dark">Created 09/20/2017</p>
+            </div>
+            <div class="associated-goals__item clearfix">
+              <p class="text-color--primary fl">Speak with a Stranger</p>
+              <p class="fr text-color--primary-dark">Created 09/20/2017</p>
+            </div>
+            <div class="associated-goals__item clearfix">
+              <p class="text-color--primary fl">Run 3 Miles</p>
+              <p class="fr text-color--primary-dark">Created 09/20/2017</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="noGoals" style="display:none" class="empty text-align--center">
+  <div class="container width--100 center align-vertical--middle">
+    <img src="resources\images\icon\icon-empty-goals.svg">
+    <h1 class="text-weight--bold text-color--black-20">You Have No Goals</h1>
+    <a class="btn--primary" href="#" onclick="event.preventDefault();goals.newGoal()"><img class="va--middle mr--10" src="resources\images\icon\icon-add.svg" alt=""> <span class="va--middle">Add Goal</span></a>
+  </div>
+</div>
+<div id="noPracticeGoals" style="display:none" class="empty text-align--center">
+  <div class="container width--100 center align-vertical--middle">
+    <img src="resources\images\icon\icon-empty-goals.svg">
+    <h1 class="text-weight--bold text-color--black-20">Your Practice Has Not Set Any Goals</h1>
+  </div>
+</div>
+
+<script type="text/javascript">
+  $('#goalDate').datepicker();
+  $('#goalDate').datepicker('option', common.datepickerOptions).mask('00/00/0000');
+
+  common.switchScreen(goals);
+</script>

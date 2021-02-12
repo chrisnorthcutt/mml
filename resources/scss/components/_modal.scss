@@ -1,0 +1,97 @@
+.popup {
+  width           : 500px;
+  transform       : translateY(-50%);
+  position        : fixed;
+  left            : 250px;
+  right           : 0;
+  top             : 50%;
+  max-height      : 690px;
+  margin          : auto;
+  background-color: $white;
+  display         : none;
+  box-shadow      : 0 5px 10px 0 rgba($black, .03);
+  z-index         : 2;
+  animation       : modal 0.5s 1 forwards;
+  transform-origin: center center;
+
+  .safari & {
+    position: absolute;
+    left: 0px;
+  }
+  @media screen and (max-height: 798px){
+    height: calc(95% - 100px);
+  }
+  &__title{
+    border-bottom: 1px solid rgba(0,0,0,.15);
+  }
+&.confirmation{
+  height: auto;
+  padding: 20px;
+}
+  &-cta {
+    padding   : 10px;
+    border-top: 1px solid rgba(0,0,0,.15);
+    background: white;
+    width     : 100%;
+    overflow  : hidden;
+    position  : absolute;
+    left      : 0;
+    right     : 0;
+    bottom    : 0;
+
+    > input[type="button"] {
+      margin-top: 0;
+    }
+  }
+
+  &-fields {
+    height  : calc(100% - 124px);
+    overflow: auto;
+    padding : 20px;
+    margin-bottom: 62px;
+    max-height: 566px;
+  }
+  &--sm{
+    max-height: 350px;
+    width     : 350px;
+  }
+  &--lg{
+    max-height: 800px;
+    width     : 700px;
+  }
+  &__list-item{
+    cursor          : pointer;
+    transition      : .2s all linear;
+    background-color:transparent; 
+    display         : inline-block;
+    width           : 100%;
+    &:hover{
+      background-color: $light-blue-grey;
+    }
+  }
+}
+
+.cover {
+  height          : calc(100vh - 50px);
+  width           : 100%;
+  background-color: rgba($black, .5);
+  position        : fixed;
+  top             : 0;
+  left            : 0;
+  display         : none;
+  z-index         : 1;
+}
+@keyframes modal {
+  0% {
+    transform: scale(0) translateY(-50%);
+  }
+
+  50% {
+    transform: scale(1.025) translateY(-50%);
+  }
+
+  100% {
+    transform: scale(1) translateY(-50%);
+    width: 501px;
+  }
+}

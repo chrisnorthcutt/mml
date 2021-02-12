@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>MyMedicalLocker Information Lookup</title>
+
+    <!-- Stylesheets-->
+    <link rel="stylesheet" href="../vendors/css/fa/css/font-awesome.css">
+    <link href="https://fonts.googleapis.com/css?family=Karla:400,700" rel="stylesheet">
+    <link rel="stylesheet" href="../vendors/css/ui.css">
+    <link rel="stylesheet" href="../resources/css/main.min.css">
+
+    <!-- Scripts -->
+    <script src="../resources/js/dom.js"></script>
+    <script src="../vendors/js/ui.js"></script>
+  </head>
+  <body>
+    <p style="text-align: center; width: 100%">redirecting you to your help page</p>
+    <script src="../resources/js/xmlquery.js"></script>
+    <script>
+      var key = readCookie("isalus_key");
+      var xml = new XmlCreator(key);
+
+      function redirectUser(xmlDoc){
+        window.location.replace($(xmlDoc).find('help_url').text());
+      }
+
+      xml.setAccount($_GET['a']);
+
+      xmlQuery(xml.create('iSalusExternal.GetFamilyHistory')($_GET['n']), redirectUser);
+    </script>
+  </body>
+</html>

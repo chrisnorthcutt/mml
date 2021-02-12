@@ -1,0 +1,102 @@
+<div id="cover" class="cover" onclick="common.refresh()"></div>
+<div class="popup" id="popup">
+  <div class="popup__title text-align--center">
+      <h3 class="text-color--primary text-weight--bold text-size--large mb--20">Add a New Medical Condition</h3>
+  </div>
+  <div class="popup-fields">
+  <div class="form-group">
+    <label for="type">Type:</label>
+    <select class="width--100" id="conditionType" name="type">
+      <option value="1">Medical History</option>
+      <option value="2">Infectious Diseases</option>
+      <option value="3">Immunizations</option>
+      <option value="4">Hospitalizations</option>
+      <option value="5">Surgeries</option>
+    </select>
+    
+  </div>
+  <div class="form-group">
+    <label for="condition">Condition</label>
+    <select class="width--100" name="condition" id="conditionDropdown"></select>
+    
+  </div>
+  <div class="form-group">
+    <label>Occurred</label><br/>
+    <input type="radio" name="occurredType" id="age-occurred" onclick="common.showField(this.value,'occurred')" value="A">
+    <label for="age-occurred">
+      <span></span>Age&nbsp;&nbsp;&nbsp;</label>
+    <input type="radio" name="occurredType" id="year-occurred" onclick="common.showField(this.value,'occurred')" value="Y">
+    <label for="year-occurred">
+      <span></span>Year&nbsp;&nbsp;&nbsp;</label>
+    <input type="radio" name="occurredType" id="date-occurred" onclick="common.showField(this.value,'occurred')" value="D">
+    <label for="date-occurred">
+      <span></span>Date</label>
+    <select class="width--100 dropdown" name="Aoccurred" id="Aoccurred"></select>
+    <select class="width--100 dropdown" name="Yoccurred" id="Yoccurred"></select>
+    <input class="width--100 date" type="text" id="Doccurred"/>
+  </div>
+  <div class="form-group">
+    <label for="notes">Notes</label>
+    <input class="width--100" type="text" name="notes" id="notes"/>
+  </div>
+  <div class="form-group">
+    <label for="result">Result</label>
+    <input class="width--100" type="text" name="result" id="result"/>
+  </div>
+  <div class="form-group">
+    <label for="hospital">Hospital</label>
+    <input class="width--100" type="text" name="hospital" id="hospital"/>
+  </div>
+</div>
+<div class="popup-cta">
+  <input style="display: none" id="conditionId"/>
+  <button class="width--50 fr btn--primary" onclick="conditions.saveCondition()">Save</button>
+  <button class="width--50 fl btn--secondary" onclick="common.refresh()">Close</button>
+  </div>
+</div>
+<div class="popup confirmation" id="popup-confirmation">
+  <p class="text-color--primary-dark text-weight--bold text-align--center mb--10">Really delete this item?</p>
+  <button class="width--50 fl btn--secondary" onclick="conditions.deleteCondition()">Delete</button>
+  <button class="width--50 fr btn--primary" onclick="common.refresh()">Nevermind</button>
+  <input style="display: none" id="deleteConditionId"/>
+</div>
+<div id="tableHeader" style="display: none;" class="table-head row">
+  <div class="col-4">
+    <h4 class="table-head-title">Type</h4>
+  </div>
+  <div class="col-3">
+    <h4 class="table-head-title">Condition</h4>
+  </div>
+  <div class="col-3">
+    <h4 class="table-head-title">Occurred</h4>
+  </div>
+
+  <div class="col-2">
+    <a class="btn--primary width--auto fr" style="margin: 20px 0px 0px 0px;" href="" onclick="event.preventDefault();conditions.newCondition()"><img class="va--middle mr--10" src="resources\images\icon\icon-add.svg" alt=""> Add Condition</a>
+  </div>
+</div>
+<div class="list" id="conditions-table">
+</div>
+<div id="noConditions" class="empty text-align--center">
+  <div class="container width--100 center align-vertical--middle">
+    <img src="resources\images\icon\icon-empty-condition.svg">
+    <h1 class="text-weight--bold text-color--black-20">You Have No Medical Conditions Entered</h1>
+    <a class="btn--primary" href="#" onclick="event.preventDefault();conditions.newCondition()"><img class="va--middle mr--10" src="resources\images\icon\icon-add.svg" alt=""> Add Medical Condition</a>
+  </div>
+</div>
+<script type="text/javascript">
+  common.setTitle('Medical Conditions');
+  common.selectNavItem('navAboutMe');
+
+  conditions.loadData();
+  $("#Doccurred").datepicker();
+  $("#Doccurred").datepicker('option', common.datepickerOptions).mask('00/00/0000');
+
+  $('#notes').mask('Q', common.specialCharacterMask);
+  $('#result').mask('Q', common.specialCharacterMask);
+  $('#hospital').mask('Q', common.specialCharacterMask);
+
+  document.getElementById('conditionType').onchange = function () {
+    xmlQuery(xml.create('iSalusExternal.GetConditionItems')(this.value), common.renderDropdown('conditionDropdown'));
+  }
+</script>

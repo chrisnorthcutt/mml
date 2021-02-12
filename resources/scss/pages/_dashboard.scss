@@ -1,0 +1,126 @@
+.tile {
+  min-height: 300px;
+  padding: 20px;
+  position: relative;
+
+  &-btn{
+    position: absolute;
+    bottom: 20px;
+    width: 100%;
+    left: 0;
+    right: 0;
+    padding: 0 20px;
+
+  }
+  &-content {
+    margin: 0 auto;
+    align-self: flex-start;
+    margin-top: 50px;
+  }
+
+
+  &-icon {
+    height: 45px;
+    width: 45px;
+    display: block;
+    margin: 0 auto;
+    &--messages {
+      background: url($icon-messages) no-repeat center;
+      background-size: auto;
+    }
+
+    &--chart {
+      background: url($icon-chart) no-repeat center;
+      background-size: auto;
+    }
+
+    &--appointment {
+      background: url($icon-appointment) no-repeat center;
+      background-size: auto;
+    }
+
+    &--balance {
+      background: url($icon-balance) no-repeat center;
+      background-size: auto;
+    }
+  }
+
+
+}
+.tile-list {
+  height: 300px;
+
+  &--primary {
+    @include tile-list($primary);
+  }
+
+  &--secondary {
+    @include tile-list($secondary);
+  }
+
+  &--tertiary {
+    @include tile-list($tertiary);
+  }
+
+  &--quantery {
+    @include tile-list($quaternary);
+  }
+
+  &-title {
+    width: 100%;
+    padding: 15px 20px;
+    border-bottom: 1px solid $light-grey;
+  }
+
+  &-data {
+    overflow-y: auto;
+    height: 242px;
+
+    &-point {
+      transition: 0.2s all ease-in;
+      height: 50px;
+      line-height: 50px;
+      padding: 0 20px;
+      overflow-x: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+  }
+}
+
+.table {
+  &-head {
+    padding: 10px;
+
+    &-title {
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+  }
+
+  &-row {
+    background: $white;
+    box-shadow: 0 5px 10px 0 rgba($black, .03);
+    border-radius: 0;
+    padding: 20px 10px;
+    margin-bottom: 10px;
+    transition: 0.3s all linear;
+
+    &:hover {
+      box-shadow: 0 8px 15px 0 rgba($black, .06);
+    }
+  }
+
+  &-data-point {
+    display: block;
+    vertical-align: middle;
+    word-wrap: break-word;
+    margin-top: 0;
+
+  }
+}
+
+.list {
+  height: calc(100vh - 240px);
+  overflow: auto;
+}

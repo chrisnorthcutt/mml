@@ -1,0 +1,124 @@
+<div id="cover" class="cover" onclick="common.refresh()"></div>
+<div class="popup" id="popup">
+  <div class="popup__title text-align--center">
+      <h3 class="text-color--primary text-weight--bold text-size--large mb--20">Add a New Document</h3>
+  </div>
+    <div class="popup-fields">
+  <div class="form-group" id="fileUploadSection">
+
+    <input class="width--100 inputfile" type="file" name="file" id="fileUpload" onchange="documents.getDocumentName(this);"/>
+    <label for="fileUpload"><img class="va--middle mr--10" src="resources\images\icon\icon-upload.svg" alt=""><span class="va--middle file-name">Upload a New File</span></label>
+  </div>
+  <div class="form-group">
+    <label for="name">Document Name</label>
+    <input class="width--100" type="text" name="name" id="imageName"/>
+  </div>
+  <div class="form-group">
+    <label for="date">Date</label>
+    <input class="width--100 date" type="text" name="date" id="documentDate"/>
+  </div>
+  <div class="form-group">
+    <label for="type">Type</label>
+    <select class="width--100" name="type" id="documentTypeCode">
+      <option value="11">Advanced Directives</option>
+      <option value="12">Financial</option>
+      <option value="13">Lab and Test Results</option>
+      <option value="14">Legal</option>
+      <option value="15">Medical Forms</option>
+      <option value="16">Photo</option>
+      <option value="999">Other</option>
+    </select>
+    
+  </div>
+  <div class="form-group">
+    <label for="description">Description</label>
+    <input class="width--100" type="text" name="description" id="imageDescription"/>
+  </div>
+  <input style="display: none" id="patientImageId"/>
+  <input style="display: none" id="imageId"/>
+  <div class="popup-cta">
+  <button class="width--50 fr btn--primary" onclick="documents.saveDocument()">Save</button>
+  <button class="width--50 fl btn--secondary" onclick="common.refresh()">Close</button>
+</div>
+</div>
+</div>
+<div class="popup confirmation" id="popup-confirmation">
+  <p class="text-color--primary-dark text-weight--bold text-align--center">Really delete this item?</p>
+  <button class="width--50 fl btn--secondary" onclick="documents.deleteDocument()">Delete</button>
+  <button class="width--50 fr btn--primary" onclick="common.refresh()">Nevermind</button>
+  <input style="display: none" id="deletePatientImageId"/>
+</div>
+<div id="tableHeader" style="display: none;" class="table-head row">
+  <div class="col-2">
+    <h4 class="table-head-title">Name</h4>
+  </div>
+  <div class="col-2">
+    <h4 class="table-head-title">Type</h4>
+  </div>
+  <div class="col-3">
+    <h4 class="table-head-title">Filename</h4>
+  </div>
+  <div class="col-3">
+    <h4 class="table-head-title">Dated</h4>
+  </div>
+
+  <div class="col-2">
+    <a class="btn--primary width--auto fr" style="margin: 20px 0px 0px 0px;" href="" onclick="event.preventDefault();documents.newDocument()"><img class="va--middle mr--10" src="resources\images\icon\icon-upload.svg" alt=""><span class="va--middle">Upload Document</span></a>
+  </div>
+</div>
+<div class="list" id="document-table">
+<!--   <div class="table-row flex flex-align--center">
+  <div class="col-2">
+    <h4 class="table-data-point">
+      <a class="text-color--primary text-weight--bold" href="{5}" target="_blank">Words</a>
+    </h4>
+  </div>
+      <div class="col-2">
+        <h4 class="table-data-point">Words</h4>
+      </div>
+      <div class="col-3">
+        <h4 class="table-data-point">Words</h4>
+      </div>
+      <div class="col-3">
+      <h4 class="table-data-point">Words</h4>
+  </div>
+  <div class="col-2">
+    <div class="icon-bg--view fr"></div>
+    <div class="icon-bg--edit fr" onclick="documents.editDocument(\'{4}\')"></div>
+     <div class="icon-bg--delete fr" onclick="documents.deleteConfirmation(\'{4}\')"></div>
+  </div>
+</div> -->
+</div>
+<div id="noDocuments" class="empty text-align--center">
+  <div class="container width--100 center align-vertical--middle">
+    <img src="resources\images\icon\icon-empty-document.svg">
+    <h1 class="text-weight--bold text-color--black-20">You Have No Documents Uploaded</h1>
+    <a class="btn--primary" href="#" onclick="event.preventDefault();documents.newDocument()"><img class="va--middle mr--10" src="resources\images\icon\icon-upload.svg" alt=""> Upload Document</a>
+  </div>
+</div>
+<script type="text/javascript">
+  var inputs = document.querySelectorAll( '.inputfile' );
+
+  Array.prototype.forEach.call( inputs, function( input ){
+    var label = input.nextElementSibling,
+    var labelVal = label.innerHTML;
+
+    input.addEventListener('change', function( e ){
+      var fileName = '';
+      if( this.files && this.files.length > 1 )
+        fileName = ( this.getAttribute( 'data-multiple-caption' ) || '' ).replace( '{count}', this.files.length );
+      else
+        fileName = e.target.value.split( '\\' ).pop();
+
+      if( fileName )
+        label.querySelector( '.file-name' ).innerHTML = fileName;
+      else
+        label.innerHTML = labelVal;
+    });
+  });
+
+  $('#documentDate').datepicker();
+  $('#documentDate').datepicker('option', common.datepickerOptions).mask('00/00/0000');
+
+  common.switchScreen(documents);
+</script>

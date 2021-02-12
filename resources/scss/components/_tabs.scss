@@ -1,0 +1,37 @@
+.text {
+  &-tab {
+    &-item {
+      font-weight   : 700;
+      text-transform: uppercase;
+      transition    : 0.2s all ease-in;
+      position      : relative;
+      line-height   : 55px;
+      display       : inline-block;
+
+      &:not(:last-child) {
+        margin-right: 10px;
+      }
+      color: rgba($medium-grey, .75);
+
+      &--active {
+        color: $primary;
+
+        &:after {
+          content   : "";
+          position  : absolute;
+          bottom    : 0;
+          left      : 0;
+          width     : 100%;
+          height    : 2px;
+          background: $primary;
+        }
+      }
+
+      &:hover {
+        color : rgba($primary, 1);
+        cursor: pointer;
+
+      }
+    }
+  }
+}

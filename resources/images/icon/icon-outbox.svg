@@ -1,0 +1,35 @@
+<svg width="20" height="20" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<title>icon-outbox</title>
+<desc>Created using Figma</desc>
+<g id="Canvas" transform="translate(-1659 433)">
+<rect x="1659" y="-433" width="20" height="20" fill="#E5E5E5"/>
+<clipPath id="clip-0" clip-rule="evenodd">
+<path d="M 1119 -512L 2559 -512L 2559 512L 1119 512L 1119 -512Z" fill="#FFFFFF"/>
+</clipPath>
+<g id="Desktop HD" clip-path="url(#clip-0)">
+<path d="M 1119 -512L 2559 -512L 2559 512L 1119 512L 1119 -512Z" fill="#F6F9FC"/>
+<g id="button w/icon">
+<g id="state-normal">
+<g id="normal">
+<use xlink:href="#path0_fill" transform="translate(1649 -443)" fill="#FFFFFF"/>
+</g>
+</g>
+<g id="icons">
+<g id="icon-outbox">
+<g id="icons8-Outbox">
+<g id="surface1">
+<g id="Vector">
+<use xlink:href="#path1_fill" transform="translate(1659 -433)" fill="#474747"/>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<defs>
+<path id="path0_fill" d="M 0 0L 240 0L 240 40L 0 40L 0 0Z"/>
+<path id="path1_fill" d="M 9.5 -1.97854e-08L 5.43484 4.02069L 6.65607 5.22856L 8.63636 3.26994L 8.63636 8.04137L 10.3636 8.04137L 10.3636 3.26994L 12.3439 5.22856L 13.5652 4.02069L 9.5 -1.97854e-08ZM 1.84872 1.20787L 0 13.0998L 0 20L 19 20L 19 13.0998L 17.1513 1.20787L 14.0341 1.20787L 14.0341 2.91625L 15.6669 2.91625L 17.1277 12.3123L 11.2273 12.3123L 11.2273 13.1665C 11.2273 14.1208 10.4648 14.8749 9.5 14.8749C 8.53516 14.8749 7.77273 14.1208 7.77273 13.1665L 7.77273 12.3123L 1.86896 12.3123L 3.3331 2.91625L 5.03675 2.91625L 5.03675 1.20787L 1.84872 1.20787ZM 1.72727 14.0207L 6.22088 14.0207C 6.61559 15.4788 7.90767 16.5833 9.5 16.5833C 11.0923 16.5833 12.3844 15.4788 12.7791 14.0207L 17.2727 14.0207L 17.2727 18.2916L 1.72727 18.2916L 1.72727 14.0207Z"/>
+</defs>
+</svg>

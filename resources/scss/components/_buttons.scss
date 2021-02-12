@@ -1,0 +1,96 @@
+.btn{
+&--primary {
+  @include button($primary);
+}
+&--primary-dark {
+  @include button($primary-dark);
+}
+&--secondary {
+  @include button($secondary);
+}
+&--tertiary {
+  @include button($tertiary);
+}
+&--quantery {
+  @include button($quaternary);
+}
+&--white{
+  @include button($white);
+  color: $grey;
+  overflow: hidden;
+  &:hover{
+    color: lighten($grey, 20%);
+  }
+}
+&--disabled{
+
+  @include button(rgba($grey, .75));
+  color: rgba($white, .75);
+  &:hover{
+    background: rgba($grey, .75);
+    color     : rgba($white, .75);
+    cursor    : not-allowed;
+    }
+}
+&--outline {
+  @include button($white);
+  padding: 9px 15px;
+  box-shadow: none;
+  border: 1px solid $primary;
+  color: $primary;
+
+  &:hover {
+    background-color: $primary;
+    color           : $white;
+  }
+}
+
+&--sm {
+  font-size  : 16px;
+  padding    : 5px 15px;
+  font-weight: 500;
+}
+}
+
+button {
+  border: none;
+}
+
+button:disabled {
+  background: $medium-grey;
+  color: rgba($grey, .75);
+  
+  &:hover {
+    background: $medium-grey;
+    color: rgba($grey, .75);
+    cursor: wait;
+  }
+}
+
+.saving{
+  animation: saving 1s linear infinite;
+  opacity  : 1;
+}
+
+.loading {
+  height: 19px;
+  width: 19px;
+  border-radius: 100%;
+  border: 2px dashed rgba($grey, .75);
+  display: inline-block;
+  vertical-align: middle;
+  animation: sync infinite 1.5s linear;
+  -moz-animation: sync infinite 1.5s linear;
+}
+
+@keyframes saving {
+  0%{
+    opacity: .25;
+  }
+  50%{
+    opacity: 1;
+  }
+  100%{
+    opacity: .25;
+  }
+}

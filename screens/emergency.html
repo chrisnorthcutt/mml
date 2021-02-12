@@ -1,0 +1,127 @@
+
+<div class="container center white clearfix">
+
+<div class="row">
+  <div class="col-12">
+    <div class="form-group inputSwitch">
+      <label for="primaryName">First Person</label><br />
+      <span class="placeholder"></span><input class="width--100 toggleable" type="text" name="primaryName" id="primaryName"/>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-12">
+    <div class="form-group inputSwitch">
+      <label for="primaryRelationshipCode">Relationship</label><br />
+      <span class="placeholder"></span>
+      <select class="width--100 toggleable" name="primaryRelationshipCode" id="primaryRelationshipCode">
+        <option value="1">Spouse</option>
+        <option value="2">Child</option>
+        <option value="3">Step Child</option>
+        <option value="4">Foster Child</option>
+        <option value="5">Ward</option>
+        <option value="6">Nephew or Niece</option>
+        <option value="7">Parent</option>
+        <option value="8">Grandparent</option>
+        <option value="9">Other</option>
+      </select>
+          <div class="input-icon--dropdown toggleable"></div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-4 form-group inputSwitch">
+    <label for="primaryHome">Home <div class="field-error" id="primaryHomeError"></div></label><br />
+    <span class="placeholder"></span><input class="width--100 toggleable" type="text" name="primaryHome" id="primaryHome"/>
+  </div>
+  <div class="col-4 form-group inputSwitch">
+    <label for="primaryCell">Cell <div class="field-error" id="primaryCellError"></div></label><br />
+    <span class="placeholder"></span><input class="width--100 toggleable" type="text" name="primaryCell" id="primaryCell"/>
+  </div>
+  <div class="col-4 form-group inputSwitch">
+    <label for="primaryWork">Work <div class="field-error" id="primaryWorkError"></div></label><br />
+    <span class="placeholder"></span><input class="width--100 toggleable" type="text" name="primaryWork" id="primaryWork"/>
+  </div>
+</div>
+<hr class="light-grey">
+<div class="row">
+  <div class="col-12">
+    <div class="form-group inputSwitch">
+      <label for="secondaryName">Second Person</label><br />
+      <span class="placeholder"></span><input class="width--100 toggleable" type="text" name="secondaryName" id="secondaryName"/>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-12">
+    <div class="form-group inputSwitch">
+      <label for="secondaryRelationshipCode">Relationship</label><br />
+      <span class="placeholder"></span>
+      <select class="width--100 toggleable" name="secondaryRelationshipCode" id="secondaryRelationshipCode">
+        <option value="1">Spouse</option>
+        <option value="2">Child</option>
+        <option value="3">Step Child</option>
+        <option value="4">Foster Child</option>
+        <option value="5">Ward</option>
+        <option value="6">Nephew or Niece</option>
+        <option value="7">Parent</option>
+        <option value="8">Grandparent</option>
+        <option value="9">Other</option>
+      </select>
+      <div class="input-icon--dropdown toggleable">
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-4 form-group inputSwitch">
+    <label for="secondaryHome">Home <div class="field-error" id="secondaryHomeError"></div></label><br />
+    <span class="placeholder"></span><input class="width--100 toggleable" type="text" name="secondaryHome" id="secondaryHome"/>
+  </div>
+  <div class="col-4 form-group inputSwitch">
+    <label for="secondaryCell">Cell <div class="field-error" id="secondaryCellError"></div></label><br />
+    <span class="placeholder"></span><input class="width--100 toggleable" type="text" name="secondaryCell" id="secondaryCell"/>
+  </div>
+  <div class="col-4 form-group inputSwitch">
+    <label for="secondaryWork">Work <div class="field-error" id="secondaryWorkError"></div></label><br />
+    <span class="placeholder"></span><input class="width--100 toggleable" type="text" name="secondaryWork" id="secondaryWork"/>
+  </div>
+</div>
+
+<a id="saveEmergencyButton" class="btn--primary width--auto fr mt--20" href="" onclick="event.preventDefault();emergency.saveEmergency()"><img class="save va--middle mr--10" src="resources\images\icon\icon-save.svg" alt=""> <span class="va--middle">Save Changes</span></a>
+</div>
+<script type="text/javascript">
+  $('#primaryHome').mask('(000) 000-0000');
+  $('#primaryCell').mask('(000) 000-0000');
+  $('#primaryWork').mask('(000) 000-0000');
+
+  $('#secondaryHome').mask('(000) 000-0000');
+  $('#secondaryCell').mask('(000) 000-0000');
+  $('#secondaryWork').mask('(000) 000-0000');
+
+  var $inputSwitches = $(".inputSwitch"),
+    $inputs = $inputSwitches.find(".toggleable"),
+    $spans = $inputSwitches.find("span");
+  $spans.on("click", function() {
+    var $this = $(this);
+    $this.hide().siblings(".toggleable").show().focus().select();
+  });
+  $inputs.on('keydown', function(e) {
+
+    common.resetButton('saveEmergencyButton');
+
+    if (e.which == 9) {
+      e.preventDefault();
+      if (e.shiftKey) {
+        $(this).blur().parent().prevAll($inputSwitches).first().find($spans).click();
+      } else {
+        $(this).blur().parent().nextAll($inputSwitches).first().find($spans).click();
+      }
+    }
+  }).hide();
+
+  common.switchScreen(emergency);
+</script>

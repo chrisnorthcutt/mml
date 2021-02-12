@@ -1,0 +1,116 @@
+.icon-text{
+  text-align: center;
+  padding: 10px;
+  transition: .2s all linear;
+  cursor: pointer;
+  &:hover{
+    color: $primary;
+  }
+}
+.icon-bg {
+  &--medication {
+    @include icon-bg($icon-meds);
+  }
+
+  &--inbox{
+    @include icon-bg("../images/icon/icon-inbox.svg");
+  }
+
+  &--open{
+    @include icon-bg("../images/icon/icon-new-window.svg");
+    background-position: center center;
+    .icon-text:hover &{
+      background-image:url("../images/icon/icon-new-window-hover.svg")
+    }
+  }
+
+  &--history{
+    @include icon-bg("../images/icon/icon-history.svg");
+    background-position: center center;
+    .icon-text:hover &{
+      background-image:url("../images/icon/icon-history-hover.svg")
+    }
+  }
+
+  &--goal{
+    @include icon-bg($icon-goal);
+  }
+
+  &--family {
+    @include icon-bg($icon-family);
+  }
+    &--info {
+    @include icon-bg("../images/icon/icon-info.svg");
+    padding: 0px;
+    width: 21px;
+    vertical-align: middle;
+
+  }
+   &--allergy {
+    @include icon-bg("../images/icon/icon-allergy.svg");
+  }
+  &--view{
+    @include icon-bg("../images/icon/icon-view-details.svg");
+  }
+
+  &--conditions {
+    @include icon-bg($icon-conditions);
+  }
+   &--conditions {
+    @include icon-bg($icon-conditions);
+  }
+
+  &--map {
+    @include icon-bg("../images/icon/icon-map-marker.svg");
+    padding: 0;
+  }
+
+  &--sync {
+    @include icon-bg($icon-sync);
+    background-position: center center;
+    height             : 50px;
+    width              : 25px;
+    padding-left       : 0;
+  }
+
+  &--edit {
+    @include icon-bg("../images/icon/icon-edit.svg");
+    width: 40px;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  &--down {
+    @include icon-bg("../images/icon/icon-down.svg");
+    width: 40px;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  &--delete {
+    @include icon-bg( '../images/icon/icon-delete.svg');
+    display: inline;
+    width: 40px;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+  &--payment {
+    @include icon-bg("../images/icon/icon-payments.svg");
+  }
+  &--statement {
+    @include icon-bg("../images/icon/icon-statement-history.svg");
+  }
+  &--account {
+    @include icon-bg("../images/icon/icon-account-history.svg");
+  }
+  &--date {
+    @include icon-bg("../images/icon/icon-date.svg");
+    background-position: right 10px center !important;
+  }
+}

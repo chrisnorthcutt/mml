@@ -1,0 +1,280 @@
+//Reset styling for iOS devices
+input,
+input:focus,
+input:hover,
+input:active,
+input:visited {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+select {
+    background: url("../images/icon/icon-down-grey.svg") no-repeat right 10px
+        center;
+
+    &:focus {
+        background-image: url("../images/icon/icon-down-teal.svg");
+    }
+}
+
+//Inputs
+
+input,
+select {
+    @include input-text($grey, $medium-grey);
+    &::-ms-clear,
+    &::-ms-reveal {
+        display: none;
+    }
+
+    &:focus {
+        border-color: $primary;
+        box-shadow: 0 0 5px rgba($primary, 0.75);
+    }
+
+    &.invalid {
+        border-color: $secondary;
+    }
+}
+
+input[type="button"] {
+    border: none;
+}
+
+label {
+    font-size: em(14px);
+    color: $grey;
+    margin-bottom: 5px;
+    display: inline-block;
+    text-transform: capitalize;
+}
+
+.form-group {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.input-icon {
+    &--dropdown {
+        @include input-icon;
+        background: url("../images/icon/icon-down-grey.svg") no-repeat center
+            center;
+    }
+    &--search {
+        @include input-icon;
+        background: url("../images/icon/icon-search.svg") no-repeat center
+            center;
+    }
+    &--date {
+        @include input-icon;
+        background: url("../images/icon/icon-date.svg") no-repeat center center;
+        &-white {
+            @include input-icon;
+            background-image: url("../images/icon/icon-date-white.svg");
+            background-repeat: no-repeat;
+        }
+    }
+}
+
+input:focus + .input-icon--search {
+    background: url($icon-search-selected) no-repeat center center;
+}
+
+input:focus + .input-icon--date {
+    background: url($icon-appointment-selected) no-repeat center center;
+}
+
+input:focus + .input-icon--date-white {
+    background: url($icon-appointment-selected) no-repeat center center;
+}
+
+select:focus + .input-icon--dropdown {
+    background: url($icon-dropdown-selected) no-repeat center center;
+}
+
+input[type="radio"] {
+    display: none;
+}
+
+input[type="radio"] + label span {
+    display: inline-block;
+    width: 22px;
+    height: 22px;
+    margin: -2px 10px 0 0;
+    vertical-align: middle;
+    background: url("../images/icon/icon-radio-unchecked.svg") center center
+        no-repeat;
+    cursor: pointer;
+}
+input[type="radio"]:disabled + label span {
+    background: #ebf1f8;
+    border-radius: 100%;
+    cursor: inherit;
+}
+
+input[type="radio"]:checked + label span {
+    animation: scale 0.5s 1 forwards;
+    background: url($icon-radio-checked) center center no-repeat;
+}
+input[type="radio"]:checked:disabled + label span {
+    background: url($icon-radio-checked-disabled) center center no-repeat;
+}
+
+input[type="checkbox"] {
+    display: none;
+}
+
+input[type="checkbox"] + label span {
+    display: inline-block;
+    width: 22px;
+    height: 22px;
+    margin: -2px 10px 0 0;
+    vertical-align: middle;
+    background: url("../images/icon/icon-checkbox-unchecked.svg") center center
+        no-repeat;
+    cursor: pointer;
+    &.grey {
+        background: url("../images/icon/icon-checkbox-unchecked-grey.svg")
+            center center no-repeat;
+    }
+}
+input[type="checkbox"]:disabled + label span {
+    background: #ebf1f8;
+    cursor: inherit;
+}
+
+input[type="checkbox"]:checked + label span {
+    animation: scale 0.5s 1 forwards;
+    background: url($icon-checkbox-checked) center center no-repeat;
+}
+input[type="checkbox"]:checked:disabled + label span {
+    background: url($icon-checkbox-checked-disabled) center center no-repeat;
+}
+
+input[type="checkbox"]:checked + label {
+    color: $primary;
+}
+input[type="checkbox"]:checked:disabled + label {
+    color: $grey;
+}
+
+input.input--white {
+    border-color: $white;
+    color: $white;
+    &:-ms-input-placeholder {
+        color: rgba($white, 0.25);
+    }
+    &::placeholder {
+        color: rgba($white, 0.25);
+    }
+    &:disabled {
+        color: $grey;
+        &::placeholder {
+            color: $grey;
+        }
+    }
+}
+@keyframes scale {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.125);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+input[type="radio"]:checked + label {
+    color: $primary;
+}
+input[type="radio"]:checked:disabled + label {
+    color: $grey;
+}
+
+textarea {
+    color: $grey;
+    transition: 0.2s all ease-in;
+    border: 1px solid;
+    border-color: $grey;
+    font: 16px $font-family--primary;
+    &:focus {
+        outline: none;
+        border: 1px solid $primary;
+    }
+}
+
+.ui-autocomplete {
+    max-height: 300px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+.required {
+    color: $secondary;
+}
+
+select:disabled,
+input:disabled {
+    background-color: #ebf1f8;
+    border-color: #ebf1f8;
+    padding: 0 8px;
+}
+.placeholder {
+    background: #ebf1f8;
+    border-bottom: 1px solid #ebf1f8;
+    color: $grey;
+    height: 35px;
+    display: block;
+    line-height: 35px;
+    margin-bottom: 20px;
+    padding: 0 8px;
+}
+
+.date {
+    background-image: url(../images/icon/icon-date.svg) !important;
+    background-repeat: no-repeat !important;
+    background-position: right 8px center !important;
+    transition: 0.2s all linear !important;
+}
+
+input.date:focus {
+    background-image: url($icon-appointment-selected) !important;
+}
+
+.dropdown {
+    background-image: url(../images/icon/icon-down-grey.svg) !important;
+    background-repeat: no-repeat !important;
+    background-position: right 8px center !important;
+    transition: 0.2s all linear !important;
+}
+
+input.dropdown:focus {
+    background-image: url($icon-dropdown-selected) !important;
+}
+
+select::-ms-expand {
+    display: none;
+}
+textarea:disabled {
+    background-color: #ebf1f8;
+    padding: 0 8px;
+}
+.field-error {
+    color: $secondary;
+    display: inline;
+}
+.smallPlaceholder {
+    height: 29px;
+    width: 29px;
+    line-height: 29px;
+    color: white;
+    text-align: center;
+    font-size: 1em;
+    border-radius: 50%;
+    display: none;
+}
